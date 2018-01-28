@@ -1,0 +1,20 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block content %}
+
+<p style="color:darkgray;">
+{% for tag in tag_list %}
+
+{% if tag.post_set.count > 0 %}
+<div class="chip" style="margin-bottom:20px";>
+<img src='{% static 'hot_image.gif' %}' alt="Contact Person" width="32px"><a href="{% url 'post:tag_post_list' tag.name %}">{{ tag.name }}</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;
+{% else %}
+<div class="chip" style="margin-bottom:20px";><a href="{% url 'post:tag_post_list' tag.name %}">{{ tag.name }}</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;
+{% endif %}
+
+{% endfor %}</p>
+
+
+{% endblock %}

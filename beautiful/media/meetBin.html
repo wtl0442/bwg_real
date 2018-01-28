@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <title>MeetBin</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    div.header {
+        width:97%;
+        margin:auto;
+        padding-top:1.5%;
+    }
+    ul {
+        padding:0;
+        white-space:nowrap;
+    }
+    ul li {
+        display:inline;
+    }
+    #logo {
+        padding-right:50px;
+        font-size:30px;
+        font-style:bold;
+    }
+    .menu {
+        float:right;
+        padding:10px;
+    }
+    /* 여기까지 Header에 대한 CSS */
+    .centered{
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate( -50%, -50%);
+        font-family:times;
+        font-size:70px;
+        color:white;
+    }
+    ul.home {
+        text-align: center;
+    }
+    ul.home li {
+        font-size:18px;
+        display: inline;
+        padding: 7px 20px;
+        background-color:#EEEEEE;
+        border-radius:5px;
+        margin-left:10px;
+    }
+    ul.home li:hover {
+        background-color:pink;
+        color:white;
+    }
+    div.inside {
+        padding-top:3%;
+        padding-bottom: 2.1%;
+    }
+
+    div.divide {
+        border-top:1px solid lightgray;
+    }
+
+    div.secondBody {
+        display:block;
+        width:97%;
+        height:260px;
+        margin:auto;
+        padding-top:2%;
+        white-space:nowrap;
+    }
+
+    div.secondBody img {
+        margin:5px;
+    }
+
+    div.thirdBody {
+        width:90%;
+        margin:auto;
+    }
+    div.imgLike {
+        display:inline-block;
+        width:250px;
+        height:150px;
+        text-align:center;
+        font-weight:bolder;
+        font-size:20px;
+        padding-top:60px;
+        margin-left:20px;
+        margin-bottom:30px;
+        white-space:nowrap;
+        border-radius:15px 0;
+    }
+
+    .imgLike:hover {
+      opacity: 0.6;
+    }
+
+    div.contact {
+        display:block;
+        width:100%;
+        height:300px;
+        background-color:#052947;
+        text-align:center;
+        color:white;
+        font-size:20px;
+        padding-top:15px;
+    }
+    div.inside {
+        width:100%;
+        height:70px;
+        background-color:orange;
+        font-size:15px;
+        color:black;
+        text-align:center;
+        padding:25px;
+    }
+
+    </style>
+</head>
+<body>
+
+
+    <div class="header">
+        <ul class="list-inline">
+            <li id="logo"><img src="logo.png" width="140"></li>
+            <li class="menu"><a href="#">회원가입하기</a></li>
+            <li class="menu"><a href="#">로그인</a></li>
+            <li class="menu" style="padding-top:4px;">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    한국어 <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">영어</a></li>
+                    <li><a href="#">일본어</a></li>
+                    <li><a href="#">중국어</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">독일어</a></li>
+                  </ul>
+                </div>
+            </li>
+            <li class="menu"><a href="#">MeetBin 만들기</a></li>
+        </ul>
+    </div>
+
+    <div class="body">
+        <img src="body.jpg" width="100%" height="400px">
+        <div class="centered">What do you Like?</div>
+        <div class="inside">
+        <ul class="home">
+            <li>P-rogramming</li>
+            <li>Django</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>Python</li>
+            <li>Java</li>
+        </ul>
+    </div>
+    </div>
+
+    <div class="divide"></div>
+    <!--경계선-->
+
+    <div class="secondBody">
+    <h4 style="font-weight: bolder;">
+    예정된 주변 MeetBin</h4>
+    <p style="text-align:center;">
+    <img src="friend.png" class="img-rounded" width="231px" height="150px">
+    <img src="game.png" class="img-rounded" width="231px" height="150px">
+    <img src="music.png" class="img-rounded" width="231px" height="150px">
+    <img src="coffee.png" class="img-rounded" width="231px" height="150px">
+    <img src="teatime.png" class="img-rounded" width="231px" height="150px"></p>
+    </div>
+
+    <div class="thirdBody" style="border-top:1px solid lightgray;">
+        <h1 style="text-align:center;">탐색</h1><br>
+
+        <div class="imgLike" style="background-color: skyblue;">취미</div>
+        <div class="imgLike" style="background-color: pink;">좋아하는것</div>
+        <div class="imgLike" style="background-color: orange;">전공</div>
+        <div class="imgLike" style="background-color: brown;">게임</div>
+        <div class="imgLike" style="background-color: green;">전공</div>
+        <div class="imgLike" style="background-color: #63D7AF;">스포츠/피트니스</div>
+        <div class="imgLike" style="background-color: #B77FA8;">기술</div>
+        <div class="imgLike" style="background-color: #2E92F7;">음악</div>
+        <div class="imgLike" style="background-color: #9AE69A;">언어와 문화</div>
+        <div class="imgLike" style="background-color: #FF275A;">영화</div>
+        <div class="imgLike" style="background-color: #B4CADA;">반려동물</div>
+        <div class="imgLike" style="background-color: #8E5D45;">춤</div></div>
+        <br>
+    <div class="contact"><div style="font-size:50px;"><br><span class="glyphicon glyphicon-apple" aria-hidden="true" style="color:pink;"></span>Contact</div>
+        윤 주 빈<br>
+        PH : 010-9477-6013<br><br>
+        <div class="inside">서울특별시 성동구 행당동 1-81</div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
