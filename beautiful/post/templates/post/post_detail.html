@@ -1,0 +1,57 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block content %}
+
+<h4>뷰가 커뮤니티</h4>
+<div class="post">
+<h3 style="margin-top:0;">{{ post.title }}</h3>
+
+<p><span style="font-size:22px;">{{ post.content|linebreaksbr }}</span></p><br>
+
+{% if post.photo %}
+<img src="{{ post.photo.url }}" width="350">
+{% endif %}
+<br>
+{% if post.file %}
+<a id="id_uploaded_file" href="{{ post.file.url }}" download>{{ post.file.name }}</a>
+
+{% endif %}
+
+<p style="color:darkgray;">
+{% for tag in post.tag.all %}
+<span class="chip"><a href="{% url 'post:tag_post_list' tag.name %}">{{ tag.name }}</a></span>
+{% endfor %}</p>
+<p><b>Posted by {{ post.user }} <br>
+{{ post.created_at }}</b></p><br>
+<div class="susak">
+<a href = "{% url 'post:post_edit' post.pk %}"><button class="btn waves-effect waves-light" type="submit" name="action">수정하기</button></a>
+
+<form id="post_delete_form" action="{% url 'post:post_delete' post.pk %}" method="POST" style="display:inline;">{% csrf_token %}<button type="submit" class="waves-effect waves-light btn">삭제하기</button></form>
+<script>
+$('#post_delete_form').submit(function(e){
+    if (!confirm('지울꺼야?')){
+        e.preventDefault();
+    }
+});
+</script>
+
+</div>
+
+<a href = "{% url 'post:post_list' %}"><button class="btn waves-effect waves-light" type="submit" name="action" style="float:right;">목록으로</button></a>
+<br>
+
+<h3>{{ post.comment_set.count }} comments</h3>
+
+{% for comment in post.comment_set.all %}
+<P style="margin-bottom:2px;"><b>{{ comment.user }} {{ comment.created_at }}</b></P>
+<p style="font-size:18px; margin-top:0; margin-bottom:25px;">{{ comment.content }}</p>
+
+{% endfor %}
+<h5>Leave a comment!</h5>
+<form method="POST">
+	{% csrf_token %}
+{{ comment_form.as_p }}
+<button class="btn waves-effect waves-light" type="submit" name="action">제출하기</button>
+
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<title>Beauty with Guys</title>
+<style>
+body{
+	background-color: #EFEEE9;
+}
+div.entire{
+	width:90%;
+	margin:auto;
+}
+div.imgContainer{
+	display:inline;
+	position:relative;
+	color:#FFFFFF;
+}
+div.nav{
+	display:inline;
+}
+img.navImg{
+	display : inline;
+	border-radius : 20px;
+	vertical-align: middle;
+}
+.nav ul{
+	float:right;
+	vertical-align: middle;
+	padding-top:15px;
+}
+.nav ul li{
+	display : inline;
+	list-style : none;
+	padding-left:30px;
+	color:gray;
+}
+.nav li span{
+	padding:5px;
+	border-radius:2px 10px;
+}
+.nav li span.odd:hover{
+	background-color:#D9C3BD;
+}
+.nav li span.even:hover{
+	background-color: #E5BCC7;
+}
+</style>
+</head>
+<body>
+
+<div class= "entire">
+<div class = "nav">
+		<a href="{% url 'main:showMain' %}"><img src = '{% static 'logo.png' %}' width="350px" class="navImg"></a>
+		
+<ul>
+	<li><span class="odd">뷰티윗가이즈?</span></li>
+	<li><span class="even">내 얼굴 진단</span></li>
+	<li><span class="odd">맨 뷰티 유튜버</span></li>
+	<li><span class="even">맨즈 스토어</span></li>
+	<li><span class="odd"><a href="{% url 'post:post_list' %}">뷰가 커뮤니티</a></span></li>
+	<li><span class="even">Q & A</span></li>
+</ul>
+
+</div>
+
+
+<a class="btn btn-floating pulse" href="{% url 'post:show_tag' %}">#</a>
+    <a class="btn btn-floating pulse" href="{% url 'accounts:login' %}">로긴</a>
+
+<br></div>
+
+	{% block content %}{% endblock %}
+
+
+</body>
+</html>
