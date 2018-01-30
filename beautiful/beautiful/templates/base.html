@@ -2,62 +2,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	<link rel="stylesheet" href="{% static 'css/creator_main.css' %}">
 
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<!--
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+  Compiled and minified JavaScript
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> -->
+
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+
+
+
 	<title>Beauty with Guys</title>
-<style>
-body{
-	background-color: #EFEEE9;
-}
-div.entire{
-	width:90%;
-	margin:auto;
-}
-div.imgContainer{
-	display:inline;
-	position:relative;
-	color:#FFFFFF;
-}
-div.nav{
-	display:inline;
-}
-img.navImg{
-	display : inline;
-	border-radius : 20px;
-	vertical-align: middle;
-}
-.nav ul{
-	float:right;
-	vertical-align: middle;
-	padding-top:15px;
-}
-.nav ul li{
-	display : inline;
-	list-style : none;
-	padding-left:30px;
-	color:gray;
-}
-.nav li span{
-	padding:5px;
-	border-radius:2px 10px;
-}
-.nav li span.odd:hover{
-	background-color:#D9C3BD;
-}
-.nav li span.even:hover{
-	background-color: #E5BCC7;
-}
-</style>
+	<style>
+		body{
+			background-color: #EFEEE9;
+		}
+		div.entire{
+			width:90%;
+			margin:auto;
+		}
+		div.imgContainer{
+			display:inline;
+			position:relative;
+			color:#FFFFFF;
+		}
+		div.nav{
+			display:inline;
+		}
+		img.navImg{
+			display : inline;
+			border-radius : 20px;
+			vertical-align: middle;
+		}
+		.nav ul{
+			float:right;
+			vertical-align: middle;
+			padding-top:15px;
+		}
+		.nav ul li{
+			display : inline;
+			list-style : none;
+			padding-left:30px;
+			color:gray;
+		}
+		.nav li span{
+			padding:5px;
+			border-radius:2px 10px;
+		}
+		.nav li span.odd:hover{
+			background-color:#D9C3BD;
+		}
+		.nav li span.even:hover{
+			background-color: #E5BCC7;
+		}
+	</style>
 </head>
 <body>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <div class= "entire">
 <div class = "nav">
 		<a href="{% url 'main:showMain' %}"><img src = '{% static 'logo.png' %}' width="350px" class="navImg"></a>
-		
+
 <ul>
 	<li><span class="odd">뷰티윗가이즈?</span></li>
 	<li><span class="even">내 얼굴 진단</span></li>

@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'main',
     'post',
     'accounts',
+    'creator',
+    'review'
 ]
 
 MIDDLEWARE = [
