@@ -1,0 +1,72 @@
+.content-box{
+    width: 1500px;
+    padding-top: 20px;
+    margin: auto;
+}
+#creator_header{
+    background-position: 50% 43%;
+    height: 150px;
+}
+
+
+
+
+#main-box-wrapper{
+    margin-top: 50px;
+}
+#main-box{
+    width: 1200px;
+    margin: auto;
+}
+
+
+.vertical-menu {
+    border: 1px #bdbdbd solid;
+    width: 500px;
+    height: 345px;
+    overflow-y: auto;
+    box-shadow: 3px 1px 1px #bdbdbd;
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.vertical-menu a {
+    background-color: #eee;
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc;
+}
+
+.vertical-menu a.active {
+    background-color: #d1c4e9;
+    color: white;
+}
+
+
+
+
+.row{
+    width: 1300px;
+    text-align: center;
+    margin-top: 30px;
+}
+.col{
+    display: inline-block;
+}
+.card{
+    width: 300px;
+}
+
+
+#key{
+    text-align: center;
+}
+
+
+
+
