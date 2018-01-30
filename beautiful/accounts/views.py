@@ -10,7 +10,7 @@ def login(request):
 
     if request.method == "POST" and form.is_valid():
         auth_login(request, form.get_user())
-        next = request.GET.get('next') or settings.LOGIN_REDIRECT_URL
+        next = request.GET.get('next') or request.path
         return redirect(next)
     ctx = {
         'form' : form,
