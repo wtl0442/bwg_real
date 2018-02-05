@@ -1,9 +1,14 @@
 from django.db import models
-
+from django.conf import settings
 # Create your models here.
 
 
 class Youtube_Content(models.Model):
+    creator = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='Youtube_Content',
+    )
     title = models.CharField(max_length=50, verbose_name='제목')
     description = models.TextField(verbose_name='설명')
     youtube_url = models.URLField(verbose_name='링크')
