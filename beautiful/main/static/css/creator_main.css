@@ -3,31 +3,36 @@
     padding-top: 20px;
     margin: auto;
 }
+#creator_tab{
+    width: 1500px;
+    margin: auto;
+}
+#no-padding{
+    padding: 0px;
+}
 #creator_header{
+    width: 1500px;
+    margin: auto;
+    margin-top: 20px;
     background-position: 50% 43%;
     height: 150px;
 }
 
-
-
-
 #main-box-wrapper{
-    margin-top: 50px;
+    margin: auto;
+    padding-top: 40px;
 }
 #main-box{
     width: 1200px;
     margin: auto;
 }
-
-
 .vertical-menu {
-    border: 1px #bdbdbd solid;
     width: 500px;
+    border: 1px #bdbdbd solid;
     height: 345px;
     overflow-y: auto;
     box-shadow: 3px 1px 1px #bdbdbd;
     display: inline-block;
-    margin-left: 30px;
 }
 
 .vertical-menu a {
@@ -67,6 +72,12 @@
     text-align: center;
 }
 
+#item-slide-wrapper{
+    width: 1250px;
+    height: 300px;
+    margin: auto;
+}
 
-
-
+#item-slide{
+    top: -30px;
+}

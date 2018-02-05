@@ -128,6 +128,7 @@ STATIC_URL = '/static/'         #static관련 세팅들
 STATIC_ROOT = 'static'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'main', 'static'),
+    os.path.join(BASE_DIR, 'review', 'static'),
     ]
 
 MEDIA_URL = '/media/'

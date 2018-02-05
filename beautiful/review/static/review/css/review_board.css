@@ -1,0 +1,15 @@
+#review_form{
+    width: 500px;
+    margin: auto;
+}
+#review_board{
+    width: 700px;
+    margin: 70px auto;
+}
+#review_submit{
+    float: right
+}
+#no_review{
+    text-align: center;
+    margin: 70px auto;
+}

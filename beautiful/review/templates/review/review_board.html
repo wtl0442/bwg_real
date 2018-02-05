@@ -1,36 +1,65 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ item.name }} 리뷰 페이지</title>
+  <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'review/css/review_board.css' %}">
 
-{% block content %}
-
-
-<ul>
-  {% for review in item.review.all %}
-  <li>
-    {{ review.title }}
-  </li>
-  {% endfor %}
-</ul>
-
-
-<script type="text/javascript">
+</head>
+<body>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+  <script type="text/javascript">
   $(document).ready(function(){
       $('.collapsible').collapsible();
     });
-</script>
+  </script>
 
-<ul class="collapsible" data-collapsible="accordion">
-  <li>
-    <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-  </li>
-  <li>
-    <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-  </li>
-  <li>
-    <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-  </li>
-</ul>
+  <div id="review_form">
+    <form method="POST">
+     {% csrf_token %}
+     {{ form.as_p }}
+     <button id="review_submit" type="submit" class="btn">리뷰 쓰기</button>
+    </form>
+  </div>
 
-{% endblock %}
+  {% if item.item_review.count %}
+  <div id="review_board">
+    <div id="collapsible-wrapper">
+      <ul class="collapsible" data-collapsible="expandable">
+        {% for review in item.item_review.all %}
+        <li>
+          <div class="collapsible-header">
+            {{ review.title }}
+          </div>
+          <div class="collapsible-body">
+            <div>
+              <h5>{{ review.author }}</h5>
+              <p>{{ review.content }}</p>
+              <h6>{{ review.rev_date }}</h6>
+
+              {% if request.user == review.author %}
+               <a href="{% url 'review:revise_review' review.pk %}" class="btn">수정하기</a>
+              {% endif %}
+
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% else %}
+  <div id="no_review">
+    <p > 이 제품은 아직 리뷰가 없습니다. {{ request.user }}님이 첫 리뷰를 작성해주세요 </p>
+  </div>
+  {% endif %}
+
+
+</body>
+</html>
+
+
+
+
