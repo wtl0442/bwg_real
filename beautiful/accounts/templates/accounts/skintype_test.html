@@ -1,0 +1,13 @@
+{% extends 'base1.html' %}
+{% block content %}
+
+    <h3>내 피부타입 진단</h3>
+    <iframe src="{% url 'accounts:skin_type_test' %}" width="450px" height="295px" frameBorder="0"></iframe>
+    <form method="POST" action="">
+    {% csrf_token %}
+    <label for="id_skin_type">Skin type:</label>
+    <input type="text" name="skin_type" id="skin_type_result" maxlength="30" id="id_skin_type">
+    <input type="submit" class="btn" value="피부타입 제출">
+    </form>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base1.html' %}
+{% block content %}
+    <h2>{{ profile.user.last_name }}{{ profile.user.first_name|default:"관리자" }}</h2>
+    <img src="{{ profile.image_url }}" width="300">
+    <p>생년월일 : {{ profile.birth_date|default:"미입력"|date:"Y.m.d." }}</p>
+    <p>피부타입 : {{ profile.skin_type|default:"아직 피부타입을 등록하지 않으셨습니다!" }}</p>
+
+    {% if request.user.profile == profile %}
+    <a href="{% url 'accounts:update_profile' %}" class="btn">프로필 수정하기</a>
+    {% endif %}
+{% endblock %}

@@ -1,9 +1,10 @@
 from django.http import HttpResponse
-from django.shortcuts import render,redirect, reverse
+from django.shortcuts import render, redirect, reverse
 from .models import Post, Comment, Tag
 from .forms import PostForm, CommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
+
 
 def post_list(request):
     posts = Post.objects.all().order_by('-pk')
@@ -24,7 +25,8 @@ def post_list(request):
 
     return render(request, 'post/post_list.html', ctx)
 
-#@login_required
+
+@login_required
 def post_detail(request, pk):
     post = Post.objects.get(pk=pk)
     comment_form = CommentForm(request.POST or None)
@@ -54,13 +56,6 @@ def post_write(request):
                 p.tag.add(already)
             else:
                 p.tag.add(Tag.objects.create(name=t1))
-
-        # p = Post.objects.get(pk = post.pk)
-        # t_lists = post.hashtag.split(" ")
-        # for i in range(len(t_lists)):
-        # 	t1 = t_lists[i]
-        # 	p.tag.add(Tag.objects.create(name = t1))
-
         return redirect('post:post_detail', post.pk)
 
     ctx = {

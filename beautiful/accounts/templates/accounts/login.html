@@ -1,9 +1,11 @@
 {% extends 'base1.html' %}
 
 {% block content %}
+    <span class="login_above">Beauty with Guys에 로그인해주세요!</span>
+    <div class="login_box">
      {% if request.user.is_authenticated %}
 
-    <h1>{{ request.user.username }}님~ 방가방가</h1>
+    <h4>{{ request.user.username }}님 반가워요!!</h4>
     <form action="{%  url 'accounts:logout' %}" method="POST">
     {% csrf_token %}
         <button>Logout</button>
@@ -12,7 +14,10 @@
     <form method="POST" action="">
         {% csrf_token %}
         {{ form.as_p }}
-    <button type="submit">로그인</button>
+    <button type="submit" class="btn full">로그인</button>
+    <br><br>
+    <a href="{% url 'accounts:signup' %}" class="btn purple full">회원가입</a>
     </form>
     {% endif %}
+    </div>
 {% endblock %}
