@@ -20,7 +20,6 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-
     return redirect_previous_page(request)
 
 
@@ -74,13 +73,12 @@ def update_profile(request):
     return render(request, 'accounts/edit_profile.html', ctx)
 
 
+@login_required
 def skin_type(request):
     form = SkintypeForm(request.POST or None, instance=request.user.profile)
     print('여기구나')
     if request.method == "POST" and form.is_valid():
-        print('여기?')
         form.save()
-        print('두번쨰')
         return redirect(reverse('accounts:profile_detail', kwargs={
             'username': request.user.username,
         }))

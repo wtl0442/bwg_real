@@ -2,120 +2,177 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="{% static 'css/creator_main.css' %}">
-  <link rel="stylesheet" href="{% static 'css/main.css' %}">
-<!--
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-
-  Compiled and minified JavaScript
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> -->
-	<link rel="stylesheet" href="{% static 'css/review_board.css' %}">
-
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
-
-  <script language="javascript" type="text/javascript">
-		function review_popup(url) {
-		newwindow=window.open(url,'name',"top=50%,left=50%, width=1000,height=500");
-		if (window.focus) {newwindow.focus()}
-		return false;
-		}
-	</script>
-
-
-
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link tye="text/css" rel="stylesheet" href="{% static 'css/main_core.css' %}" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
 	<title>Beauty with Guys</title>
-	<style>
-		body{
-			background-color: #EFEEE9;
-		}
-		div.entire{
-			width:90%;
-			margin:auto;
-		}
-		div.imgContainer{
-			display:inline;
-			position:relative;
-			color:#FFFFFF;
-		}
-		div.nav{
-			display:inline;
-		}
-		img.navImg{
-			display : inline;
-			border-radius : 20px;
-			vertical-align: middle;
-		}
-		.nav ul{
-			float:right;
-			vertical-align: middle;
-			padding-top:15px;
-		}
-		.nav ul li{
-			display : inline;
-			list-style : none;
-			padding-left:30px;
-			color:gray;
-		}
-		.nav li span{
-			padding:5px;
-			border-radius:2px 10px;
-		}
-		.nav li span.odd:hover{
-			background-color:#D9C3BD;
-		}
-		.nav li span.even:hover{
-			background-color: #E5BCC7;
-		}
-	</style>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
+<style>
+body{
+	background-color: #EFEEE9;
+}
+div.entire{
+	width:90%;
+	margin:auto;
+}
+div.imgContainer{
+	display:inline;
+	position:relative;
+	color:#FFFFFF;
+}
+div.nav{
+	display:inline;
+}
+div.below{
+	width:85%;
+	margin:auto;
+}
+div.post{
+	background-color:white;
+	padding:30px;
+}
+img.navImg{
+	display : inline;
+	border-radius : 20px;
+	vertical-align: middle;
+}
+.paging li{
+	display : inline;
+	font-size:25px;
+}
+.chip a{
+	color:gray;
+}
+ul li a{
+	color:black;
+}
+.paging a{
+	color:black;
+}
+li.discrimination:hover{
+	background-color:pink;
+}
+.nav ul{
+	float:right;
+	vertical-align: middle;
+	padding-top:15px;
+}
+.nav ul li{
+	display : inline;
+	list-style : none;
+	padding-left:30px;
+	color:gray;
+}
+.nav li span{
+	padding:5px;
+	border-radius:2px 10px;
+}
+.striped a{
+	color:black;
+}
+.nav li span.odd:hover{
+	background-color:#D9C3BD;
+}
+.nav li span.even:hover{
+	background-color: #E5BCC7;
+}
+.post textarea {
+    resize:vertical;
+    border-radius:5px;
+    border:1px solid gray;
+    width: 100%;
+	height: 180px;
+}
+.col.slogan{
+	height:390px !important;
+    background: url("{% static 'milestone.jpg' %}") no-repeat;
+    background-size: 100% 100%;
+	padding:10px;
+	border:5px solid #f5f0ec;
+}
+</style>
+
 </head>
 <body>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
 
-<div class= "entire">
-<div class = "nav">
-		<a href="{% url 'main:showMain' %}"><img src = '{% static 'logo.png' %}' width="350px" class="navImg"></a>
+<div class="entire_body">
+  <p class="logoBox"><a href="{% url 'main:showMain' %}"><img src="{% static 'bwg_logo.png' %}" class="logo"></a></p>
+  <nav class="main_menu left hide-on-med-and-down">
+    <div class="nav-wrapper">
+      <ul>
+        <li><a href="">뷰티윗가이즈?</a></li>
+        <li><a href="">피부 백서</a></li>
+        <li><a href="{% url 'accounts:skin_type' %}">피부타입테스트</a></li>
+        <li><a href="">크리에이터</a></li>
+        <li><a href="">제품 후기</a></li>
+        <li><a href="{% url 'post:post_list' %}">커뮤니티</a></li>
+        <li><a href="">검색</a></li>
+      </ul>
 
-<ul>
-	<li><span class="odd">뷰티윗가이즈?</span></li>
-    <li><span class="even"><a href="{% url 'accounts:skin_type' %}">내 얼굴 진단</a></span></li>
-	<li><span class="odd">맨 뷰티 유튜버</span></li>
-	<li><span class="even">맨즈 스토어</span></li>
-	<li><span class="odd"><a href="{% url 'post:post_list' %}">뷰가 커뮤니티</a></span></li>
-    {% if request.user.is_authenticated %}
-    <li><span class="even"><a href="{% url 'accounts:profile_detail' request.user %}">프로필</a></span></li>
-    {% endif %}
-</ul>
+    </div>
+  </nav>
+  &nbsp;
+  <div class="container">
 
+
+
+
+
+{#<div class= "entire">#}
+{#<div class = "nav">#}
+{#		<a href="{% url 'main:showMain' %}"><img src = '{% static 'logo.png' %}' width="350px" class="navImg"></a>#}
+{#		#}
+{#<ul>#}
+{#	<li><span class="odd">뷰티윗가이즈?</span></li>#}
+{#    <li><span class="even"><a href="{% url 'accounts:skin_type' %}">내 얼굴 진단</a></span></li>#}
+{#	<li><span class="odd">맨 뷰티 유튜버</span></li>#}
+{#	<li><span class="even">맨즈 스토어</span></li>#}
+{#	<li><span class="odd"><a href="{% url 'post:post_list' %}">뷰가 커뮤니티</a></span></li>#}
+{#    {% if request.user.is_authenticated %}#}
+{#    <li><span class="even"><a href="{% url 'accounts:profile_detail' request.user %}">프로필</a></span></li>#}
+{#    {% endif %}#}
+{#</ul>#}
+{##}
+{#</div>#}
+{##}
+{##}
+{#<a class="btn btn-floating pulse" href="{% url 'post:show_tag' %}">#</a>#}
+{#    {% if request.user.is_authenticated %}#}
+{#    <a class="btn btn-floating pulse" id="logout" href="{% url 'accounts:logout' %}">록앗</a>#}
+{#        <script>#}
+{#        $('#logout').click(function(e){#}
+{#            if(!confirm('로그아웃 하시겠습니까?')){#}
+{#                e.preventDefault();#}
+{#            }#}
+{#        });#}
+{#        </script>#}
+{#    {% else %}#}
+{#    <a class="btn btn-floating pulse" href="{% url 'accounts:login' %}">록인</a>#}
+{#    {% endif %}#}
+{#</div>#}
+{##}
+{#<br>#}
+{#<div class="below">#}
+{% block content %}{% endblock %}
+</div>
 </div>
 
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">menu</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+  </div>
 
-<a class="btn btn-floating pulse" href="{% url 'post:show_tag' %}">#</a>
-    {% if request.user.is_authenticated %}
-    <a class="btn btn-floating pulse" id="logout" href="{% url 'accounts:logout' %}">록앗</a>
-        <script>
-        $('#logout').click(function(e){
-            if(!confirm('로그아웃 하시겠습니까?')){
-                e.preventDefault();
-            }
-        });
-        </script>
-    {% else %}
-    <a class="btn btn-floating pulse" href="{% url 'accounts:login' %}">록인</a>
-    {% endif %}
 
-<br></div>
 
-	{% block content %}{% endblock %}
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-{% extends 'base1.html' %}
+{% extends 'base.html' %}
 {% block content %}
     <h2>{{ profile.user.last_name }}{{ profile.user.first_name|default:"관리자" }}</h2>
     <img src="{{ profile.image_url }}" width="300">

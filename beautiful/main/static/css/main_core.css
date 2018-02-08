@@ -1,0 +1,130 @@
+div.entire_body{
+	margin:10px 20px 0 20px;
+	background-color:#f5f0ec;
+}
+img.logo{
+	width:20%;
+	padding-top:5px;
+}
+.logoBox a{
+	line-height:0;
+}
+p.logoBox{
+	text-align:center;
+	margin:0;
+}
+nav.main_menu {
+	background-color:#f5f0ec;
+	box-shadow:none;
+	height:30px;
+}
+nav.main_menu .nav-wrapper {
+	text-align: center;	
+}
+nav.main_menu ul {
+	display: inline-block;
+	margin: 0;
+	line-height: 30px;
+}
+nav.main_menu ul li a {
+	color: #727272;
+}
+.main_menu_logo{
+	position:absolute;
+	padding:0.5rem 0;
+}
+.col a{
+	color:white;
+}
+pre.slogan{
+	font-size: 55px;
+	font-family: "Arial Black", Gadget, sans-serif;
+	letter-spacing:1px;
+	line-height: 1.2;
+	color:white;
+	margin: 0 10px;
+	overflow:hidden;
+}
+.fi{
+	color:#b94f55;
+}
+.de{
+	color:#ff80ab;
+}
+.col.tags{
+	height:150px !important;
+	background-color:#f3b85d;
+	font-size:30px;
+	color:white;
+	font-weight:bold;
+	border:5px solid #f5f0ec;
+}
+.col.login{
+	height:240px !important;
+	background-color:#b39ddb;
+	padding:10px 20px;
+	font-size:30px;
+	color:white;
+	font-weight:bold;
+	border:5px solid #f5f0ec;
+}
+.col.skin_type{
+	background-color:#94dad5;
+	height:240px !important;
+	font-size:20px;
+	color:white;
+	font-weight:bold;
+	border:5px solid #f5f0ec;
+}
+
+.col.skin_wiki{
+	background-color:#ffcab8;
+	height:240px !important;
+	font-size:20px;
+	color:white;
+	font-weight:bold;
+	border:5px solid #f5f0ec;
+}
+.col.hottest{
+	background-color:#d0ccc4;
+	height:240px !important;
+	padding:10px;
+	font-size:25px;
+	color:#6c6861;
+	font-weight:bold;
+	border:5px solid #f5f0ec;
+}
+.col.hottest img{
+	vertical-align: middle;
+}
+.col.mobile_tags{
+	background-color:#f3b85d;
+	height:100px !important;
+	/*padding:10px;*/
+	font-size:20px;
+	color:white;
+	font-weight:bold;
+	border:5px solid #f5f0ec;
+}
+.col.menu{
+	background-color:#ffcdd2;
+	height:70px !important;
+	border:5px solid #f5f0ec;
+}
+.col.menu h5{
+	display:inline;
+	margin:auto;
+}
+.col.menu p{
+	display:inline;
+	margin:auto;
+}
+div.welcome_member {
+	font-size:17px;
+}
+div.member_class {
+	font-size:15px;
+}
+.login img{
+	margin-bottom:7px;
+}

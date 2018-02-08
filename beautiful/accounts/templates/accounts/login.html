@@ -1,23 +1,23 @@
-{% extends 'base1.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-    <span class="login_above">Beauty with Guys에 로그인해주세요!</span>
+
     <div class="login_box">
      {% if request.user.is_authenticated %}
-
-    <h4>{{ request.user.username }}님 반가워요!!</h4>
-    <form action="{%  url 'accounts:logout' %}" method="POST">
-    {% csrf_token %}
-        <button>Logout</button>
-</form>
+         <h4>메인페이지로 돌아가고 있습니다</h4>
+         <script>
+         alert('이미 로그인 되어 있습니다.');
+         window.history.back();
+         </script>
         {% else %}
-    <form method="POST" action="">
+         <h3>Beauty with Guys에 로그인해주세요!</h3>
+        <form method="POST" action="">
         {% csrf_token %}
         {{ form.as_p }}
-    <button type="submit" class="btn full">로그인</button>
-    <br><br>
-    <a href="{% url 'accounts:signup' %}" class="btn purple full">회원가입</a>
-    </form>
-    {% endif %}
+        <button type="submit" class="btn full">로그인</button>
+        <br><br>
+        <a href="{% url 'accounts:signup' %}" class="btn purple full">회원가입</a>
+        </form>
+        {% endif %}
     </div>
 {% endblock %}
