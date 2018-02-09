@@ -6,43 +6,58 @@
 <pre class="slogan">Con<span class="fi">fi</span><span class="de">de</span>nt
 Gromming
 For You</pre></span></div>
-    <div class="col l4 tags hide-on-med-and-down">
-        <a href="{% url 'post:show_tag' %}">#TAGS</a></div>
-    <div class="col l4 m4 s4 login valign-wrapper">
+    <div class="col l4 m4 s4 login hide-on-med-and-down valign-wrapper">
 
     <div>
      {% if request.user.is_authenticated %}
-         <img src="{{ request.user.profile.image.url }}" width="100px" height="70px"
-              style="border-radius:10px; display:block;">
-         <div class="member_class">회원등급 : 샤이보이</div>
          <div class="welcome_member">{{ request.user.username }}님 반가워요!!</div>
     <a href="{%  url 'accounts:logout' %}" class="btn">Logout</a>
     {% else %}
-    <a href="{% url 'accounts:login' %}" class="btn">로그인</a><br>
-    <a href="{% url 'accounts:signup' %}" class="btn purple">일반 회원가입</a>
-         <a href="" class="btn blue">FACEBOOK 회원가입</a>
-         <a href="" class="btn yellow" style="color:black;">KAKAO 회원가입</a>
+    <a href="{% url 'accounts:login' %}">로그인</a><br>
+    <a href="{% url 'accounts:signup' %}" class="join">회원가입</a>
+         <a href="" class="join">ID/PW 찾기</a>
     {% endif %}
     </div>
-
     </div>
-    <div class="col l3 m4 s4 skin_type"><span class="main_menu_logo">피부타입 테스트</span><br><br><br><br><br><br><a class="waves-effect waves-light btn">button</a></div>
-    <div class="col l5 m4 s4 skin_wiki"><span class="main_menu_logo">금주의 피부백서</span><br><br><br><br><br><br><a class="waves-effect waves-light btn red lighten-3">button</a></div>
-    <div class="col l4 m4 s4 hottest"><span class="main_menu_logo"><img src="{% static 'hottest.gif' %}">HOTTEST</span></div>
+
+    <div class="col l4 tags hide-on-med-and-down">
+        <a href="{% url 'post:show_tag' %}">#TAGS</a></div>
+
+    <div class="col l3 m6 s6 skin_type"><span class="main_menu_logo">피부타입 테스트</span><br><br><br><br><br><br><a class="waves-effect waves-light btn">button</a></div>
+    <div class="col l5 m6 s6 skin_wiki"><span class="main_menu_logo">금주의 피부백서</span><br><br><br><br><br><br><a class="waves-effect waves-light btn red lighten-3">button</a></div>
+    <div class="col l4 m6 s6 hottest"><span class="main_menu_logo"><img src="{% static 'hottest.gif' %}">HOTTEST</span></div>
     <!--이것은 모바일에서만 보이는 태그 영역입니다.-->
-    <div class="col m8 s8 hide-on-large-only mobile_tags"><span class="main_menu_logo">#TAGS_FOR_MOBILE</span></div>
+    <div class="col m6 s6 hide-on-large-only mobile_tags"><span class="main_menu_logo">#TAGS_FOR_MOBILE</span></div>
     <!--여기까지-->
-<div class="col l3 m4 s4 valign-wrapper menu">
-  <h5 class="menu_align">추천상품 보기</h5>
+<div class="col l3 m3 s3 valign-wrapper menu">
+  <h5 class="menu_align hide-on-med-and-down">추천상품 보기</h5>
+    <span class="hide-on-large-only" style="overflow:auto;">
+<pre>
+추천상품
+보기</pre>
+    </span>
 </div>
-<div class="col l3 m4 s4 valign-wrapper menu">
-  <p class="menu_align" style="font-size:19px;">크리에이터 리뷰보기</p>
+<div class="col l3 m3 s3 valign-wrapper menu">
+  <p class="menu_align hide-on-med-and-down" style="font-size:19px;">크리에이터 리뷰보기</p>
+    <span class="hide-on-large-only">
+        <pre>
+크리에이터
+리뷰보기</pre></span>
 </div>
-<div class="col l3 m4 s4 valign-wrapper menu">
-  <h5 class="menu_align">행사 확인하기</h5>
+<div class="col l3 m3 s3 valign-wrapper menu ">
+  <h5 class="menu_align hide-on-med-and-down">행사 확인하기</h5>
+    <span class="hide-on-large-only">
+        <pre>
+행사
+확인하기</pre></span>
 </div>
-<div class="col l3 m4 s4 valign-wrapper menu">
-  <h5 class="menu_align">BWG 후기보기</h5>
+<div class="col l3 m3 s3 valign-wrapper menu">
+  <h5 class="menu_align hide-on-med-and-down">BWG 후기보기</h5>
+    <span class="hide-on-large-only">
+        <pre>
+BWG
+후기보기</pre>
+    </span>
 </div>
 
 <!--여기서부터 추천상품 보기 -->
