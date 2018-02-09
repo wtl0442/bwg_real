@@ -3,7 +3,7 @@
 <html>
 <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link tye="text/css" rel="stylesheet" href="{% static 'css/main_core.css' %}" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/main_core.css' %}" media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
 	<title>Beauty with Guys</title>
     <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
@@ -115,44 +115,6 @@ li.discrimination:hover{
   <div class="container">
 
 
-
-
-
-{#<div class= "entire">#}
-{#<div class = "nav">#}
-{#		<a href="{% url 'main:showMain' %}"><img src = '{% static 'logo.png' %}' width="350px" class="navImg"></a>#}
-{#		#}
-{#<ul>#}
-{#	<li><span class="odd">뷰티윗가이즈?</span></li>#}
-{#    <li><span class="even"><a href="{% url 'accounts:skin_type' %}">내 얼굴 진단</a></span></li>#}
-{#	<li><span class="odd">맨 뷰티 유튜버</span></li>#}
-{#	<li><span class="even">맨즈 스토어</span></li>#}
-{#	<li><span class="odd"><a href="{% url 'post:post_list' %}">뷰가 커뮤니티</a></span></li>#}
-{#    {% if request.user.is_authenticated %}#}
-{#    <li><span class="even"><a href="{% url 'accounts:profile_detail' request.user %}">프로필</a></span></li>#}
-{#    {% endif %}#}
-{#</ul>#}
-{##}
-{#</div>#}
-{##}
-{##}
-{#<a class="btn btn-floating pulse" href="{% url 'post:show_tag' %}">#</a>#}
-{#    {% if request.user.is_authenticated %}#}
-{#    <a class="btn btn-floating pulse" id="logout" href="{% url 'accounts:logout' %}">록앗</a>#}
-{#        <script>#}
-{#        $('#logout').click(function(e){#}
-{#            if(!confirm('로그아웃 하시겠습니까?')){#}
-{#                e.preventDefault();#}
-{#            }#}
-{#        });#}
-{#        </script>#}
-{#    {% else %}#}
-{#    <a class="btn btn-floating pulse" href="{% url 'accounts:login' %}">록인</a>#}
-{#    {% endif %}#}
-{#</div>#}
-{##}
-{#<br>#}
-{#<div class="below">#}
 {% block content %}{% endblock %}
 </div>
 </div>

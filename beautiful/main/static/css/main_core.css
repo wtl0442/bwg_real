@@ -19,7 +19,7 @@ nav.main_menu {
 	height:30px;
 }
 nav.main_menu .nav-wrapper {
-	text-align: center;	
+	text-align: center;
 }
 nav.main_menu ul {
 	display: inline-block;
@@ -127,4 +127,119 @@ div.member_class {
 }
 .login img{
 	margin-bottom:7px;
+}
+
+.col.recommend_cosmetics{
+	background-color:#94dad5;
+	width:100%;
+	height:400px;
+	font-size:20px;
+	font-weight:bold;
+	border:5px solid #f5f0ec;
+	color:white;
+	text-align: center;
+
+
+}
+
+.main_menu_logo-mid_title{
+
+	padding:0.5rem 0;
+}
+
+.col.creator{
+	background-color:#7030a0;
+	width:50%;
+	height:400px;
+	font-size:20px;
+	font-weight:bold;
+	border-left:5px solid #f5f0ec;
+	border-top:5px solid #f5f0ec;
+	border-bottom:5px solid #f5f0ec;
+	color:white;
+	text-align: center;
+
+}
+
+.col.offline_event{
+	background-color:#002060;
+	width:50%;
+	height:400px;
+	font-size:20px;
+	font-weight:bold;
+	border-right:5px solid #f5f0ec;
+	border-top:5px solid #f5f0ec;
+	border-bottom:5px solid #f5f0ec;
+	color:white;
+	text-align: center;
+
+}
+
+.col.subscribe_bwg{
+	background-color:#002060;
+	width:100%;
+	height:400px;
+	font-size:20px;
+	font-weight:bold;
+	border:5px solid #f5f0ec;
+
+	color:white;
+	text-align: center;
+
+}
+
+.recommend_item_title{
+	color :#94dad5;
+	font-size:25px;
+	position: relative;
+    top: 10px
+
+}
+
+.recommend_card{
+	position: relative;
+    margin: .5rem 0 1rem 0;
+    background-color: #fff;
+    border-radius: 20px;
+    height: 320px;
+    box-shadow: 1px 1px 5px #888888;
+}
+
+
+
+.recommend_circle_image {
+	width: 100px;
+	height:100px;
+	background: white;
+    position: relative;
+    margin: 0 auto;
+    top: 20px;
+    z-index: 1;
+    border-radius: 50%;
+    box-shadow:1px 1px 5px #888888;
+    background-size:100px 100px;
+}
+
+
+.recommend_ranking_sec{
+	background:#ebe8e8;
+	height:200px;
+	position: relative;
+    top: -15px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+}
+
+a.recommend_ranking_content{
+	display: block;
+    color: #26a69a;
+    padding: 5px;
+    height:40px;
+    background-color: #ebe8e8;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+    top: 30px;
+    text-align:left;
+
 }
