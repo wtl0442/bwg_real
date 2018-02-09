@@ -32,7 +32,7 @@ def signup(request):
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
-            login_and_redirect_next(request, user)
+            return redirect(reverse('main:showMain'))
     return render(request, 'accounts/signup.html', {
         'signup_form': signup_form,
         'profile_form': profile_form,
