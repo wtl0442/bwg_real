@@ -14,18 +14,22 @@
     </div>
   </div>
 
-  <div id="creator_header"
-        style="background-image: url({% static 'no-image.jpg'%});
-        ">
+  <div class="row">
+    <div id="creator-header" class="hide-on-small-only col l12">
+    <img src="{% static 'header-ex.jpg' %}">
+    </div>
   </div>
 
+
 <!-- video, list -->
-  <div id="main-box-wrapper">
-    <div id="main-box">
-      <iframe width="600" height="350"
+  <div class="row test">
+    <div class="col l6 s12">
+      <iframe id="iframe" width="570" height="350"
       src="{{ youtube_content.youtube_url }}">
       </iframe>
+    </div>
 
+    <div class="col l6 s12">
       <div class="vertical-menu">
         {% for video in creator.Youtube_Content.all %}
         <a href="{% url 'creator:creator_page' creator.username video.pk %}"
@@ -37,32 +41,10 @@
     </div>
   </div>
 
-<!-- if the number of item is larger than 4, item will be displayed in slide -->
 
-{% if youtube_content.item.count < 4 %}
-<!-- no slide -->
-  <div class="row">
-  {% for item in youtube_content.item.all %}
-    <div class="col s3">
-      <div class="card">
-        <div class="card-image">
-          <img src="{% static 'no-image.jpg' %}">
-          <span class="card-title">{{ item.name }}</span>
-        </div>
-        <div class="card-content">
-          <p>{{ item.description }}</p>
-        </div>
-        <div class="card-action">
-          <a href="{% url 'review:review_board' item.pk %}" onclick="return review_popup('{% url 'review:review_board' item.pk %}')">리뷰보기</a>
-          <a href="#">구매 링크</a>
-        </div>
-      </div>
-    </div>
-  {% endfor %}
-  </div>
 
-{% else %}
-<!-- slide -->
+
+<!-- item list -->
   <script type="text/javascript">
    $(document).ready(function(){
       $('.carousel').carousel({
@@ -74,29 +56,34 @@
     });
   </script>
 
-  <div class="carousel" id="item-slide-wrapper">
-    {% for item in youtube_content.item.all %}
-    <div class="carousel-item" id="item-slide">
-      <div class="col s3">
-          <div class="card">
-            <div class="card-image">
-              <img src="{% static 'no-image.jpg' %}">
-              <span class="card-title">{{ item.name }}</span>
-            </div>
-            <div class="card-content">
-              <p>{{ item.description }}</p>
-            </div>
-            <div class="card-action">
-              <a href="{% url 'review:review_board' item.pk %}" onclick="return review_popup('{% url 'review:review_board' item.pk %}')">리뷰보기</a>
-              <a href="#">구매 링크</a>
+  <div id="item-header">ITEM LIST</div>
+
+  <div class="row">
+    <div class="carousel" id="item-slide-wrapper">
+      {% for item in youtube_content.item.all %}
+      <div class="carousel-item" id="item-slide">
+        <div class="col s3">
+            <div class="card">
+              <div class="card-image">
+                <img src="{% static 'no-image.jpg' %}">
+                <span class="card-title">{{ item.name }}</span>
+              </div>
+              <div class="card-content">
+                <p>{{ item.description }}</p>
+              </div>
+              <div class="card-action">
+                <a href="{% url 'review:review_board' item.pk %}" onclick="return review_popup('{% url 'review:review_board' item.pk %}')">리뷰보기</a>
+                <a href="#">구매 링크</a>
+              </div>
             </div>
           </div>
-        </div>
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
+
 <!-- item list -->
-{% endif %}
+
 
 </div>
 {% endblock %}
