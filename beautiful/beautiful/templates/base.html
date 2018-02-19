@@ -2,14 +2,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <link tye="text/css" rel="stylesheet" href="{% static 'css/main_core.css' %}" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/beauty_wiki.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/main_core.css' %}" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/post_css.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/skin_type.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/login.css' %}">
+
+    {% block extra_head %}
+    {% endblock %}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="{% static 'js/ajax_settings.js' %}"></script>
 
     <script language="javascript" type="text/javascript">
     function review_popup(url) {
@@ -29,11 +35,6 @@ div.entire{
 	width:90%;
 	margin:auto;
 }
-div.imgContainer{
-	display:inline;
-	position:relative;
-	color:#FFFFFF;
-}
 div.nav{
 	display:inline;
 }
@@ -41,61 +42,10 @@ div.below{
 	width:85%;
 	margin:auto;
 }
-div.post{
-	background-color:white;
-	padding:30px;
-}
 img.navImg{
 	display : inline;
 	border-radius : 20px;
 	vertical-align: middle;
-}
-.paging li{
-	display : inline;
-	font-size:25px;
-}
-.chip a{
-	color:gray;
-}
-ul li a{
-	color:black;
-}
-.paging a{
-	color:black;
-}
-li.discrimination:hover{
-	background-color:pink;
-}
-.nav ul{
-	float:right;
-	vertical-align: middle;
-	padding-top:15px;
-}
-.nav ul li{
-	display : inline;
-	list-style : none;
-	padding-left:30px;
-	color:gray;
-}
-.nav li span{
-	padding:5px;
-	border-radius:2px 10px;
-}
-.striped a{
-	color:black;
-}
-.nav li span.odd:hover{
-	background-color:#D9C3BD;
-}
-.nav li span.even:hover{
-	background-color: #E5BCC7;
-}
-.post textarea {
-    resize:vertical;
-    border-radius:5px;
-    border:1px solid gray;
-    width: 100%;
-	height: 180px;
 }
 .col.slogan{
 	height:390px !important;
@@ -111,7 +61,7 @@ li.discrimination:hover{
 
 <div class="entire_body">
 <div class="col l12 hide-on-med-and-down">
-    <p class="logoBox"><a href="{% url 'main:showMain' %}"><img src="{% static 'bwg_logo.png' %}" class="logo"></a></p>
+    <p class="logoBox"><a href="{% url 'main:showMain' %}"><img src="{% static 'new_logo.png' %}" class="logo"></a></p>
 </div>
 
   <nav>
@@ -122,10 +72,10 @@ li.discrimination:hover{
             <!-- Navbar menu -->
           <ul class="main_menu hide-on-med-and-down">
             <li><a href="">뷰티윗가이즈?</a></li>
-            <li><a href="">피부 백서</a></li>
+            <li><a href="{% url 'wiki:wikimain' %}">피부 백서</a></li>
             <li><a href="{% url 'accounts:skin_type' %}">피부타입테스트</a></li>
-            <li><a href="">크리에이터</a></li>
-            <li><a href="">제품 후기</a></li>
+            <li><a href="{% url 'creator:creator_page_main' %}">크리에이터</a></li>
+            <li><a href="{% url 'review:review_list' %}">제품 후기</a></li>
             <li><a href="{% url 'post:post_list' %}">커뮤니티</a></li>
             <li><a href="">검색</a></li>
           </ul>
@@ -140,18 +90,20 @@ li.discrimination:hover{
                     <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
                 </div></li>
                 <li><a href="#!"><i class="material-icons">cloud</i>뷰티윗가이즈?</a></li>
-                <li><a href="#!">피부 백서</a></li>
-                <li><a href="#!">피부타입 테스트</a></li>
-                <li><a href="#!">크리에이터</a></li>
-                <li><a href="#!">제품후기</a></li>
-                <li><a href="#!">커뮤니티</a></li>
+                <li><a href="{% url 'wiki:wikimain' %}">피부 백서</a></li>
+                <li><a href="{% url 'accounts:skin_type' %}">피부타입 테스트</a></li>
+                <li><a href="{% url 'creator:creator_page_main' %}">크리에이터</a></li>
+                <li><a href="{% url 'review:review_list' %}">제품후기</a></li>
+                <li><a href="{% url 'post:post_list' %}">커뮤니티</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Subheader</a></li>
                 <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
             </ul>
             <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
             <script>$(".button-collapse").sideNav();</script>
-            <a href="{% url 'main:showMain' %}"><img src="{% static 'bwg_logo.png' %}" class="hide-on-large-only" width="250px"></a>
+            <a href="{% url 'main:showMain' %}">
+                <img src="{% static 'logo_no_background.png' %}"
+                     class="hide-on-large-only" width="250px" style="margin-top:5px; margin-right:15px;"></a>
         </div>
     </div>
   </nav>
@@ -170,8 +122,13 @@ li.discrimination:hover{
       <i class="large material-icons">menu</i>
     </a>
     <ul>
-      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+        {% if request.user.is_authenticated %}
+            <li><a href= "{% url 'accounts:logout' %}" class="btn-floating red" title="로그아웃"><i class="material-icons">account_circle</i></a></li>
+            <li><a href="{% url 'accounts:profile_detail' request.user.username %}" class="btn-floating yellow darken-1">
+            <i class="material-icons">perm_identity</i></a></li>
+        {% else %}
+            <li><a href= "{% url 'accounts:login' %}" class="btn-floating red" title="로그인"><i class="material-icons">account_circle</i></a></li>
+        {% endif %}
       <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
       <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
     </ul>

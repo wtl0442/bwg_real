@@ -21,13 +21,67 @@ For You</pre></span></div>
     </div>
 
     <div class="col l4 tags hide-on-med-and-down">
-        <a href="{% url 'post:show_tag' %}">#TAGS</a></div>
+        <a href="{% url 'post:show_tag' %}">#TAGS</a><br>
+        {% for tag in hot_tags %}
+            <div class="chip" style="margin-bottom:3px;">
+                <img src='{% static 'hot_image.gif' %}' alt="Contact Person" width="32px">
+                 <a href="{% url 'post:tag_post_list' tag %}">{{ tag }}</a></div><br>
+        {% endfor %}
+
+    </div>
 
     <div class="col l3 m6 s6 skin_type"><span class="main_menu_logo">피부타입 테스트</span><br><br><br><br><br><br><a class="waves-effect waves-light btn">button</a></div>
-    <div class="col l5 m6 s6 skin_wiki"><span class="main_menu_logo">금주의 피부백서</span><br><br><br><br><br><br><a class="waves-effect waves-light btn red lighten-3">button</a></div>
-    <div class="col l4 m6 s6 hottest"><span class="main_menu_logo"><img src="{% static 'hottest.gif' %}">HOTTEST</span></div>
+    <div class="col l4 m6 s6 hottest"><span class="main_menu_logo">
+        <img src="{% static 'hottest.gif' %} ">HOTTEST</span><br>
+        <div class="hot_area">
+            <span class="hot_posts">
+                {% for post in hot_posts %}
+                    <i class="material-icons tiny" style="vertical-align:middle; color:saddlebrown;">thumb_up</i>
+                    <a href={% url 'post:post_detail' post.pk %}>{{ post }}</a>
+                    <span class="hot_posts_comment_count">{{ post.num_comments }}</span><br>
+                {% endfor %}
+            </span>
+        </div>
+    </div>
+    <div class="col l5 m6 s6 skin_wiki">
+        <span class="main_menu_logo">금주의 피부백서</span><br>
+        <div class="card horizontal">
+          <div class="card-image hide-on-small-only">
+            <img src="{{ this_wiki.image_url }}" style="width:100%; height:180px;">
+          </div>
+            <div class="card-content" style="height:180px;
+            color:black; overflow:scroll; font-size:0.8rem;">
+              <p>{{ this_wiki.contents }}</p>
+                <!-- Modal Trigger -->
+                  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+                  <!-- Modal Structure -->
+                  <div id="modal1" class="modal">
+                    <div class="modal-content">
+                      <h4 style="margin-bottom:0;">Solution</h4>
+                      <p>
+                          <img src="{{ this_wiki.image_url }}" class="hide-on-large-only" width="100%;"><br>
+                          <img src="{{ this_wiki.image_url }}" class="hide-on-med-and-down"><br>
+                          {{ this_wiki.solution|linebreaksbr }}</p>
+                    </div>
+                    <div class="modal-footer">
+                      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" style="color:black;">돌아가기</a>
+                    </div>
+                  </div>
+                <script>
+                    $(document).ready(function(){
+                        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+                        $('.modal').modal();
+                      });
+                </script>
+            </div>
+        </div>
+    </div>
+
     <!--이것은 모바일에서만 보이는 태그 영역입니다.-->
-    <div class="col m6 s6 hide-on-large-only mobile_tags"><span class="main_menu_logo">#TAGS_FOR_MOBILE</span></div>
+    <div class="col m6 s6 hide-on-large-only mobile_tags">
+        <span class="main_menu_logo">#TAGS_FOR_MOBILE</span>
+    </div>
     <!--여기까지-->
 <div class="col l3 m3 s3 valign-wrapper menu">
   <h5 class="menu_align hide-on-med-and-down">추천상품 보기</h5>
@@ -142,9 +196,74 @@ BWG
 <div class="col l6 offline_event">
   <span class="main_menu_logo-mid_title">오프라인 행사 정보 </span>
 </div>
+
+
+
 <div class="col l12 subscribe_bwg">
-  <span class="main_menu_logo-mid_title">BWG 소식 받아보기 </span>
+  <p id="subscribe-open">메일을 통해 더 많은 소식을 받아보세요</p>
 </div>
+<div class="col l12 subscribe_panel">
+    <form id="subscribe-form" action="{% url 'main:subscribeEmail' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn unsubscribe-submit">구독 취소</button>
+        <button type="submit" class="btn subscribe-submit">메일 구독</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#subscribe-open").click(function(){
+        $(".subscribe_panel").slideToggle("slow");
+    });
+});
+
+  $(document).ready(function(){
+    $(".subscribe-submit").click(function(){
+        $("#subscribe-form").submit(function(e) {
+            e.preventDefault();
+            var email = $('#id_email').val();
+            $.post('{% url "main:subscribeEmail" %}', {email: email})
+                .done(function(r) {
+                    if (r.success) {
+                        if (r.created){
+                            $("#id_email").attr('placeholder', "구독해 주셔서 감사합니다.");
+                        }
+                        else {
+                            $("#id_email").attr('placeholder', "이미 구독중인 메일입니다.");
+                        }
+                    } else{
+                        $("#id_email").attr('placeholder', "잘못된 메일주소 입니다.");
+                    }
+                    $('#id_email').val('');
+                });
+            });
+      });
+});
+
+  $(document).ready(function(){
+    $(".unsubscribe-submit").click(function(){
+        $("#subscribe-form").submit(function(e) {
+            e.preventDefault();
+            var email = $('#id_email').val();
+            $.post('{% url "main:unsubscribeEmail" %}', {email: email})
+                .done(function(r) {
+                    if (r.success) {
+                        if (r.deleted){
+                            $("#id_email").attr('placeholder', "구독 취소 되었습니다.");
+                        }
+                        else {
+                            $("#id_email").attr('placeholder', "구독중인 메일이 아닙니다.");
+                        }
+                    } else{
+                        $("#id_email").attr('placeholder', "잘못된 메일주소 입니다.");
+                    }
+                    $('#id_email').val('');
+                });
+            });
+      });
+});
+</script>
 
 </div>
 

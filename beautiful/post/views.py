@@ -1,9 +1,10 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Post, Comment, Tag
 from .forms import PostForm, CommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 
 def post_list(request):
@@ -34,19 +35,33 @@ def post_detail(request, pk):
         'post': post,
         'comment_form': comment_form,
     }
-    if request.method == 'POST' and comment_form.is_valid():
-        new_comment = comment_form.save(commit=False)
-        new_comment.post = post
-        new_comment.save()
-        ctx['comment_form'] = CommentForm()
 
     return render(request, 'post/post_detail.html', ctx)
+
+
+@csrf_exempt
+def comment_create(request, pk):
+    if request.POST:
+        post = Post.objects.get(pk=pk)
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.author = request.user
+            comment.save()
+            return render(request, 'post/comment.html', {
+                'comment': comment,
+            })
+
+    return HttpResponse(status=405)
 
 
 def post_write(request):
     form = PostForm(request.POST or None, request.FILES or None)
     if request.method == "POST" and form.is_valid():
-        post = form.save()
+        post = form.save(commit=False)
+        post.user = request.user
+        post.save()
         p = Post.objects.get(pk=post.pk)
         t_lists = post.hashtag.split(" ")
         for i in range(len(t_lists)):
@@ -116,3 +131,6 @@ def tag_post_list(request, kwargs):
         'tag': kwargs,
     }
     return render(request, 'post/search_list.html', ctx)
+
+
+

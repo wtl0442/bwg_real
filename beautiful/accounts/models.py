@@ -14,6 +14,11 @@ class Profile(models.Model):
         blank=True,
     )
     is_creator = models.BooleanField(default=False)
+    creator_header_img = models.ImageField(
+        upload_to='creator/%Y/%m/%d/',
+        blank=True,
+        null=True,
+    )
 
     def image_url(self):
         if self.image:
@@ -22,5 +27,14 @@ class Profile(models.Model):
             image_url = '/static/img/default_image.png'
         return image_url
 
+    def creator_header_image_url(self):
+        if self.creator_header_img:
+            image_url = self.creator_header_img.url
+        else:
+            image_url = '/static/header-ex.jpg'
+        return image_url
+
     def __str__(self):
         return self.user.username
+
+

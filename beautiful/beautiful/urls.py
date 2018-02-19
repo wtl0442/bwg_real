@@ -24,6 +24,8 @@ urlpatterns = [
     path('post/', include('post.urls')),
     path('accounts/', include('accounts.urls')),
     path('creator/', include('creator.urls')),
+    path('review/', include('review.urls')),
+    path('wiki/', include('beautywiki.urls')),
     path('review/', include('review.urls'))
 ]
 

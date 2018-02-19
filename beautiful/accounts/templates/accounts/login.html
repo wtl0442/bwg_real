@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <div class="login_box">
+<div class="row">
+<div class="col l2">&nbsp;</div>
+    <div class="col l8 m12 s12">
      {% if request.user.is_authenticated %}
          <h4>메인페이지로 돌아가고 있습니다</h4>
          <script>
@@ -10,7 +11,8 @@
          window.history.back();
          </script>
         {% else %}
-         <h3>Beauty with Guys에 로그인해주세요!</h3>
+         <span class="hide-on-small-only" style="font-size:3vw;">BeautyWithGuys에 로그인해주세요!</span>
+         <span class="hide-on-med-and-up" style="font-size:8vw;">BeautyWithGuys 로그인</span>
         <form method="POST" action="">
         {% csrf_token %}
         {{ form.as_p }}
@@ -20,4 +22,6 @@
         </form>
         {% endif %}
     </div>
+<div class="col l2">&nbsp;</div>
+</div>
 {% endblock %}
