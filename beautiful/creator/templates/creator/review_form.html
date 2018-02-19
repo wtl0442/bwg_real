@@ -1,0 +1,14 @@
+<li>
+  <div class="collapsible-header">
+    {{ review.title }}
+  </div>
+  <div class="collapsible-body">
+    <span>{{ review.content }}</span><br>
+    <span>{{ review.author }}</span><br>
+    <span>{{ review.rev_date }}</span><br>
+    {% if request.user == review.author %}
+    <a href="{% url 'creator:delete_review' review.pk %}" class="btn delete">삭제하기</a>
+    {% endif %}
+  </div>
+</li>
+

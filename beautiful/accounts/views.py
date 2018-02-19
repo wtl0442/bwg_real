@@ -89,3 +89,5 @@ def skin_type(request):
 
 def skin_type_test(request):
     return render(request, 'accounts/quiz.html')
+
+

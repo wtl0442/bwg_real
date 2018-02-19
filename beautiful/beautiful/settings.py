@@ -25,7 +25,7 @@ SECRET_KEY = '50rds_cbh+uld9#^7(m851bft5^iq90a(q=!p_(gnqkpyr)^t('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'post',
     'accounts',
     'creator',
-    'review'
+    'review',
 ]
 
 MIDDLEWARE = [
