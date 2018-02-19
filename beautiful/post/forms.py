@@ -5,7 +5,7 @@ from .models import Post, Comment
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['user', 'title', 'content', 'hashtag', 'file', 'photo',]
+        fields = ['title', 'content', 'hashtag', 'file', 'photo',]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -38,7 +38,7 @@ class PostForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['user', 'content']
+        fields = ['content']
 
 # class UploadFileForm(forms.ModelForm):
 # 	class Meta:

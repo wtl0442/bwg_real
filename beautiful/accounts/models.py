@@ -22,5 +22,6 @@ class Profile(models.Model):
             image_url = '/static/img/default_image.png'
         return image_url
 
+
     def __str__(self):
         return self.user.username

@@ -1,6 +1,11 @@
-@media screen and (max-width: 1280px) {
-	.container {
-	width: 98% !important;
+@media screen and (max-width: 600px) {
+	div.entire_body .container {
+	width: 98%;
+	}
+}
+@media screen and (max-width: 600px) {
+	body div.entire_body{
+		margin: 1px;
 	}
 }
 div.entire_body{
@@ -120,6 +125,21 @@ pre.slogan{
 	color:#6c6861;
 	font-weight:bold;
 	border:5px solid #f5f0ec;
+}
+span.hot_posts a{
+	color: black;
+	font-size: 1rem;
+	font-weight: normal;
+}
+div.hot_area {
+	margin-top: 13px;
+}
+span.hot_posts_comment_count{
+	background-color:#6c6861;
+	border:1px solid #6c6861;
+	color: white;
+	border-radius:2px;
+	font-size: 0.8rem;
 }
 .col.hottest img{
 	vertical-align: middle;
@@ -265,5 +285,4 @@ a.recommend_ranking_content{
     position: relative;
     top: 30px;
     text-align:left;
-
 }

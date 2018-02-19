@@ -30,3 +30,5 @@ class SkintypeForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['skin_type', ]
+
+
