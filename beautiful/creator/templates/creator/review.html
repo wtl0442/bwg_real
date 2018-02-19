@@ -1,0 +1,58 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+  $('.collapsible').collapsible();
+});
+
+</script>
+
+<div>
+  <form id="review_form" action="{% if item %}{% url 'creator:create_review' item.pk %}{% endif %}" method="POST" >
+     {% csrf_token %}
+   {{ form.as_p }}
+   <button id="review_submit" type="submit" class="waves-effect waves-light btn"><i class="material-icons right">create</i>리뷰 저장</button>
+  </form>
+</div>
+
+<script>
+$('#review_form #id_title').attr('placeholder', '{{ item.name }}의 리뷰를 작성해주세요')
+
+$('#review_form').submit(function(e){
+      e.preventDefault();
+      var url = $(this).attr('action');
+      console.log(url);
+      var data = {
+          title: $('input[name="title"]').val(),
+          content: $('textarea[name="content"]').val()
+      };
+      $.post(url, data)
+          .done(function(r) {
+              $('.collapsible').prepend(r);
+              $('input[name="title"]').val('');
+              $('textarea[name="content"]').val('');
+              $('#no-review-exists').remove();
+          })
+          .fail(function(r) {
+              alert('에러가 발생했습니다. 다시 한번 시도해보세요. 지속적으로 발생시 연락 부탁드립니다.');
+          });
+  });
+</script>
+
+<ul class="collapsible" data-collapsible="accordion">
+  {% if item.item_review.count %}
+
+    {% for review in item.item_review.all reversed %}
+      {% include 'creator/review_form.html' %}
+    {% endfor %}
+
+  {% else %}
+      <li id="no-review-exists">
+        <div class="collapsible-header">
+          아직 리뷰가 없습니다!
+        </div>
+        <div class="collapsible-body">
+          <span>{{ request.user }}님이 첫 리뷰를 작성해주세요</span>
+        </div>
+      </li>
+  {% endif %}
+</ul>
+

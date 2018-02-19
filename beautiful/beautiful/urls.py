@@ -26,6 +26,7 @@ urlpatterns = [
     path('creator/', include('creator.urls')),
     path('review/', include('review.urls')),
     path('wiki/', include('beautywiki.urls')),
+    path('review/', include('review.urls'))
 ]
 
 if settings.DEBUG:

@@ -117,3 +117,5 @@ def skin_type_result(request, type):
         return render(request, 'skintype/oily_skin.html')
     elif type == 'unresolved':
         return render(request, 'skintype/unresolved_skin.html')
+    return render(request, 'accounts/quiz.html')
+
