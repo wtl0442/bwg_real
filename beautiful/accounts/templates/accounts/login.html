@@ -30,7 +30,7 @@
         <form method="POST" action="">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn full">로그인</button>
+        <button type="submit" class="btn full">로그인</button></form>
         <br><br>
         <a href="{% provider_login_url "facebook" method='oauth2'  %}" class="btn  btn-social btn-facebook" style="background-color:#3b5998;text-align:center">
             <span class="fa fa-facebook"></span>
@@ -109,7 +109,7 @@
             </div>
         </div>
         <a href="{% url 'accounts:signup' %}" class="btn purple full">회원가입</a>
-        </form>
+
         {% endif %}
     </div>
 {% endblock %}
