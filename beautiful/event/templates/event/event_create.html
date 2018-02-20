@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<div>
+  <script>
+    $( function() {
+      $( "#datepicker" ).datepicker();
+    } );
+  </script>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ tag.as_p }}
+
+
+    <a href="{% url 'event:event_create' %}"></a>
+    <button type="submit">제출</button>
+  </form>
+
+</div>
+
+
+{% endblock %}

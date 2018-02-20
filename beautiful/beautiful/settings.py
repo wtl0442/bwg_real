@@ -16,6 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -41,8 +42,22 @@ INSTALLED_APPS = [
     'post',
     'accounts',
     'creator',
-    'review'
+    'review',
+    'event',
+
+    'social_django',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.kakao',
+    'allauth.socialaccount.providers.naver',
+
+    'django_google_maps',
+
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -52,6 +67,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'beautiful.urls'
@@ -69,10 +86,17 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',  # 추가
+
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+
             ],
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'beautiful.wsgi.application'
 
@@ -129,12 +153,72 @@ STATIC_ROOT = 'static'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'main', 'static'),
     os.path.join(BASE_DIR, 'review', 'static'),
+    os.path.join(BASE_DIR, 'event', 'static'),
     ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media'
 
 LOGIN_URL = '/accounts/login/'
-#LOGIN_REDIRECT_URL = '/accounts/login/'
+LOGOUT_URL = '/accounts/logout'
+LOGIN_REDIRECT_URL = '/'
 
 MAIN_REDIRECT_URL = '/'
+
+
+AUTHENTICATION_BACKENDS = (
+    'allauth.account.auth_backends.AuthenticationBackend',
+    # 'social_core.backends.facebook.FacebookOAuth2',  # 페이스북
+    # 'social_core.backends.kakao.KakaoOAuth2',  # 카카오톡
+    # 'social_core.backends.naver.NaverOAuth2',  # 네이버
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': lambda request: 'kr_KR',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.4',
+    }
+}
+SITE_ID = 1
+
+SOCIALACCOUNT_AUTO_SIGNUP = False
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQURIED = True
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '142505123102413'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET ='4ef1c71e6241ceb229763626d6dd820c'
+
+
+SOCIAL_AUTH_LOGIN_ERROR_URL = 'accounts/settings/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'wtl0442@gmail.com'
+EMAIL_HOST_PASSWORD = 'tjfwhrud!'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+GOOGLE_MAPS_API_KEY = 'AIzaSyCwJMUjrQFsJ4kO6d05KnQLRE3TAaxLv20'

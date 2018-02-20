@@ -1,5 +1,6 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+
 
 app_name = 'accounts'
 
@@ -11,4 +12,12 @@ urlpatterns = [
     path('skintype_test/skintype/', views.skin_type, name='skin_type'),
     path('profile/update/', views.update_profile, name='update_profile'),
     path('profile/<str:username>/', views.profile_detail, name='profile_detail'),
+
+    path('settings/', views.settings, name='settings'),
+    path('settings/password/', views.password, name='password'),
+
+
+
 ]
+
+
