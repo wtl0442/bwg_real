@@ -31,18 +31,6 @@ For You</pre></span></div>
     </div>
 
     <div class="col l3 m6 s6 skin_type"><span class="main_menu_logo">피부타입 테스트</span><br><br><br><br><br><br><a class="waves-effect waves-light btn">button</a></div>
-    <div class="col l4 m6 s6 hottest"><span class="main_menu_logo">
-        <img src="{% static 'hottest.gif' %} ">HOTTEST</span><br>
-        <div class="hot_area">
-            <span class="hot_posts">
-                {% for post in hot_posts %}
-                    <i class="material-icons tiny" style="vertical-align:middle; color:saddlebrown;">thumb_up</i>
-                    <a href={% url 'post:post_detail' post.pk %}>{{ post }}</a>
-                    <span class="hot_posts_comment_count">{{ post.num_comments }}</span><br>
-                {% endfor %}
-            </span>
-        </div>
-    </div>
     <div class="col l5 m6 s6 skin_wiki">
         <span class="main_menu_logo">금주의 피부백서</span><br>
         <div class="card horizontal">
@@ -62,7 +50,7 @@ For You</pre></span></div>
                       <p>
                           <img src="{{ this_wiki.image_url }}" class="hide-on-large-only" width="100%;"><br>
                           <img src="{{ this_wiki.image_url }}" class="hide-on-med-and-down"><br>
-                          {{ this_wiki.solution|linebreaksbr }}</p>
+                          {{ this_wiki.solution|linebreaksbr|default:"<h4>등록된 솔루션이 없습니다.</h4>" }}</p>
                     </div>
                     <div class="modal-footer">
                       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" style="color:black;">돌아가기</a>
@@ -77,6 +65,22 @@ For You</pre></span></div>
             </div>
         </div>
     </div>
+    <div class="col l4 m6 s6 hottest"><span class="main_menu_logo">
+        <img src="{% static 'hottest.gif' %} ">HOTTEST</span><br>
+        <div class="hot_area">
+            <span class="hot_posts">
+            {% if hot_posts %}
+                {% for post in hot_posts %}
+                    <i class="material-icons tiny" style="vertical-align:middle; color:saddlebrown;">thumb_up</i>
+                    <a class="hide-on-small-only" href={% url 'post:post_detail' post.pk %}>{{ post.title|truncatechars:20 }}</a>
+                    <a class="hide-on-med-and-up" href={% url 'post:post_detail' post.pk %}>{{ post.title|truncatechars:11 }}</a>
+                    <span class="hot_posts_comment_count">{{ post.num_comments }}</span><br>
+                {% endfor %}
+            {% endif %}
+            </span>
+        </div>
+    </div>
+
 
     <!--이것은 모바일에서만 보이는 태그 영역입니다.-->
     <div class="col m6 s6 hide-on-large-only mobile_tags">
