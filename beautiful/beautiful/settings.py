@@ -26,7 +26,7 @@ SECRET_KEY = '50rds_cbh+uld9#^7(m851bft5^iq90a(q=!p_(gnqkpyr)^t('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.naver',
 
     'django_google_maps',
-
+    'beautywiki',
 ]
 
 
@@ -108,6 +108,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'bwg_db',
+        # 'USER': 'jubin3424',
+        # 'PASSWORD': 'wnqls6013',
+        # 'HOST': '',
+        # 'PORT': '3306',
     }
 }
 
@@ -168,11 +174,13 @@ MAIN_REDIRECT_URL = '/'
 
 AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
+
     # 'social_core.backends.facebook.FacebookOAuth2',  # 페이스북
     # 'social_core.backends.kakao.KakaoOAuth2',  # 카카오톡
     # 'social_core.backends.naver.NaverOAuth2',  # 네이버
 
-    'django.contrib.auth.backends.ModelBackend',
+
 )
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -211,9 +219,9 @@ SOCIAL_AUTH_FACEBOOK_KEY = '142505123102413'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET ='4ef1c71e6241ceb229763626d6dd820c'
 
 
-SOCIAL_AUTH_LOGIN_ERROR_URL = 'accounts/settings/'
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
-SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+# SOCIAL_AUTH_LOGIN_ERROR_URL = 'accounts/settings/'
+# SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+# SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'wtl0442@gmail.com'

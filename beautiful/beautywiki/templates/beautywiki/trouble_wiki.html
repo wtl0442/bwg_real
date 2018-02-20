@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/beauty_wiki.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</head>
+<body>
+   <div class="row" style="margin:auto;">
+
+       {% for trouble_lists in trouble_lists %}
+    <div class="col l4 m4 s12">
+    <div class="card">
+      <div class="card-image">
+        <img src="{{ trouble_lists.image_url }}">
+        <span class="card-title" style="width:100%; background: rgba(0, 0, 0, 0.5);">{{ trouble_lists.name }}</span>
+      </div>
+      <div class="card-content" style="height:200px; overflow-y:scroll;">
+        <p>{{ trouble_lists.contents|linebreaksbr }}</p>
+      </div>
+      <div class="card-action">
+        <a href="#">This is a link</a>
+      </div>
+    </div>
+  </div>
+       {% endfor %}
+</div>
+
+
+
+</body>
+</html>

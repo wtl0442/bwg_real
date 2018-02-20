@@ -1,0 +1,9 @@
+.login_above{
+    display:block;
+    text-align:center;
+    font-size:30px;
+    font-family:"Times New Roman";
+}
+.btn.full{
+    width:100%;
+}
