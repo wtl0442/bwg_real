@@ -23,10 +23,12 @@ class SignupForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ('user', 'is_creator', 'skin_type')
+        exclude = ('user', 'is_creator', 'skin_type', 'creator_header_img',)
 
 
 class SkintypeForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['skin_type', ]
+
+

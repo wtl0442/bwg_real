@@ -110,6 +110,7 @@ def skin_type_test(request):
     return render(request, 'accounts/quiz.html')
 
 
+<<<<<<< HEAD
 @login_required
 def settings(request):
     user = request.user
@@ -146,6 +147,8 @@ def password(request):
         form = PasswordForm(request.user)
 
     return render(request, 'accounts/password.html', {'form': form})
+=======
+>>>>>>> 750cdebab184503ab58be307a4fd7b5645f10f53
 def skin_type_result(request, type):
     if type == 'dry':
         return render(request, 'skintype/dry_skin.html')

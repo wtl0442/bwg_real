@@ -2,18 +2,19 @@
 {% load static %}
 {% block content %}
 
-<h2>뷰가 커뮤니티</h2>
-
-<table class="striped">
-	<tr><th>작성자</th><th>제목</th><th>등록일</th></tr>
-	{% for post in posts %}
-	<tr>
-		<td>{{ post.user }}</td>
-		<td><a href = "{% url 'post:post_detail' post.pk %}">{{ post.title }}</a></td>
-		<td>{{ post.created_at }}</td>
-	</tr>
-	{% endfor %}
-</table>
+        <h2>뷰가 커뮤니티</h2>
+        <table class="striped">
+            <tr><th>작성자</th><th>제목</th><th>등록일</th></tr>
+            {% for post in posts %}
+            <tr>
+                <td>{{ post.user }}</td>
+                <td><a href = "{% url 'post:post_detail' post.pk %}">
+                    <span style="overflow:hidden;">{{ post.title }}</span>
+                    <span style="color:saddlebrown;">({{ post.comment_set.count }})</span></a></td>
+                <td>{{ post.created_at|date:"y. m. j. G:H" }}</td>
+            </tr>
+            {% endfor %}
+        </table>
 
 {% if posts.has_other_pages %}
 <ul class="paging">
@@ -51,6 +52,5 @@
 
 <br>
 <a href="{% url 'post:post_write' %}"><button class="btn purple darken-1">글쓰기</button></a>
-
 {% endblock %}
 

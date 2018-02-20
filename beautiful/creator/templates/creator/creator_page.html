@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/creator_main.css'%}">
+{% endblock %}
+
 {% block content %}
 
 <!-- video -->
@@ -8,7 +12,9 @@
     <div class="col s12" id="no-padding">
       <ul class="tabs tabs-fixed-width">
         {% for creator_i in creator_list %}
-        <li class="tab col"><a target="_self" href="{% url 'creator:creator_page' creator_i.username %}">{{ creator_i.username }}</a></li>
+          <li class="tab col">
+            <a class="{% if creator_i == youtube_content.creator %}active{% endif %}" target="_self" href="{% url 'creator:creator_page' creator_i.username %}">{{ creator_i.username }}</a>
+          </li>
         {% endfor %}
       </ul>
     </div>
@@ -16,7 +22,7 @@
 
   <div class="row">
     <div id="creator-header" class="hide-on-small-only col l12">
-    <img src="{% static 'header-ex.jpg' %}">
+      <img src="{{ creator.profile.creator_header_image_url }}" >
     </div>
   </div>
 
@@ -50,40 +56,75 @@
       $('.carousel').carousel({
             dist: 0,
             shift:0,
-            padding:300,
+            padding:270,
 
       });
     });
   </script>
 
-  <div id="item-header">ITEM LIST</div>
+  {% if item %}
 
-  <div class="row">
-    <div class="carousel" id="item-slide-wrapper">
-      {% for item in youtube_content.item.all %}
-      <div class="carousel-item" id="item-slide">
-        <div class="col s3">
-            <div class="card">
-              <div class="card-image">
-                <img src="{% static 'no-image.jpg' %}">
-                <span class="card-title">{{ item.name }}</span>
+      <div id="item-header">ITEM LIST</div>
+      <div class="row">
+        <div class="carousel" id="item-slide-wrapper">
+          {% for item in youtube_content.item.all %}
+          <div class="carousel-item" id="item-slide">
+            <div class="col s3">
+                <div class="card self">
+                  <div class="card-image">
+                    <img src="{{ item.item_image_url }}" class="responsive-img">
+                    <span class="card-title">{{ item.name }}</span>
+                  </div>
+                  <div class="card-content">
+                    <p>{{ item.description }}</p>
+                  </div>
+                  <div class="card-action">
+                    <a class="select_reivew" href="{% url 'creator:review_board' item.pk %}">리뷰보기</a>
+                    <a href="#">구매 링크</a>
+                  </div>
+                </div>
               </div>
-              <div class="card-content">
-                <p>{{ item.description }}</p>
-              </div>
-              <div class="card-action">
-                <a href="{% url 'review:review_board' item.pk %}" onclick="return review_popup('{% url 'review:review_board' item.pk %}')">리뷰보기</a>
-                <a href="#">구매 링크</a>
-              </div>
-            </div>
           </div>
+          {% endfor %}
+        </div>
       </div>
-      {% endfor %}
+
+
+    <!-- item LISTt -->
+    <script type="text/javascript">
+
+      $('.select_reivew').on('touchstart click', function(e){
+          e.preventDefault();
+          var self = $(this);
+          var url = self.attr('href');
+          console.log(url);
+
+          $.post(url)
+            .done(function(r){
+              $('#review_board').html(r)
+            })
+            .fail(function(){
+              alert('error');
+            });
+
+        return false;
+      });
+    </script>
+
+
+    <!-- review -->
+
+
+
+      <div id="review_board">
+        {% include 'creator/review.html' with item=item %}
+      </div>
+    <!-- review -->
+  {% else %}
+    <div id="no-item-in-video" >
+    <a class="btn-large disabled">이 영상에는 소개되는 제품이 없습니다</a>
     </div>
-  </div>
-
-<!-- item list -->
-
-
-</div>
+  {% endif %}
 {% endblock %}
+
+

@@ -26,6 +26,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('creator/', include('creator.urls')),
     path('review/', include('review.urls')),
+<<<<<<< HEAD
     path('event/', include('event.urls')),
 
     path('accounts/', include('allauth.urls')),
@@ -33,6 +34,10 @@ urlpatterns = [
 
 
 
+=======
+    path('wiki/', include('beautywiki.urls')),
+    path('review/', include('review.urls'))
+>>>>>>> 750cdebab184503ab58be307a4fd7b5645f10f53
 ]
 
 if settings.DEBUG:

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Comment
+from .models import Post, Comment, SubscribedEmail
 
 
 class PostForm(forms.ModelForm):
@@ -47,5 +47,14 @@ class CommentForm(forms.ModelForm):
 
 # 	def __init__(self, *args, **kwargs):
 #         super(PostForm, self).__init__(*args, **kwargs)
-#         self.fields['file'].required = False 
+#         self.fields['file'].required = False
 # file 값이 없더라도 view에서 유효성 검사에서 오류를 발생시키지 않도록 해준다.
+
+
+class SubscribeForm(forms.ModelForm):
+    class Meta:
+        model = SubscribedEmail
+        fields = ['email',]
+
+
+

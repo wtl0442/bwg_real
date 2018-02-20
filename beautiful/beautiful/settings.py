@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import pymysql
+
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,7 +29,7 @@ SECRET_KEY = '50rds_cbh+uld9#^7(m851bft5^iq90a(q=!p_(gnqkpyr)^t('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
@@ -43,6 +46,7 @@ INSTALLED_APPS = [
     'accounts',
     'creator',
     'review',
+<<<<<<< HEAD
     'event',
 
     'social_django',
@@ -56,6 +60,9 @@ INSTALLED_APPS = [
 
     'django_google_maps',
 
+=======
+    'beautywiki',
+>>>>>>> 750cdebab184503ab58be307a4fd7b5645f10f53
 ]
 
 
@@ -108,6 +115,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'bwg_db',
+        # 'USER': 'jubin3424',
+        # 'PASSWORD': 'wnqls6013',
+        # 'HOST': '',
+        # 'PORT': '3306',
     }
 }
 
