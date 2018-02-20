@@ -7,7 +7,7 @@ from django.contrib import messages
 from accounts.forms import SignupForm, ProfileForm, SkintypeForm
 from accounts.models import Profile
 from beautiful import settings
-from social_django.models import UserSocialAuth
+# from social_django.models import UserSocialAuth
 
 
 def login(request):
@@ -45,7 +45,7 @@ def login_and_redirect_next(request, user):
     if not hasattr(user, 'profile'):
         Profile.objects.create(user=user)
     auth_login(request, user)
-    next_url = request.GET.get('next') or settings.MAIN_REDIRECT_URL
+    next_url = request.GET.get('next') or ('main:showMain')
     return redirect(next_url)
 
 
@@ -144,6 +144,18 @@ def password(request):
         form = PasswordForm(request.user)
 
     return render(request, 'accounts/password.html', {'form': form})
+def skin_type_result(request, type):
+    if type == 'dry':
+        return render(request, 'skintype/dry_skin.html')
+    elif type == 'neutral':
+        return render(request, 'skintype/neutral_skin.html')
+    elif type == 'complex':
+        return render(request, 'skintype/complex_skin.html')
+    elif type == 'oily':
+        return render(request, 'skintype/oily_skin.html')
+    elif type == 'unresolved':
+        return render(request, 'skintype/unresolved_skin.html')
+    return render(request, 'accounts/quiz.html')
 
 
 def skin_type_result(request, type):

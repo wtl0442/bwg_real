@@ -27,7 +27,8 @@ urlpatterns = [
     path('creator/', include('creator.urls')),
     path('review/', include('review.urls')),
     path('event/', include('event.urls')),
-    url(r'^accounts/', include('allauth.urls')),
+
+    path('accounts/', include('allauth.urls')),
     path('oauth/', include('social_django.urls', namespace='social')),
 
     path('wiki/', include('beautywiki.urls')),
