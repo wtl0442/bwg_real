@@ -26,7 +26,7 @@ SECRET_KEY = '50rds_cbh+uld9#^7(m851bft5^iq90a(q=!p_(gnqkpyr)^t('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.naver',
 
     'django_google_maps',
-
+    'beautywiki',
 ]
 
 
@@ -108,6 +108,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'bwg_db',
+        # 'USER': 'jubin3424',
+        # 'PASSWORD': 'wnqls6013',
+        # 'HOST': '',
+        # 'PORT': '3306',
     }
 }
 

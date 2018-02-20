@@ -1,13 +1,77 @@
 {% extends 'base.html' %}
 {% block content %}
+    <div class="skin_type_test_box hide-on-med-and-down">
+        <iframe src="{% url 'accounts:skin_type_test' %}" class="skin_type_iframe" frameBorder="0"></iframe>
+    </div>
+{#    <div id="test1" class="col s12">#}
+{#        <iframe src="{% url 'wiki:trouble_wiki' %}" class="iframe100"></iframe>#}
+{#    width="450px" height="295px"</div>#}
+<br>
+<div class="skin_type_test_box_mobile hide-on-large-only">
+        <iframe src="{% url 'accounts:skin_type_test' %}" class="skin_type_iframe" frameBorder="0"></iframe>
+    </div>
 
-    <h3>내 피부타입 진단</h3>
-    <iframe src="{% url 'accounts:skin_type_test' %}" width="450px" height="295px" frameBorder="0"></iframe>
-    <form method="POST" action="">
+    <!-- 모달 버튼 자리 -->
+    <div id="web_modal"></div>
+
+    <div id="mobile_modal"></div>
+
+  <!-- Modal Structure -->
+
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>내 피부타입은?</h4>
+      <p>
+    <!--웹 폼-->
+          <form method="POST" action="" class="hide-on-med-and-down">
     {% csrf_token %}
     <label for="id_skin_type">Skin type:</label>
-    <input type="text" name="skin_type" id="skin_type_result" maxlength="30" id="id_skin_type">
-    <input type="submit" class="btn" value="피부타입 제출">
-    </form>
+    <input type="text" name="skin_type" id="skin_type_result" maxlength="30">
+    {% if request.user.is_authenticated %}
+        <div>
+            <input type="submit" class="btn" value="피부타입 제출">
+                <span class="tooltiptext">피부타입을 제출하고 더 많은 정보를 받아보세요!</span>
+        </div>
+    {% else %}
+        <div>
+            <input type="submit" class="btn disabled"value="피부타입 제출">
+                <span style="margin-left:5px;">로그인이 필요합니다!</span>
+        </div>
+   {% endif %}
+    <!--웹 폼-->
 
+    <!--모바일 폼-->
+    </form>
+        <form method="POST" action="" class="hide-on-large-only">
+    {% csrf_token %}
+    <label for="id_skin_type">Skin type:</label>
+    <input type="text" name="skin_type" id="skin_type_result_mobile" maxlength="30">
+    {% if request.user.is_authenticated %}
+        <input type="submit" class="btn" value="피부타입 제출">
+    {% else %}
+        <div>
+            <input type="submit" class="btn disabled"value="피부타입 제출">
+                <br><div style="margin-top:3px;">로그인이 필요합니다!</div>
+        </div>
+   {% endif %}
+    </form>
+    <!--모바일 폼-->
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">돌아가기</a>
+    </div>
+  </div>
+    <script>
+      $(document).ready(function(){
+          $('.slider').slider();
+      });
+      $(document).ready(function(){
+        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+          $('.modal').modal();
+      });
+
+
+      </script>
 {% endblock %}

@@ -10,12 +10,10 @@ from beautiful import settings
 from social_django.models import UserSocialAuth
 
 
-
-
 def login(request):
     form = AuthenticationForm(request, request.POST or None)
     if request.method == "POST" and form.is_valid():
-        return redirect(reverse('main:showMain'))
+        return login_and_redirect_next(request, form.get_user())
     ctx = {
         'form': form,
     }
@@ -77,18 +75,33 @@ def update_profile(request):
     return render(request, 'accounts/edit_profile.html', ctx)
 
 
-@login_required
 def skin_type(request):
-    form = SkintypeForm(request.POST or None, instance=request.user.profile)
-    print('여기구나')
-    if request.method == "POST" and form.is_valid():
-        form.save()
-        return redirect(reverse('accounts:profile_detail', kwargs={
-            'username': request.user.username,
-        }))
-    return render(request, 'accounts/skintype_test.html', {
-        'form': form,
-    })
+    if request.user.is_authenticated:
+        form = SkintypeForm(request.POST or None, instance=request.user.profile)
+        if request.method == "POST" and form.is_valid():
+            form.save()
+
+            if request.user.profile.skin_type == '건성피부(민감성피부)':
+                skin_type_name = 'dry'
+            elif request.user.profile.skin_type == '중성(약한 민감성 피부)':
+                skin_type_name = 'neutral'
+            elif request.user.profile.skin_type == '복합성 피부':
+                skin_type_name = 'complex'
+            elif request.user.profile.skin_type == '지성피부':
+                skin_type_name = 'oily'
+            else:
+                skin_type_name = 'unresolved'
+            return redirect(reverse('accounts:skin_type_result', kwargs={
+                'type': skin_type_name,
+            }))
+        return render(request, 'accounts/skintype_test.html', {
+            'form': form,
+        })
+    else:
+        form = SkintypeForm(request.POST or None)
+        return render(request, 'accounts/skintype_test.html', {
+            'form': form,
+        })
 
 
 def skin_type_test(request):
@@ -132,3 +145,16 @@ def password(request):
 
     return render(request, 'accounts/password.html', {'form': form})
 
+
+def skin_type_result(request, type):
+    if type == 'dry':
+        return render(request, 'skintype/dry_skin.html')
+    elif type == 'neutral':
+        return render(request, 'skintype/neutral_skin.html')
+    elif type == 'complex':
+        return render(request, 'skintype/complex_skin.html')
+    elif type == 'oily':
+        return render(request, 'skintype/oily_skin.html')
+    elif type == 'unresolved':
+        return render(request, 'skintype/unresolved_skin.html')
+    return render(request, 'accounts/quiz.html')

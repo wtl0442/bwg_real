@@ -2,14 +2,16 @@
 {% load static %}
 {% block content %}
 
-<h4>뷰가 커뮤니티</h4>
+<h4 class="hide-on-med-and-down">뷰가 커뮤니티</h4>
+<span class="hide-on-med-and-up" style="font-size:0.7rem; float:right; opacity:0.5;">뷰가 커뮤니티</span>
 <div class="post">
 <h3 style="margin-top:0;">{{ post.title }}</h3>
 
 <p><span style="font-size:22px;">{{ post.content|linebreaksbr }}</span></p><br>
 
 {% if post.photo %}
-<img src="{{ post.photo.url }}" width="350">
+    <img src="{{ post.photo.url }}" class="post_image hide-on-small-only" width="350px">
+    <img src="{{ post.photo.url }}" class="hide-on-med-and-up" width="90%">
 {% endif %}
 <br>
 {% if post.file %}
@@ -24,9 +26,13 @@
 <p><b>Posted by {{ post.user }} <br>
 {{ post.created_at }}</b></p><br>
 <div class="susak">
+    {% if request.user.username == post.user %}
 <a href = "{% url 'post:post_edit' post.pk %}"><button class="btn waves-effect waves-light" type="submit" name="action">수정하기</button></a>
 
-<form id="post_delete_form" action="{% url 'post:post_delete' post.pk %}" method="POST" style="display:inline;">{% csrf_token %}<button type="submit" class="waves-effect waves-light btn">삭제하기</button></form>
+<form id="post_delete_form" action="{% url 'post:post_delete' post.pk %}" method="POST" style="display:inline;">{% csrf_token %}
+    <button type="submit" class="waves-effect waves-light btn">삭제하기</button>
+</form>
+    {% endif %}
 <script>
 $('#post_delete_form').submit(function(e){
     if (!confirm('지울꺼야?')){
@@ -37,21 +43,47 @@ $('#post_delete_form').submit(function(e){
 
 </div>
 
-<a href = "{% url 'post:post_list' %}"><button class="btn waves-effect waves-light" type="submit" name="action" style="float:right;">목록으로</button></a>
+<a href = "{% url 'post:post_list' %}">
+    <span class="to_post_list" style="float:right;">목록으로</span></a>
 <br>
 
-<h3>{{ post.comment_set.count }} comments</h3>
 
-{% for comment in post.comment_set.all %}
-<P style="margin-bottom:2px;"><b>{{ comment.user }} {{ comment.created_at }}</b></P>
-<p style="font-size:18px; margin-top:0; margin-bottom:25px;">{{ comment.content }}</p>
-
-{% endfor %}
 <h5>Leave a comment!</h5>
-<form method="POST">
+<form method="POST" id="comment_form">
 	{% csrf_token %}
 {{ comment_form.as_p }}
 <button class="btn waves-effect waves-light" type="submit" name="action">제출하기</button>
+    <script>
+        $('#comment_form').submit(function(e){
+                e.preventDefault();
+                url = '{% url 'post:comment_create' post.pk %}';
+                data = {
+                    content : $('input#id_content').val(),
+                };
+                $.post(url, data)
+                    .done(function(r){
+                        $('div.comment_area').append(r);
+                        $('input#id_content').val('');
+                        var origin_num = parseInt($('#comment_form h3').html().split(' ')[0]);
+                        origin_num += 1;
+                        replace_num = origin_num + ' ' + $('#comment_form h3').html().split(' ')[1];
+                        $('#comment_form h3').html(replace_num);
+                    })
+                    .fail(function(r){
+                        alert('오류가 발생했습니다. 잠시 후에 다시 시도해주세요.');
+                    });
+            }
+            )
+    </script>
 
+    <h3>{{ post.comment_set.count }} comments</h3>
+
+<div class="comment_area">
+    {% for comment in post.comment_set.all %}
+        {% include 'post/comment.html' %}
+    {% endfor %}
+</div>
+
+</form>
 </div>
 {% endblock %}
