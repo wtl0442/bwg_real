@@ -1,6 +1,16 @@
+@media screen and (max-width: 1280px) {
+	.container {
+	width: 98% !important;
+	}
+}
 div.entire_body{
 	margin:10px 20px 0 20px;
 	background-color:#f5f0ec;
+	overflow:hidden;
+}
+a.button-collapse i.material-icons{
+	font-size:35px;
+	color:gray();
 }
 img.logo{
 	width:20%;
@@ -13,20 +23,24 @@ p.logoBox{
 	text-align:center;
 	margin:0;
 }
-nav.main_menu {
+.entire_body nav{
 	background-color:#f5f0ec;
 	box-shadow:none;
 	height:30px;
 }
-nav.main_menu .nav-wrapper {
+.entire_body nav div.nav-wrapper {
+	width:100%;
 	text-align: center;
 }
-nav.main_menu ul {
+.entire_body nav div ul {
 	display: inline-block;
 	margin: 0;
 	line-height: 30px;
 }
-nav.main_menu ul li a {
+nav a.button-collapse {
+	color:black;
+}
+ul.main_menu.hide-on-med-and-down li a {
 	color: #727272;
 }
 .main_menu_logo{
@@ -37,7 +51,7 @@ nav.main_menu ul li a {
 	color:white;
 }
 pre.slogan{
-	font-size: 55px;
+	font-size: 3.43em;
 	font-family: "Arial Black", Gadget, sans-serif;
 	letter-spacing:1px;
 	line-height: 1.2;
@@ -52,18 +66,31 @@ pre.slogan{
 	color:#ff80ab;
 }
 .col.tags{
-	height:150px !important;
+	height:290px !important;
 	background-color:#f3b85d;
-	font-size:30px;
+	font-size:1.87rem;
+	color:white;
+	font-weight:bold;
+	border:5px solid #f5f0ec;
+}
+.col.login div a.join{
+	color:dimgray;
+	font-size:1rem;
+}
+.col.event_mall_location {
+	height:140px !important;
+	background-color:#9DA5BE;
+	padding:10px 20px;
+	font-size:1.87rem;
 	color:white;
 	font-weight:bold;
 	border:5px solid #f5f0ec;
 }
 .col.login{
-	height:240px !important;
-	background-color:#b39ddb;
+	height:100px !important;
+	background-color:#9DA5BE;
 	padding:10px 20px;
-	font-size:30px;
+	font-size:1.87rem;
 	color:white;
 	font-weight:bold;
 	border:5px solid #f5f0ec;
@@ -71,7 +98,7 @@ pre.slogan{
 .col.skin_type{
 	background-color:#94dad5;
 	height:240px !important;
-	font-size:20px;
+	font-size:1.25rem;
 	color:white;
 	font-weight:bold;
 	border:5px solid #f5f0ec;
@@ -80,7 +107,7 @@ pre.slogan{
 .col.skin_wiki{
 	background-color:#ffcab8;
 	height:240px !important;
-	font-size:20px;
+	font-size:1.25rem;
 	color:white;
 	font-weight:bold;
 	border:5px solid #f5f0ec;
@@ -89,7 +116,7 @@ pre.slogan{
 	background-color:#d0ccc4;
 	height:240px !important;
 	padding:10px;
-	font-size:25px;
+	font-size:1.56rem;
 	color:#6c6861;
 	font-weight:bold;
 	border:5px solid #f5f0ec;
@@ -101,7 +128,7 @@ pre.slogan{
 	background-color:#f3b85d;
 	height:100px !important;
 	/*padding:10px;*/
-	font-size:20px;
+	font-size:1rem;
 	color:white;
 	font-weight:bold;
 	border:5px solid #f5f0ec;
@@ -120,10 +147,7 @@ pre.slogan{
 	margin:auto;
 }
 div.welcome_member {
-	font-size:17px;
-}
-div.member_class {
-	font-size:15px;
+	font-size:1rem;
 }
 .login img{
 	margin-bottom:7px;
@@ -138,6 +162,14 @@ div.member_class {
 	border:5px solid #f5f0ec;
 	color:white;
 	text-align: center;
+	-webkit-perspective: 500px;
+          	perspective: 500px;
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+    -webkit-transform-origin: 0% 50%;
+            transform-origin: 0% 50%;
+    overflow: hidden;
+  	position: relative;
 
 
 }
@@ -203,6 +235,7 @@ div.member_class {
     border-radius: 20px;
     height: 320px;
     box-shadow: 1px 1px 5px #888888;
+    top : -90px;
 }
 
 
@@ -242,4 +275,34 @@ a.recommend_ranking_content{
     top: 30px;
     text-align:left;
 
+}
+
+#item-slide-wrapper_main {
+    height: 300px;
+    border-radius: 6px;
+}
+
+#item-slide_main {
+    top: -100px;
+    width :30%;
+}
+
+.event_content {
+    width: 80%;
+    height: 200px;
+    background-color : #818181;
+    border-radius: 20px;
+    margin: 50px;
+    box-shadow: 1px 1px 5px #000000;
+}
+
+.event_content_text{
+    text-align:left;
+    margin-top: 15px;
+    margin-left:15px;
+
+}
+.event_button {
+    margin-top: 150px;
+    align-content: center;
 }

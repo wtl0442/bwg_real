@@ -1,17 +1,21 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth import login as auth_login, logout as auth_logout
-from django.contrib.auth.forms import AuthenticationForm
-
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, AdminPasswordChangeForm
+from django.contrib import messages
 from accounts.forms import SignupForm, ProfileForm, SkintypeForm
 from accounts.models import Profile
 from beautiful import settings
+from social_django.models import UserSocialAuth
+
+
 
 
 def login(request):
     form = AuthenticationForm(request, request.POST or None)
     if request.method == "POST" and form.is_valid():
-        return login_and_redirect_next(request, form.get_user())
+        return redirect(reverse('main:showMain'))
     ctx = {
         'form': form,
     }
@@ -32,7 +36,7 @@ def signup(request):
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
-            login_and_redirect_next(request, user)
+            return redirect(reverse('main:showMain'))
     return render(request, 'accounts/signup.html', {
         'signup_form': signup_form,
         'profile_form': profile_form,
@@ -89,3 +93,42 @@ def skin_type(request):
 
 def skin_type_test(request):
     return render(request, 'accounts/quiz.html')
+
+
+@login_required
+def settings(request):
+    user = request.user
+
+    try:
+        facebook_login = user.social_auth.get(provider='facebook')
+    except UserSocialAuth.DoesNotExist:
+        facebook_login = None
+
+    can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
+
+    return render(request, 'accounts/settings.html', {
+        'facebook_login': facebook_login,
+        })
+
+
+@login_required
+def password(request):
+    if request.user.has_usable_password():
+        PasswordForm = PasswordChangeForm
+    else:
+        PasswordForm = AdminPasswordChangeForm
+
+    if request.method == "POST":
+        form = PasswordForm(request.user, request.POST or None)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, 'Your password was successfully updated')
+            return redirect('main:showMain')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordForm(request.user)
+
+    return render(request, 'accounts/password.html', {'form': form})
+

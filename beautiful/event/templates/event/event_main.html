@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/event_main.css' %}" type="text/css">
+
+<div id="choice_button">
+  <a id="choice_button_list" href="{% url 'event:event_main'%}">
+  {% include 'event/active_button.html' %}</a>
+  <a id="choice_button_map" href="{% url 'event:event_place' %}" >
+    {% include 'event/active_button.html' %}</a></div>
+
+  <script>
+    $('#choice_button_list').click(function(e){
+        var self = $(this);
+      $.get(url)
+          .done(function(r) {
+              $('.event_page_content')(r);
+          })
+          .fail(function(){
+            alert('오류 발생');
+          });
+        return false;
+    });
+
+    $('#choice_button_map').click(function(e){
+        var self = $(this);
+        var url = self.attr('href');
+      $.get(url)
+          .done(function(r) {
+              console.log('dd')
+              self.html(r);
+          })
+          .fail(function(){
+            alert('오류 발생');
+          });
+        return false;
+    });
+  </script>
+
+
+
+
+
+</div>
+<div class="event_page_content">
+  <div id="tag_list">
+
+      {% for tag in tag_list %}
+      <a href="{% url 'event:event_main_by_tag' tag.pk %}">
+
+        <div class="chip {% if tag == tag_selected %}selected{% endif %}">
+          {{tag.tag_name}}
+        </div>
+
+      </a>
+      {% endfor %}
+
+
+  </div>
+
+
+  {% for event in event_list %}
+  <div id="event_list">
+    {% for tag in event.tag.all %}
+    <span class="chip">{{tag.tag_name}}</span>
+    {% endfor %}
+
+    {{event.pk}}
+    {{event.title}}
+    {{event.date}}
+    {{event.content}}
+
+    <button>자세히 보기</button>
+  </div>
+
+  {% endfor %}
+
+
+
+  <a style="background-color : #f26969;"
+     class="waves-effect waves-light btn"
+     href="{% url 'event:event_create' %}" >글쓰기 </a>
+
+</div>
+
+{% endblock %}

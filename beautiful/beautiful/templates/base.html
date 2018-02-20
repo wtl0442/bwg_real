@@ -2,17 +2,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/creator_main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/creator_main.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="{% static 'css/main_core.css' %}" media="screen,projection"/>
+
+    <link tye="text/css" rel="stylesheet" href="{% static 'css/main_core.css' %}" media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
 
-
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
     <script language="javascript" type="text/javascript">
     function review_popup(url) {
@@ -22,8 +20,7 @@
     }
     </script>
 
-
-	<title>Beauty with Guys</title>
+    <title>Beauty with Guys</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <style>
 body{
@@ -114,23 +111,55 @@ li.discrimination:hover{
 <body>
 
 <div class="entire_body">
-  <p class="logoBox"><a href="{% url 'main:showMain' %}"><img src="{% static 'bwg_logo.png' %}" class="logo"></a></p>
-  <nav class="main_menu left hide-on-med-and-down">
-    <div class="nav-wrapper">
-      <ul>
-        <li><a href="">뷰티윗가이즈?</a></li>
-        <li><a href="">피부 백서</a></li>
-        <li><a href="{% url 'accounts:skin_type' %}">피부타입테스트</a></li>
-        <li><a href="{% url 'creator:creator_page' 'jubin3424' %}">크리에이터</a></li>
-        <li><a href="">제품 후기</a></li>
-        <li><a href="{% url 'post:post_list' %}">커뮤니티</a></li>
-        <li><a href="">검색</a></li>
-      </ul>
+<div class="col l12 hide-on-med-and-down">
+    <p class="logoBox"><a href="{% url 'main:showMain' %}"><img src="{% static 'bwg_logo.png' %}" class="logo"></a></p>
+</div>
 
+  <nav>
+    <div class="nav-wrapper center_align">
+        <div class="container">
+
+
+            <!-- Navbar menu -->
+          <ul class="main_menu hide-on-med-and-down">
+            <li><a href="">뷰티윗가이즈?</a></li>
+            <li><a href="">피부 백서</a></li>
+            <li><a href="{% url 'accounts:skin_type' %}">피부타입테스트</a></li>
+            <li><a href="">크리에이터</a></li>
+            <li><a href="">제품 후기</a></li>
+            <li><a href="{% url 'post:post_list' %}">커뮤니티</a></li>
+            <li><a href="">검색</a></li>
+          </ul>
+            <!-- Navbar mobile menu -->
+            <ul id="slide-out" class="side-nav">
+                <li><div class="user-view">
+                    <div class="background">
+                        <img src="{% static "milestone.jpg" %}">
+                    </div>
+                    <a href="#!user" style="text-align: center;"><img class="circle" src="{% static "hottest.gif" %}" style="display:inline;"></a>
+                    <a href="#!name"><span class="white-text name">John Doe</span></a>
+                    <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                </div></li>
+                <li><a href="#!"><i class="material-icons">cloud</i>뷰티윗가이즈?</a></li>
+                <li><a href="#!">피부 백서</a></li>
+                <li><a href="#!">피부타입 테스트</a></li>
+                <li><a href="#!">크리에이터</a></li>
+                <li><a href="#!">제품후기</a></li>
+                <li><a href="#!">커뮤니티</a></li>
+                <li><div class="divider"></div></li>
+                <li><a class="subheader">Subheader</a></li>
+                <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+            </ul>
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+            <script>$(".button-collapse").sideNav();</script>
+            <a href="{% url 'main:showMain' %}"><img src="{% static 'bwg_logo.png' %}" class="hide-on-large-only" width="250px"></a>
+        </div>
     </div>
   </nav>
+
   &nbsp;
   <div class="container">
+
 
 
 {% block content %}{% endblock %}
