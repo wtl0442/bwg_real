@@ -19,29 +19,19 @@
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 
     <div class="login_box">
-      <div class="row">
-        <div class="col l2">&nbsp;</div>
-          <div class="col l8 m12 s12">
-
-         {% if request.user.is_authenticated %}
-             <h4>메인페이지로 돌아가고 있습니다</h4>
-             <script>
-             alert('이미 로그인 되어 있습니다.');
-             window.history.back();
-             </script>
-            {% else %}
-             <span class="hide-on-small-only" style="font-size:3vw;">BeautyWithGuys에 로그인해주세요!</span>
-             <span class="hide-on-med-and-up" style="font-size:8vw;">BeautyWithGuys 로그인</span>
-            <form method="POST" action="">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn full">로그인</button>
-            <br><br>
-            <a href="{% url 'accounts:signup' %}" class="btn purple full">회원가입</a>
-            </form>
-            {% endif %}
-    </div>
-
+     {% if request.user.is_authenticated %}
+         <h4>메인페이지로 돌아가고 있습니다</h4>
+         <script>
+         alert('이미 로그인 되어 있습니다.');
+         window.history.back();
+         </script>
+        {% else %}
+         <h3>Beauty with Guys에 로그인해주세요!</h3>
+        <form method="POST" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn full">로그인</button></form>
+        <br><br>
         <a href="{% provider_login_url "facebook" method='oauth2'  %}" class="btn  btn-social btn-facebook" style="background-color:#3b5998;text-align:center">
             <span class="fa fa-facebook"></span>
                            페이스북 로그인
@@ -117,10 +107,9 @@
                 });
                 </script>
             </div>
-          </div>
         </div>
+        <a href="{% url 'accounts:signup' %}" class="btn purple full">회원가입</a>
 
-<div class="col l2">&nbsp;</div>
-</div>
-
+        {% endif %}
+    </div>
 {% endblock %}
