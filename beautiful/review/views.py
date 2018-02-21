@@ -1,5 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
+from django.shortcuts import render, get_object_or_404
 from creator.models import Item, Brand
 from accounts.models import SkinType
 from django.db.models import Count
@@ -21,8 +20,6 @@ def review_list(request):
     ctx = {
         'top_three': top_three,
         'rest_item': rest_item,
-        'brands': Brand.objects.all(),
-        'skin_types': SkinType.objects.all(),
     }
     return render(request, 'review/review_list.html', ctx)
 
@@ -52,8 +49,6 @@ def item_review(request, item_pk):
     ctx = {
         'item': item,
         'form': form,
-        'brands': Brand.objects.all(),
-        'skin_types': SkinType.objects.all(),
     }
     return render(request, 'review/item_review.html', ctx)
 
@@ -72,9 +67,9 @@ def search_item(request):
 
     skin_type = get_or_none(SkinType, name=skin_type_input)
     brand = get_or_none(Brand, name=brand_input)
-    item = get_or_none(Item, name=item_name_input)
+    item_name = item_name_input
 
-    inputs = {'skin_type': skin_type, 'brand': brand, 'item': item}
+    inputs = {'skin_type': skin_type, 'brand': brand, 'name': item_name}
     parameter = {}
 
     for key, value in inputs.items():
@@ -83,8 +78,6 @@ def search_item(request):
 
     ctx = {
         'search_result': Item.objects.filter(**parameter),
-        'brands': Brand.objects.all(),
-        'skin_types': SkinType.objects.all(),
     }
 
     return render(request, 'review/search_result.html', ctx)

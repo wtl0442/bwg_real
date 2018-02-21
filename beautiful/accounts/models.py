@@ -15,7 +15,7 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE, )
     birth_date = models.DateField(null=True, blank=True)
-    skin_type = models.ForeignKey(SkinType, on_delete=models.CASCADE, verbose_name='피부타입', related_name='profile', blank=True, null=True)
+    skin_type = models.CharField(max_length=30, blank=True)
     image = models.ImageField(
         upload_to='profile/%Y/%m/%d/',
         blank=True,
