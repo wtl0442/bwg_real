@@ -1,8 +1,11 @@
-from django.shortcuts import render
-from creator.models import Item
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
+from creator.models import Item, Brand
+from accounts.models import SkinType
 from django.db.models import Count
 from django.http import JsonResponse, HttpResponse
 from django.template.loader import render_to_string
+from creator.forms import ReviewForm
 
 # Create your views here
 
@@ -18,6 +21,8 @@ def review_list(request):
     ctx = {
         'top_three': top_three,
         'rest_item': rest_item,
+        'brands': Brand.objects.all(),
+        'skin_types': SkinType.objects.all(),
     }
     return render(request, 'review/review_list.html', ctx)
 
@@ -39,3 +44,47 @@ def load_more_review(request, review_count):
             return JsonResponse({'status': False})
     else:
         return HttpResponse(status=405)
+
+
+def item_review(request, item_pk):
+    item = get_object_or_404(Item, pk=item_pk)
+    form = ReviewForm()
+    ctx = {
+        'item': item,
+        'form': form,
+        'brands': Brand.objects.all(),
+        'skin_types': SkinType.objects.all(),
+    }
+    return render(request, 'review/item_review.html', ctx)
+
+
+def get_or_none(model, *args, **kwargs):
+    try:
+        return model.objects.get(*args, **kwargs)
+    except model.DoesNotExist:
+        return None
+
+
+def search_item(request):
+    skin_type_input = request.POST.get('skin-type')
+    brand_input = request.POST.get('brand')
+    item_name_input = request.POST.get('item_name')
+
+    skin_type = get_or_none(SkinType, name=skin_type_input)
+    brand = get_or_none(Brand, name=brand_input)
+    item = get_or_none(Item, name=item_name_input)
+
+    inputs = {'skin_type': skin_type, 'brand': brand, 'item': item}
+    parameter = {}
+
+    for key, value in inputs.items():
+        if value:
+            parameter[key] = value
+
+    ctx = {
+        'search_result': Item.objects.filter(**parameter),
+        'brands': Brand.objects.all(),
+        'skin_types': SkinType.objects.all(),
+    }
+
+    return render(request, 'review/search_result.html', ctx)

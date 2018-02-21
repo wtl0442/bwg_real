@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from .forms import ReviewForm
 from .models import Review, Item
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
 
 
@@ -64,9 +64,14 @@ def create_review(request, item_pk):
 
 def delete_review(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
-    content = review.Item.youtube_content_set.all()[0]
-    creator = content.creator
+    item = review.Item
     review.delete()
-    return redirect(reverse('creator:creator_page',
-                            kwargs={'creatorname': creator,
-                                    'content_pk': content.pk}))
+    try:
+        content = review.Item.youtube_content_set.all()[0]
+        creator = content.creator
+
+        return redirect(reverse('creator:creator_page',
+                                kwargs={'creatorname': creator,
+                                        'content_pk': content.pk}))
+    except IndexError:
+        return redirect(reverse('review:item_review', kwargs={'item_pk': item.pk}))

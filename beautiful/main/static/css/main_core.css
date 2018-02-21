@@ -236,6 +236,8 @@ div.welcome_member {
 
 	color:white;
 	text-align: center;
+
+	cursor: pointer;
 }
 
 .col.subscribe_bwg #subscribe-open{

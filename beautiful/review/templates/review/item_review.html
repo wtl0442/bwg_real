@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/item_review.css' %}">
+{% endblock %}
+
+{% block content %}
+
+  {% include 'review/search_bar.html' %}
+
+  <div class="row">
+    <div class="col s12 l12">
+      <div class="card">
+        <div class="card-image">
+          <img src="{{ item.item_image_url }}">
+        </div>
+        <div class="card-content">
+          <p>{{ item.name }}</p>
+        </div>
+        <div class="card-action">
+          {# <a style="margin: 0;" href="{% url 'review:item_review' item.pk %}">리뷰들 보기</a> #}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include 'creator/review.html' %}
+
+{% endblock %}

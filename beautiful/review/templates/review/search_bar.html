@@ -1,0 +1,46 @@
+{% load static %}
+
+{% block extra_head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/search_bar.css' %}">
+{% endblock %}
+
+<div id="search-bar" class="row">
+  <form action="{% url 'review:search_item' %}" method="POST">
+    {% csrf_token %}
+    <div class="input-field col s12 m6 l3">
+      <select name="skin-type">
+        <option value="" disabled selected>Choose your option</option>
+        {% for type in skin_types %}
+        <option value="{{ type.name }}">{{ type.name }}</option>
+        {% endfor %}
+      </select>
+      <label>Skin Type Select</label>
+    </div>
+
+    <div class="input-field col s12 m6 l3">
+      <select name="brand">
+        <option value="" disabled selected>Choose your option</option>
+        {% for brand in brands %}
+        <option value="{{ brand.name }}">{{ brand.name }}</option>
+        {% endfor %}
+      </select>
+      <label>Brand Select</label>
+    </div>
+
+    <div class="input-field col s12 m6 l3">
+      <i class="material-icons prefix">sentiment_satisfied</i>
+      <input name="item_name" id="icon_prefix" type="text" class="validate">
+      <label for="icon_prefix">Item Name</label>
+    </div>
+
+    <div id="search-button" class="col s12 m6 l3">
+      <button type="submit" class="btn">검색하기</button>
+    </div>
+  </form>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
