@@ -1,11 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth import login as auth_login, logout as auth_logout
-from django.contrib.auth.forms import AuthenticationForm
-
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, AdminPasswordChangeForm
+from django.contrib import messages
 from accounts.forms import SignupForm, ProfileForm, SkintypeForm
 from accounts.models import Profile
 from beautiful import settings
+# from social_django.models import UserSocialAuth
 
 
 def login(request):
@@ -43,7 +45,7 @@ def login_and_redirect_next(request, user):
     if not hasattr(user, 'profile'):
         Profile.objects.create(user=user)
     auth_login(request, user)
-    next_url = request.GET.get('next') or settings.MAIN_REDIRECT_URL
+    next_url = request.GET.get('next') or ('main:showMain')
     return redirect(next_url)
 
 
@@ -106,6 +108,42 @@ def skin_type_test(request):
     return render(request, 'accounts/quiz.html')
 
 
+@login_required
+def settings(request):
+    user = request.user
+
+    try:
+        facebook_login = user.social_auth.get(provider='facebook')
+    except UserSocialAuth.DoesNotExist:
+        facebook_login = None
+
+    can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
+
+    return render(request, 'accounts/settings.html', {
+        'facebook_login': facebook_login,
+        })
+
+
+@login_required
+def password(request):
+    if request.user.has_usable_password():
+        PasswordForm = PasswordChangeForm
+    else:
+        PasswordForm = AdminPasswordChangeForm
+
+    if request.method == "POST":
+        form = PasswordForm(request.user, request.POST or None)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, 'Your password was successfully updated')
+            return redirect('main:showMain')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordForm(request.user)
+
+    return render(request, 'accounts/password.html', {'form': form})
 def skin_type_result(request, type):
     if type == 'dry':
         return render(request, 'skintype/dry_skin.html')
@@ -119,3 +157,16 @@ def skin_type_result(request, type):
         return render(request, 'skintype/unresolved_skin.html')
     return render(request, 'accounts/quiz.html')
 
+
+def skin_type_result(request, type):
+    if type == 'dry':
+        return render(request, 'skintype/dry_skin.html')
+    elif type == 'neutral':
+        return render(request, 'skintype/neutral_skin.html')
+    elif type == 'complex':
+        return render(request, 'skintype/complex_skin.html')
+    elif type == 'oily':
+        return render(request, 'skintype/oily_skin.html')
+    elif type == 'unresolved':
+        return render(request, 'skintype/unresolved_skin.html')
+    return render(request, 'accounts/quiz.html')

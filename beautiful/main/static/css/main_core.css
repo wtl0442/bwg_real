@@ -182,6 +182,14 @@ div.welcome_member {
 	border:5px solid #f5f0ec;
 	color:white;
 	text-align: center;
+	-webkit-perspective: 500px;
+          	perspective: 500px;
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+    -webkit-transform-origin: 0% 50%;
+            transform-origin: 0% 50%;
+    overflow: hidden;
+  	position: relative;
 
 
 }
@@ -295,6 +303,7 @@ div.welcome_member {
     border-radius: 20px;
     height: 320px;
     box-shadow: 1px 1px 5px #888888;
+    top : -90px;
 }
 
 
@@ -333,4 +342,38 @@ a.recommend_ranking_content{
     position: relative;
     top: 30px;
     text-align:left;
+<<<<<<< HEAD
+
+}
+
+#item-slide-wrapper_main {
+    height: 300px;
+    border-radius: 6px;
+}
+
+#item-slide_main {
+    top: -100px;
+    width :30%;
+}
+
+.event_content {
+    width: 80%;
+    height: 200px;
+    background-color : #818181;
+    border-radius: 20px;
+    margin: 50px;
+    box-shadow: 1px 1px 5px #000000;
+}
+
+.event_content_text{
+    text-align:left;
+    margin-top: 15px;
+    margin-left:15px;
+
+}
+.event_button {
+    margin-top: 150px;
+    align-content: center;
+=======
+>>>>>>> 750cdebab184503ab58be307a4fd7b5645f10f53
 }

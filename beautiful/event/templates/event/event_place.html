@@ -1,0 +1,35 @@
+
+{% block content %}
+
+<div class="map_title">
+<h3>event place</h3>
+<h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var seoul_center = {lat: 37.505522, lng: 127.004096};
+        var yeondeoungpo_ts = {lat: 37.517411, lng: 126.90306};
+        var goteo_shin = {lat: 37.505522, lng: 127.004096};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: seoul_center
+        });
+        var marker = new google.maps.Marker({
+          position: yeondeoungpo_ts,
+          map: map
+        });
+        var marker = new google.maps.Marker({
+          position: goteo_shin,
+          map: map
+        });
+
+
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwJMUjrQFsJ4kO6d05KnQLRE3TAaxLv20&callback=initMap">
+    </script>
+
+<h3>event place</h3>
+</div>
+{% endblock %}
