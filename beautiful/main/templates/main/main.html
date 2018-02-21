@@ -86,6 +86,7 @@ For You</pre></span></div>
     <div class="col m6 s6 hide-on-large-only mobile_tags">
         <span class="main_menu_logo">#TAGS_FOR_MOBILE</span>
     </div>
+
     <!--여기까지-->
 <div class="col l3 m3 s3 valign-wrapper menu">
   <h5 class="menu_align hide-on-med-and-down">추천상품 보기</h5>
@@ -123,12 +124,13 @@ BWG
 <div class="col l12 recommend_cosmetics">
   <span class="main_menu_logo-mid_title">추천 상품 보기</span>
 
-    <div class="carousel-item" id="item-slide">
-        <div class="carousel-item" id="item-slide">
-            <div class="col s3" id="new_card">
+    <div class="carousel">
+        <div id="item-slide_main hide-on-med-and-down" class="carousel-item" >
               <div class="recommend_card ">
-                <span class="recommend_item_title">비비크림</span>
-                <div class="recommend_circle_image" style="background-image:url(/static/bb_cream.png);">
+                <span class="recommend_item_title hide-on-med-and-down">비비크림</span>
+                <div class="recommend_item_title hide-on-large-only" style="text-align:center;">
+                    비비크림</div>
+                <div class="recommend_circle_image" style="background-image:url({% static 'bb_cream.png' %});">
                 </div>
                 <div class="recommend_ranking_sec">
                     <a href="#!" class="recommend_ranking_content">1위 : </a>
@@ -138,12 +140,16 @@ BWG
                     <a href="#!"class="waves-effect waves-light btn">더보기</a>
                 </div>
               </div>
-            </div>
 
-            <div class="col s3" id="new_card">
-              <div class="recommend_card" id="new_card" >
-                <span class="recommend_item_title">눈썹관리</span>
-                <div class="recommend_circle_image" style="background-image:url(/static/brow_kit.png);">
+        </div>
+
+        <div id="item-slide_main hide-on-med-and-down" class="carousel-item" >
+              <div class="recommend_card"  >
+                <span class="recommend_item_title hide-on-med-and-down">눈썹관리</span>
+                <div class="recommend_item_title hide-on-large-only" style="text-align:center;">
+                    눈썹</br>관리
+                </div>
+                <div class="recommend_circle_image" style="background-image:url({% static 'brow_kit.png' %});">
                 </div>
                 <div class="recommend_ranking_sec">
                     <a href="#!" class="recommend_ranking_content">1위 : </a>
@@ -153,8 +159,10 @@ BWG
                     <a href="#!"class="waves-effect waves-light btn">더보기</a>
                 </div>
               </div>
-            </div>
-            <div class="col s3" id="new_card">
+
+        </div>
+
+        <div id="item-slide_main hide-on-med-and-down" class="carousel-item" >
               <div class="recommend_card ">
                 <span class="recommend_item_title">수분크림</span>
                 <div class="recommend_circle_image" style="background-image:url(/static/cream.png);">
@@ -168,11 +176,13 @@ BWG
                     <a href="#!"class="waves-effect waves-light btn">더보기</a>
                 </div>
               </div>
-            </div>
-            <div class="col s3" id="new_card">
+
+        </div>
+
+        <div id="item-slide_main hide-on-med-and-down" class="carousel-item" >
               <div class="recommend_card ">
                 <span class="recommend_item_title">???</span>
-                <div class="recommend_circle_image" style="background-image:url(/static/cream.png);">
+                <div class="recommend_circle_image" style="background-image:url({% static 'cream.png' %});">
                 </div>
 
                 <div class="recommend_ranking_sec">
@@ -183,22 +193,56 @@ BWG
                     <a href="#!"class="waves-effect waves-light btn">더보기</a>
                 </div>
               </div>
-            </div>
+
+        </div>
 
 
     </div>
 
-    </div>
+    <!-- 카드 넘기기  -->
+  <script type="text/javascript">
+   $(document).ready(function(){
+      $('.carousel').carousel({
+            dist: 0,
+            shift:0,
+            padding:300,
 
+      });
+      $(function () {
+        $('#myCarousel').carousel({
+            interval: 2000
+        });
+        $('#myCarousel').on('slid.bs.carousel', function (e) {
+            if ($('.carousel-inner .item:last').hasClass('active')) {
+                $('#myCarousel').carousel('pause');
+            }
+            if ($('.carousel-inner .item:first').hasClass('active')) {
+                $('#myCarousel').carousel('cycle');
+            }
+        });
+    });
+    });
+
+  </script>
 
 
 </div>
+
+
+
+
 
 <div class="col l6 creator">
   <span class="main_menu_logo-mid_title">크리에이터 후기 보기 </span>
 </div>
 <div class="col l6 offline_event">
   <span class="main_menu_logo-mid_title">오프라인 행사 정보 </span>
+  <div class="event_content">
+    <div class="col l6 event_content_text"
+
+    >내 주변의</br>그루밍 행사 </br>알아보기</div>
+    <div class="col l6 event_button"><a class="waves-effect waves-light btn" href="{% url 'event:event_main' %}">행사보기</a></div>
+  </div>
 </div>
 
 

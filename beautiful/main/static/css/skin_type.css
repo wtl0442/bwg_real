@@ -41,3 +41,15 @@
 .btn.disabled:hover + tooltiptext {
     visibility: visible;
 }
+
+.skin_type_explanation{
+    width:80%;
+    margin:auto;
+    line-height:1.8;
+}
+@media screen and (max-width: 1100px) {
+	.skin_type_explanation {
+	width: 95%;
+    line-height:1.6;
+	}
+}

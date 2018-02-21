@@ -1,9 +1,24 @@
 {% extends 'base.html' %}
-
+{% load socialaccount %}
 {% block content %}
-<div class="row">
-<div class="col l2">&nbsp;</div>
-    <div class="col l8 m12 s12">
+
+<!--페이스북 로그인 자바스크립트 -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.12&appId=142505123102413&autoLogAppEvents=1';
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!--카카오톡 로그인 자바스크립트 -->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+<!--네이버 로그인 자바스크립트 -->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+
+    <div class="login_box">
      {% if request.user.is_authenticated %}
          <h4>메인페이지로 돌아가고 있습니다</h4>
          <script>
@@ -11,17 +26,90 @@
          window.history.back();
          </script>
         {% else %}
-         <span class="hide-on-small-only" style="font-size:3vw;">BeautyWithGuys에 로그인해주세요!</span>
-         <span class="hide-on-med-and-up" style="font-size:8vw;">BeautyWithGuys 로그인</span>
+         <h3>Beauty with Guys에 로그인해주세요!</h3>
         <form method="POST" action="">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn full">로그인</button>
+        <button type="submit" class="btn full">로그인</button></form>
         <br><br>
+        <a href="{% provider_login_url "facebook" method='oauth2'  %}" class="btn  btn-social btn-facebook" style="background-color:#3b5998;text-align:center">
+            <span class="fa fa-facebook"></span>
+                           페이스북 로그인
+             </a><br>
+             <a href="{% provider_login_url "kakao"  %}" class="btn btn-social" style="background-color:#ffeb00;text-align:center">
+            <span class="fa fa-facebook"></span>
+                           카카오로 로그인
+             </a><br>
+             <a href="{% provider_login_url "naver" %}" class="btn btn-social " style="background-color:#1ec800;text-align:center">
+            <span class="fa fa-facebook"></span>
+                           네이버로 로그인
+             </a>
+        <div id="social_login" style="text-align:center">
+            <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a><br>
+            <!--페이스북 로그인-->
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false" ></div><br>
+
+
+
+
+            <!--카카오톡 로그인 -->
+            <div id="kakaoIdLogin" style="margin-top:8px;">
+                <a id="kakao-login-btn"></a>
+                <script type='text/javascript'>
+                  //<![CDATA[
+                    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+                    Kakao.init('c1db983fb0425cb246789c40e4a100b0');
+                    // 카카오 로그인 버튼을 생성합니다.
+                    Kakao.Auth.createLoginButton({
+                      container: '#kakao-login-btn',
+                      success: function(authObj) {
+                        alert(JSON.stringify(authObj));
+                      },
+                      fail: function(err) {
+                         alert(JSON.stringify(err));
+                      }
+                    });
+                </script></div>
+
+            <!--네이버 로그인 -->
+            <div id="naverIdLogin">
+                <script type="text/javascript">
+                    var naverLogin = new naver.LoginWithNaverId(
+                        {
+                            clientId: "nJq_nGaVzkDmxBNkrmkn",
+                            callbackUrl: "https://localhost:8000/accounts/naver/login/callback/",
+                            callbackHandle: true,
+                            loginButton: {color: "green", type: 3, height: 50} /* 로그인 버튼의 타입을 지정 */
+                        }
+                    );
+
+                   /* 설정정보를 초기화하고 연동을 준비 */
+                    naverLogin.init();
+
+                    window.addEventListener('load', function () {
+                    naverLogin.getLoginStatus(function (status) {
+
+                    if (status) {
+                            var uniqId = naverLogin.user.getId();
+                            var birthday = naverLogin.user.getBirthday();
+                            var age = naverLogin.user.getAge();
+                            var email = naverLogin.user.getEmail();
+                            if( email == undefined || email == null) {
+                                alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+                                naverLogin.reprompt();
+                                return;
+                        }
+                            window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/sample/main.html");
+                    } else {
+                        console.log("callback 처리에 실패하였습니다.");
+                        }
+                    });
+                });
+                </script>
+            </div>
+        </div>
         <a href="{% url 'accounts:signup' %}" class="btn purple full">회원가입</a>
-        </form>
+
         {% endif %}
     </div>
-<div class="col l2">&nbsp;</div>
-</div>
 {% endblock %}
