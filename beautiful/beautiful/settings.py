@@ -86,10 +86,11 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.request',  # 추가
-
+                'django.template.context_processors.request',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
+                'beautiful.context_processors.brand',
+                'beautiful.context_processors.skintype',
 
             ],
         },

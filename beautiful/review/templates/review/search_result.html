@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+  {% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/search_result.css'%}">
+  {% endblock %}
+
+  {% include 'review/search_bar.html' %}
+
+  {% if search_result %}
+
+  <div class="row">
+    {% for item in search_result %}
+      <div class="col s12 l4">
+        <div class="card top-item">
+          <div class="card-image">
+            <img src="{{ item.item_image_url }}">
+          </div>
+          <div class="card-content">
+            <p>{{ item.name }}</p>
+          </div>
+          <div class="card-action">
+            <a style="margin: 0;" href="{% url 'review:item_review' item.pk %}">리뷰들 보기</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% else %}
+
+  <div id="no-item-in-video" >
+    <a class="btn-large disabled">찾으시는 제품이 없습니다</a>
+  </div>
+
+  {% endif %}
+
+{% endblock %}

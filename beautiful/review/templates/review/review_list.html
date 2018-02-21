@@ -7,6 +7,7 @@
 
 {% block content %}
 
+    {% include 'review/search_bar.html' %}
 
     <div class="row">
       {% for top_item in top_three %}
@@ -19,12 +20,13 @@
               <p>{{ top_item.name }}</p>
             </div>
             <div class="card-action">
-              <a style="margin: 0;" href="#">리뷰들 보기</a>
+              <a style="margin: 0;" href="{% url 'review:item_review' top_item.pk %}">리뷰들 보기</a>
             </div>
           </div>
         </div>
       {% endfor %}
     </div>
+
 
     <div class="row item-list">
       <div class="col s12 l12">
@@ -37,7 +39,7 @@
               <span class="title">{{ item.name }}</span>
               <p>{{ item.description }}</p>
             </div>
-            <a href="#!" class="secondary-content"><span class="new badge" data-badge-caption="Reviews">{{ item.item_review.count }}</span></a>
+            <a href="{% url 'review:item_review' item.pk %}" class="secondary-content"><span class="new badge" data-badge-caption="Reviews">{{ item.item_review.count }}</span></a>
           </li>
           {% endfor %}
         </ul>

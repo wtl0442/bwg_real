@@ -2,6 +2,8 @@ from django.db import models
 from django.conf import settings
 # Create your models here.
 
+from accounts.models import SkinType
+
 
 class Youtube_Content(models.Model):
     creator = models.ForeignKey(
@@ -22,10 +24,32 @@ class Youtube_Content(models.Model):
         return self.title
 
 
+class Brand(models.Model):
+    name = models.CharField(max_length=100, verbose_name='브랜드명')
+
+    def __str__(self):
+        return '{0}'.format(self.name)
+
+
 class Item(models.Model):
     name = models.CharField(max_length=200, verbose_name='상품명')
     item_image = models.ImageField(blank=True, upload_to="item/%Y/%m/%d")
     description = models.TextField(verbose_name='상품 설명')
+    price = models.PositiveIntegerField()
+    brand = models.ForeignKey(
+                Brand,
+                on_delete=models.CASCADE,
+                verbose_name='브랜드명',
+                related_name='brand_item',
+                blank=True,
+                null=True)
+    skin_type = models.ForeignKey(
+                SkinType,
+                on_delete=models.CASCADE,
+                verbose_name='skin_type_item',
+                blank=True,
+                null=True
+                )
 
     def item_image_url(self):
         if self.item_image:
@@ -35,7 +59,7 @@ class Item(models.Model):
         return image_url
 
     def __str__(self):
-        return '{0}, {1}'.format(self.pk, self.name)
+        return '{0}, {1}, {2}'.format(self.pk, self.brand.name, self.name)
 
 
 class Review(models.Model):
