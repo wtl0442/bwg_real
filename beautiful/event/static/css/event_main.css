@@ -9,3 +9,38 @@
     width: 100%;
     background-color: grey;
 }
+.event_detail{
+    display:absolute;
+    height: 120px;
+}
+.tag_section{
+    display: absolute;
+    padding-top:50px;
+    height: 120px;
+    line-height: 120px;
+
+}
+.tag_section .chip{
+    display:absolute;
+}
+
+
+.content_section{
+    display:absolute;
+    height: 120px;
+}
+
+.content_section span{
+    display:absolute inline-block;
+}
+
+.detail_section{
+    display:absolute;
+    text-align: right;
+}
+
+.collection .collection-item.avatar_event {
+  min-height: 84px;
+  position: relative;
+}
+
