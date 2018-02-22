@@ -133,9 +133,9 @@ BWG
                 <div class="recommend_circle_image" style="background-image:url({% static 'bb_cream.png' %});">
                 </div>
                 <div class="recommend_ranking_sec">
-                    <a href="#!" class="recommend_ranking_content">1위 : </a>
-                    <a href="#!" class="recommend_ranking_content">2위 : </a>
-                    <a href="#!" class="recommend_ranking_content">3위 : </a>
+                    {% for item in cream %}
+                    <a href="{% url 'review:item_review' item.pk%}" class="recommend_ranking_content">1위 : {{ item.name }}</a>
+                    {% endfor %}
                     <br/>
                     <a href="#!"class="waves-effect waves-light btn">더보기</a>
                 </div>
