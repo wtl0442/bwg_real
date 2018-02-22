@@ -30,7 +30,35 @@ For You</pre></span></div>
 
     </div>
 
-    <div class="col l3 m6 s6 skin_type"><span class="main_menu_logo">피부타입 테스트</span><br><br><br><br><br><br><a class="waves-effect waves-light btn">button</a></div>
+    <div class="col l3 m6 s6 skin_type">
+
+        <div class="carousel carousel-slider center" data-indicators="true">
+            <div class="carousel-fixed-item center">
+                <a class="btn waves-effect
+                white grey-text darken-text-2" href="{% url 'accounts:skin_type' %}">테스트하기</a>
+            </div>
+            <div class="carousel-item dry white-text">
+              <h2>건성 피부</h2>
+              <p class="white-text">Dry Skin</p>
+            </div>
+            <div class="carousel-item amber white-text" href="#two!">
+              <h2>중성 피부</h2>
+              <p class="white-text">Sensitive Skin</p>
+            </div>
+            <div class="carousel-item green white-text" href="#three!">
+              <h2>복합성 피부</h2>
+              <p class="white-text">Combination Skin</p>
+            </div>
+            <div class="carousel-item blue white-text" href="#four!">
+              <h2>지성 피부</h2>
+              <p class="white-text">Oily Skin</p>
+            </div>
+        </div>
+        <script>
+            $('.carousel.carousel-slider').carousel({fullWidth: true});
+        </script>
+
+    </div>
     <div class="col l5 m6 s6 skin_wiki">
         <span class="main_menu_logo">금주의 피부백서</span><br>
         <div class="card horizontal">
@@ -39,16 +67,19 @@ For You</pre></span></div>
           </div>
             <div class="card-content" style="height:180px;
             color:black; overflow:scroll; font-size:0.8rem;">
-              <p>{{ this_wiki.contents }}</p>
-                <!-- Modal Trigger -->
-                  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+              <div class="middle_content">
+                {{ this_wiki.contents }}<br><br>
+                  <!-- Modal Trigger -->
+                  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">솔루션</a>
+              </div>
 
                   <!-- Modal Structure -->
                   <div id="modal1" class="modal">
                     <div class="modal-content">
                       <h4 style="margin-bottom:0;">Solution</h4>
                       <p>
-                          <img src="{{ this_wiki.image_url }}" class="hide-on-large-only" width="100%;"><br>
+                          <img src="{{ this_wiki.image_url }}" class="hide-on-large-only hide-on-small-only" width="70%;"><br>
+                          <img src="{{ this_wiki.image_url }}" class="hide-on-med-and-up" width="100%;"><br>
                           <img src="{{ this_wiki.image_url }}" class="hide-on-med-and-down"><br>
                           {{ this_wiki.solution|linebreaksbr|default:"<h4>등록된 솔루션이 없습니다.</h4>" }}</p>
                     </div>
@@ -65,8 +96,9 @@ For You</pre></span></div>
             </div>
         </div>
     </div>
-    <div class="col l4 m6 s6 hottest"><span class="main_menu_logo">
-        <img src="{% static 'hottest.gif' %} ">HOTTEST</span><br>
+    <div class="col l4 m6 s6 hottest">
+        <div class="main_menu_logo">
+        <img src="{% static 'hottest.gif' %} ">HOTTEST</div>
         <div class="hot_area">
             <span class="hot_posts">
             {% if hot_posts %}
@@ -84,7 +116,7 @@ For You</pre></span></div>
 
     <!--이것은 모바일에서만 보이는 태그 영역입니다.-->
     <div class="col m6 s6 hide-on-large-only mobile_tags">
-        <span class="main_menu_logo">#TAGS_FOR_MOBILE</span>
+        <div class="main_menu_logo">#TAGS_FOR_MOBILE</div>
     </div>
 
     <!--여기까지-->
@@ -137,7 +169,11 @@ BWG
                     <a href="{% url 'review:item_review' item.pk%}" class="recommend_ranking_content">1위 : {{ item.name }}</a>
                     {% endfor %}
                     <br/>
-                    <a href="#!"class="waves-effect waves-light btn">더보기</a>
+
+                    <form method="GET" action="{% url 'review:search_item' %}">
+                        <input type="hidden" value="비비크림" name="category_search">
+                        <button type="submit" class="waves-effect waves-light btn">더보기</button>
+                    </form>
                 </div>
               </div>
 

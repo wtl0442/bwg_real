@@ -61,6 +61,7 @@ def get_or_none(model, *args, **kwargs):
 
 
 def search_item(request):
+    kwargs = request.GET.get('category_search')
     skin_type_input = request.POST.get('skin-type')
     category_input = request.POST.get('category')
     brand_input = request.POST.get('brand')
@@ -74,13 +75,17 @@ def search_item(request):
     inputs = {'skin_type': skin_type, 'category': category,
               'brand': brand, 'name': item_name}
     parameter = {}
+    if request.method == "GET":
+        ctx = {
+            'search_result': Item.objects.filter(category__name__icontains=kwargs)
+        }
+    else:
+        for key, value in inputs.items():
+            if value:
+                parameter[key] = value
 
-    for key, value in inputs.items():
-        if value:
-            parameter[key] = value
-
-    ctx = {
-        'search_result': Item.objects.filter(**parameter),
-    }
+        ctx = {
+            'search_result': Item.objects.filter(**parameter),
+        }
 
     return render(request, 'review/search_result.html', ctx)
