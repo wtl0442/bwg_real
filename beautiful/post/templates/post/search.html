@@ -5,7 +5,7 @@
         <h2>뷰가 커뮤니티</h2>
         <table class="striped">
             <tr><th>작성자</th><th>제목</th><th>등록일</th></tr>
-            {% for post in posts %}
+            {% for post in searched_posts %}
             <tr>
                 <td>{{ post.user }}</td>
                 <td><a href = "{% url 'post:post_detail' post.pk %}">
@@ -39,17 +39,6 @@
 </ul>
 {% endif %}
 
-<!--<ul class="pagination">
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"><a href="#!">1</a></li>
-    <li class="waves-effect"><a href="#!">2</a></li>
-    <li class="waves-effect"><a href="#!">3</a></li>
-    <li class="waves-effect"><a href="#!">4</a></li>
-    <li class="waves-effect"><a href="#!">5</a></li>
-    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-  </ul>-->
-
-
 <br>
 
 <div class="row">
@@ -70,5 +59,4 @@
     </div>
 </div>
 {% endblock %}
-
 

@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+    하
+    {% for posts in post %}
+        {{ posts.title }}{{ posts.pk }}<br>
+    {% endfor %}
+{% endblock %}
