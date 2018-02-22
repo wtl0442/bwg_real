@@ -115,115 +115,12 @@ BWG
     </span>
 </div>
 
-<!--여기서부터 추천상품 보기 -->
 
-<div class="col l12 recommend_cosmetics">
-  <span class="main_menu_logo-mid_title">추천 상품 보기</span>
+<!-- 추천상품 보기 -->
 
-  <!-- 카드 넘기기  -->
-  <script type="text/javascript">
-   $(document).ready(function(){
-      $('.carousel').carousel({
-            dist: 0,
-            shift:0,
-            padding:300,
+  {% include 'main/item_recommendation.html' with bb_cream=bb_cream moisturizer=moistruizer eye_brow=eye_brow %}
 
-      });
-      $(function () {
-        $('#myCarousel').carousel({
-            interval: 2000
-        });
-        $('#myCarousel').on('slid.bs.carousel', function (e) {
-            if ($('.carousel-inner .item:last').hasClass('active')) {
-                $('#myCarousel').carousel('pause');
-            }
-            if ($('.carousel-inner .item:first').hasClass('active')) {
-                $('#myCarousel').carousel('cycle');
-            }
-        });
-    });
-    });
-
-  </script>
-
-
-    <div class="carousel">
-        <div id="item-slide_main hide-on-med-and-down" class="carousel-item" >
-              <div class="recommend_card ">
-                <span class="recommend_item_title hide-on-med-and-down">비비크림</span>
-                <div class="recommend_item_title hide-on-large-only" style="text-align:center;">
-비비</br>크림</div>
-                <div class="recommend_circle_image" style="background-image:url(/static/bb_cream.png);">
-                </div>
-                <div class="recommend_ranking_sec">
-                    {% for item in cream %}
-                    <a href="{% url 'review:item_review' item.pk%}" class="recommend_ranking_content">1위 : {{ item.name }}</a>
-                    {% endfor %}
-                    <br/>
-                    <a href="#!"class="waves-effect waves-light btn">더보기</a>
-                </div>
-              </div>
-
-        </div>
-
-        <div id="item-slide_main hide-on-med-and-down" class="carousel-item" >
-              <div class="recommend_card"  >
-                <span class="recommend_item_title hide-on-med-and-down">눈썹관리</span>
-                <div class="recommend_item_title hide-on-large-only" style="text-align:center;">
-눈썹</br>관리</div>
-                <div class="recommend_circle_image" style="background-image:url(/static/brow_kit.png);">
-                </div>
-                <div class="recommend_ranking_sec">
-                    <a href="#!" class="recommend_ranking_content">1위 : </a>
-                    <a href="#!" class="recommend_ranking_content">2위 : </a>
-                    <a href="#!" class="recommend_ranking_content">3위 : </a>
-                    <br/>
-                    <a href="#!"class="waves-effect waves-light btn">더보기</a>
-                </div>
-              </div>
-
-        </div>
-
-        <div id="item-slide_main hide-on-med-and-down" class="carousel-item" >
-              <div class="recommend_card ">
-                <span class="recommend_item_title">수분크림</span>
-                <div class="recommend_circle_image" style="background-image:url(/static/cream.png);">
-                </div>
-
-                <div class="recommend_ranking_sec">
-                    <a href="#!" class="recommend_ranking_content">1위 : </a>
-                    <a href="#!" class="recommend_ranking_content">2위 : </a>
-                    <a href="#!" class="recommend_ranking_content">3위 : </a>
-                    <br/>
-                    <a href="#!"class="waves-effect waves-light btn">더보기</a>
-                </div>
-              </div>
-
-        </div>
-
-        <div id="item-slide_main hide-on-med-and-down" class="carousel-item" >
-              <div class="recommend_card ">
-                <span class="recommend_item_title">???</span>
-                <div class="recommend_circle_image" style="background-image:url(/static/cream.png);">
-                </div>
-
-                <div class="recommend_ranking_sec">
-                    <a href="#!" class="recommend_ranking_content">1위 : </a>
-                    <a href="#!" class="recommend_ranking_content">2위 : </a>
-                    <a href="#!" class="recommend_ranking_content">3위 : </a>
-                    <br/>
-                    <a href="#!"class="waves-effect waves-light btn">더보기</a>
-                </div>
-              </div>
-
-        </div>
-
-
-    </div>
-
-</div>
-
-
+<!-- 추천상품 보기 -->
 
 
 
@@ -236,77 +133,14 @@ BWG
     <div class="col l6 event_content_text"
 
     >내 주변의</br>그루밍 행사 </br>알아보기</div>
-    <div class="col l6 event_button"><a class="waves-effect waves-light btn" href="{% url 'event:event_main' %}">행사보기</a></div>
+    <div class="col l6 event_button"><a class="waves-effect waves-light btn" href="{% url 'event:event_main' %}">행사보기</a>
+    </div>
   </div>
 </div>
 
-
-
-<div class="col l12 subscribe_bwg">
-  <p id="subscribe-open">메일을 통해 더 많은 소식을 받아보세요</p>
-</div>
-<div class="col l12 subscribe_panel">
-    <form id="subscribe-form" action="{% url 'main:subscribeEmail' %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn unsubscribe-submit">구독 취소</button>
-        <button type="submit" class="btn subscribe-submit">메일 구독</button>
-    </form>
-</div>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $("#subscribe-open").click(function(){
-        $(".subscribe_panel").slideToggle("slow");
-    });
-});
-
-  $(document).ready(function(){
-    $(".subscribe-submit").click(function(){
-        $("#subscribe-form").submit(function(e) {
-            e.preventDefault();
-            var email = $('#id_email').val();
-            $.post('{% url "main:subscribeEmail" %}', {email: email})
-                .done(function(r) {
-                    if (r.success) {
-                        if (r.created){
-                            $("#id_email").attr('placeholder', "구독해 주셔서 감사합니다.");
-                        }
-                        else {
-                            $("#id_email").attr('placeholder', "이미 구독중인 메일입니다.");
-                        }
-                    } else{
-                        $("#id_email").attr('placeholder', "잘못된 메일주소 입니다.");
-                    }
-                    $('#id_email').val('');
-                });
-            });
-      });
-});
-
-  $(document).ready(function(){
-    $(".unsubscribe-submit").click(function(){
-        $("#subscribe-form").submit(function(e) {
-            e.preventDefault();
-            var email = $('#id_email').val();
-            $.post('{% url "main:unsubscribeEmail" %}', {email: email})
-                .done(function(r) {
-                    if (r.success) {
-                        if (r.deleted){
-                            $("#id_email").attr('placeholder', "구독 취소 되었습니다.");
-                        }
-                        else {
-                            $("#id_email").attr('placeholder', "구독중인 메일이 아닙니다.");
-                        }
-                    } else{
-                        $("#id_email").attr('placeholder', "잘못된 메일주소 입니다.");
-                    }
-                    $('#id_email').val('');
-                });
-            });
-      });
-});
-</script>
+<!-- 메일 구독 -->
+{% include 'main/mail_subscription.html' with form=form %}
+<!-- 메일 구독 -->
 
 </div>
 

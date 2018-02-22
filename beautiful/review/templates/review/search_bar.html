@@ -5,8 +5,7 @@
 {% endblock %}
 
 <div id="search-bar" class="row">
-  <form action="{% url 'review:search_item' %}" method="POST">
-    {% csrf_token %}
+  <form action="{% url 'review:search_item' %}" method="GET">
     <div class="input-field col s12 m6 l2">
       <select name="skin-type">
         <option value="" disabled selected>SkinType</option>

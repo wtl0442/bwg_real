@@ -61,10 +61,10 @@ def get_or_none(model, *args, **kwargs):
 
 
 def search_item(request):
-    skin_type_input = request.POST.get('skin-type')
-    category_input = request.POST.get('category')
-    brand_input = request.POST.get('brand')
-    item_name_input = request.POST.get('item_name')
+    skin_type_input = request.GET.get('skin-type')
+    category_input = request.GET.get('category')
+    brand_input = request.GET.get('brand')
+    item_name_input = request.GET.get('item_name')
 
     skin_type = get_or_none(SkinType, name=skin_type_input)
     brand = get_or_none(Brand, name=brand_input)
