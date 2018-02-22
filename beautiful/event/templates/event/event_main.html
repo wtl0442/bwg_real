@@ -27,7 +27,7 @@
         var url = self.attr('href');
       $.get(url)
           .done(function(r) {
-              console.log('dd')
+              console.log(r)
               self.html(r);
           })
           .fail(function(){
