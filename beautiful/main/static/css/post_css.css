@@ -62,3 +62,30 @@ li.discrimination:hover{
     margin-bottom: 5px;
     margin-right: 5px;
 }
+a.to_post_list.make_smooth {
+	border-radius: 2px;
+}
+form#searchform {
+	display:inline;
+}
+form#searchform input[type=text].searchfield {
+	width:80%;
+}
+
+@media screen and (max-width: 1100px) {
+	form#searchform input[type=text].searchfield{
+		width:70%;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	form#searchform input[type=text].searchfield{
+		width:70%;
+	}
+}
+
+form#searchform button {
+	border-color: #F2ECE8;
+	background-color:#F2ECE8;
+	padding:0;
+}

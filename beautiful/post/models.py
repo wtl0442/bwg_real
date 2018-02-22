@@ -48,6 +48,3 @@ class Comment(models.Model):
     def __str__(self):
         return self.content
 
-# class UploadFile(models.Model):
-#     title = models.TextField(default='')
-#     file = models.FileField(null=True)
