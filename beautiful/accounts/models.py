@@ -5,6 +5,13 @@ from django.contrib.auth.models import User
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 
 
+class SkinType(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
+
+
 class Profile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
