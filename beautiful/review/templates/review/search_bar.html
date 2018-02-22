@@ -7,9 +7,9 @@
 <div id="search-bar" class="row">
   <form action="{% url 'review:search_item' %}" method="POST">
     {% csrf_token %}
-    <div class="input-field col s12 m6 l3">
+    <div class="input-field col s12 m6 l2">
       <select name="skin-type">
-        <option value="" disabled selected>Choose your option</option>
+        <option value="" disabled selected>SkinType</option>
         {% for type in skin_types %}
         <option value="{{ type.name }}">{{ type.name }}</option>
         {% endfor %}
@@ -17,9 +17,19 @@
       <label>Skin Type Select</label>
     </div>
 
-    <div class="input-field col s12 m6 l3">
+    <div class="input-field col s12 m6 l2">
+      <select name="category">
+        <option value="" disabled selected>Category</option>
+        {% for category in categories %}
+        <option value="{{ category.name }}">{{ category.name }}</option>
+        {% endfor %}
+      </select>
+      <label>Category Select</label>
+    </div>
+
+    <div class="input-field col s12 m6 l2">
       <select name="brand">
-        <option value="" disabled selected>Choose your option</option>
+        <option value="" disabled selected>Brand</option>
         {% for brand in brands %}
         <option value="{{ brand.name }}">{{ brand.name }}</option>
         {% endfor %}
@@ -33,7 +43,7 @@
       <label for="icon_prefix">Item Name</label>
     </div>
 
-    <div id="search-button" class="col s12 m6 l3">
+    <div id="search-button" class="col s12 m6 l2">
       <button type="submit" class="btn">검색하기</button>
     </div>
   </form>

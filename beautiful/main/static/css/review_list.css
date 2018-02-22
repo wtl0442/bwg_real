@@ -52,8 +52,8 @@
 }
 .collection .collection-item.avatar .secondary-content {
     position: absolute;
-    top: 60px;
-    right: 16px;
+    top: 82px;
+    right: 20px;
 }
 
 #load-button {
@@ -66,12 +66,13 @@ span.badge{
     padding: 3px 5px;
     line-height: 27px;
     height: 32px;
+    font-size: 13px;
 }
 
 @media screen and (max-width: 500px) {
     .collection .collection-item.avatar .secondary-content {
         position: absolute;
-        top: 90px;
+        top: 95px;
         right: 40px;
     }
     .info-box{

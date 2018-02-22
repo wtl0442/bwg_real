@@ -39,7 +39,10 @@
               <span class="title">{{ item.name }}</span>
               <p>{{ item.description }}</p>
             </div>
-            <a href="{% url 'review:item_review' item.pk %}" class="secondary-content"><span class="new badge" data-badge-caption="Reviews">{{ item.item_review.count }}</span></a>
+            <a href="{% url 'review:item_review' item.pk %}" class="secondary-content">
+              <span class="new badge" data-badge-caption="Reviews">{{ item.item_review.count }}</span>
+            </a>
+            <span class="new badge" data-badge-caption="원">{{ item.price }}</span>
           </li>
           {% endfor %}
         </ul>
