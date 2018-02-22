@@ -6,7 +6,7 @@ from .models import SubscribedEmail
 from post.models import Tag, Post
 from beautywiki.models import TroubleWiki
 from django.db.models import Count
-from creator.models import Item
+from creator.models import Item, Category
 
 
 def showMain(request):
@@ -16,14 +16,13 @@ def showMain(request):
     hot_posts = Post.objects.annotate(num_comments=Count('comment')).order_by('-num_comments')[:5]
     # 금주의 피부백서
     this_wiki = TroubleWiki.objects.get(pk=1)
-    # 추천 상품보기
-    cream = item_rank('비비크림')
+    recommendation = {i.name: list(item_rank(i.name)) for i in Category.objects.all()}
     return render(request, 'main/main.html', {
         'hot_tags': hot_tags,
         'hot_posts': hot_posts,
         'this_wiki': this_wiki,
         'form': SubscribeForm(),
-        'cream': cream,
+        'recommendation': recommendation,
     })
 
 

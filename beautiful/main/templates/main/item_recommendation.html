@@ -1,0 +1,68 @@
+<div class="col l12 recommend_cosmetics">
+  <span class="main_menu_logo-mid_title">추천 상품 보기</span>
+
+
+  <!-- 카드 넘기기  -->
+  <script type="text/javascript">
+   $(document).ready(function(){
+      $('.carousel').carousel({
+            dist: 0,
+            shift:0,
+            padding:300,
+
+      });
+      $(function () {
+        $('#myCarousel').carousel({
+            interval: 2000
+        });
+        $('#myCarousel').on('slid.bs.carousel', function (e) {
+            if ($('.carousel-inner .item:last').hasClass('active')) {
+                $('#myCarousel').carousel('pause');
+            }
+            if ($('.carousel-inner .item:first').hasClass('active')) {
+                $('#myCarousel').carousel('cycle');
+            }
+        });
+    });
+    });
+
+  </script>
+
+
+    <div class="carousel">
+    {% for key, val in recommendation.items %}
+      <div id="item-slide_main hide-on-med-and-down" class="carousel-item" >
+            <div class="recommend_card ">
+
+              <span class="recommend_item_title hide-on-med-and-down">{{ key }}
+              </span>
+
+              <div class="recommend_item_title hide-on-large-only" style="text-align:center;">
+              {{ key }}
+              </div>
+
+              <div class="recommend_circle_image" style="background-image:url(/static/bb_cream.png);">
+              </div>
+
+              <div class="recommend_ranking_sec">
+
+                  {% for item in val %}
+                    <a href="{% url 'review:item_review' item.pk%}" class="recommend_ranking_content"> {{ forloop.counter }}위 : {{ item.name }}</a>
+                  {% endfor %}
+                  <br/>
+                  <a href="{% url 'review:search_item' %}?category={{ key }}"class="waves-effect waves-light btn">더보기</a>
+              </div>
+
+            </div>
+      </div>
+    {% endfor %}
+    </div>
+
+</div>
+
+
+
+
+
+
+
