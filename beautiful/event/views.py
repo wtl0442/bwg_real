@@ -9,7 +9,6 @@ def event_main(request, tag_pk=None):
     if tag_pk is not None:
         event_list = Event.objects.filter(tag__pk=tag_pk)
         tag = Tag.objects.get(pk=tag_pk)
-        tag_count = tag.event_set.all()
 
         a = event_list.count()
 
@@ -25,8 +24,6 @@ def event_main(request, tag_pk=None):
         'tag_list' : Tag.objects.all(),
         'tag_selected' : tag,
 
-        'a': a,
-        'tag_count' : tag_count,
             }
     return render(request, 'event/event_main.html', ctx)
 
