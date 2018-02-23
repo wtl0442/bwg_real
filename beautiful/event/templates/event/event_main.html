@@ -79,13 +79,15 @@
               {% for tag in event.tag.all %}
                 {{tag.tag_name}}
               {% endfor %}
+
             </span>
           </div>
 
           <div class="col l8 m8 s8 content_section" >
             <span class="event_detail_title">
-            {{a}}&{{event.pk}}
-          {{event.title}}</span>
+            {{event.pk}}&{{a}}&{{event.tag.all}}
+            </span>
+            <span class="event_detail_content">{{event.title}}</span>
             <span class="event_detail_content">{{event.content}}</span>
             <p>일시 : {{event.date}} <br>
                장소 : {{event.place}}
