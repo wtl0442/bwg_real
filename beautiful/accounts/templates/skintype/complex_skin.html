@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <div class="skin_type_explanation">
     <h3>복합성피부란</h3>
@@ -9,7 +10,10 @@
     복합성 피부를 트리트먼트 할 때에는 각각의 피부상태에 따라서 트리트먼트가 필요하다.
     즉 팩을 할 때 지성피부를 위해서 조제된 팩은 얼굴의 지성 주위에 바르고 건성 피부를 위해서
     조제된 팩은 건성 부위에 피부의 상태에 따라서 관리를 해주어야 한다.
-    <br><br><br>
+    <br><br>
+    <img src="{% static 'combination.png' %}" class="hide-on-med-and-up" style="width:100%;">
+    <img src="{% static 'combination.png' %}" class="hide-on-small-only">
+    <br>
     <h3>복합성피부 종류에 따른 관리법</h3>
     ① 부분 건성피부 <br><br>
     부분 건성피부는 이마, 코, 턱의 T존 부위는 중성이면서 그외의 경우는 건조한 경우가 대부분이다.

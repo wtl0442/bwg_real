@@ -56,6 +56,7 @@ INSTALLED_APPS = [
 
     'django_google_maps',
     'beautywiki',
+    'django_summernote',
 ]
 
 
@@ -231,3 +232,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 GOOGLE_MAPS_API_KEY = 'AIzaSyCwJMUjrQFsJ4kO6d05KnQLRE3TAaxLv20'
+
+SUMMERNOTE_CONFIG = {
+
+    # Change editor size
+    'width': '100%',
+    'height': '480',
+}

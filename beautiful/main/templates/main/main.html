@@ -4,7 +4,7 @@
 <div class="row">
 <div class="col l8 m12 s12 slogan"><span>
 <pre class="slogan">Con<span class="fi">fi</span><span class="de">de</span>nt
-Gromming
+Grooming
 For You</pre></span></div>
     <div class="col l4 m4 s4 login hide-on-med-and-down valign-wrapper">
 
@@ -59,7 +59,7 @@ For You</pre></span></div>
         </script>
 
     </div>
-    <div class="col l5 m6 s6 skin_wiki">
+    <div class="col l5 m6 s6 skin_wiki" style="padding: 0.3rem 0.75rem;">
         <span class="main_menu_logo">금주의 피부백서</span><br>
         <div class="card horizontal">
           <div class="card-image hide-on-small-only">
@@ -115,8 +115,20 @@ For You</pre></span></div>
 
 
     <!--이것은 모바일에서만 보이는 태그 영역입니다.-->
-    <div class="col m6 s6 hide-on-large-only mobile_tags">
+    <div class="col m6 s6 hide-on-med-and-up mobile_tags" style="white-space:nowrap;">
         <div class="main_menu_logo">#TAGS_FOR_MOBILE</div>
+        {% for tag in hot_tags_mobile %}
+            <div class="chip">
+                 <a href="{% url 'post:tag_post_list' tag %}">{{ tag }}</a></div>
+        {% endfor %}
+    </div>
+
+    <div class="col m6 s6 hide-on-large-only hide-on-small-only mobile_tags" style="white-space:nowrap;">
+        <div class="main_menu_logo">#TAGS_FOR_MOBILE</div>
+        {% for tag in hot_tags %}
+            <div class="chip">
+                 <a href="{% url 'post:tag_post_list' tag %}">{{ tag }}</a></div>
+        {% endfor %}
     </div>
 
     <!--여기까지-->
@@ -161,10 +173,10 @@ BWG
 
 
 <div class="col l6 creator">
-  <span class="main_menu_logo-mid_title">크리에이터 후기 보기 </span>
+  <div class="main_menu_logo-mid_title">크리에이터 후기 보기 </div>
 </div>
 <div class="col l6 offline_event">
-  <span class="main_menu_logo-mid_title">오프라인 행사 정보 </span>
+  <div class="main_menu_logo-mid_title">오프라인 행사 정보 </div>
   <div class="event_content">
     <div class="col l6 event_content_text"
 

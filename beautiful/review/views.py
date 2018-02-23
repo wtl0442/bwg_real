@@ -74,10 +74,10 @@ def search_item(request):
     inputs = {'skin_type': skin_type, 'category': category,
               'brand': brand, 'name': item_name}
     parameter = {}
+
     for key, value in inputs.items():
         if value:
             parameter[key] = value
-
     ctx = {
         'search_result': Item.objects.filter(**parameter),
     }
