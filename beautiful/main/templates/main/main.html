@@ -30,18 +30,34 @@ For You</pre></span></div>
 
     </div>
 
-    <div class="col l3 m6 s6 skin_type"><span class="main_menu_logo">피부타입 테스트</span><br><br><br><br><br><br><a class="waves-effect waves-light btn">button</a></div>
-    <div class="col l4 m6 s6 hottest"><span class="main_menu_logo">
-        <img src="{% static 'hottest.gif' %} ">HOTTEST</span><br>
-        <div class="hot_area">
-            <span class="hot_posts">
-                {% for post in hot_posts %}
-                    <i class="material-icons tiny" style="vertical-align:middle; color:saddlebrown;">thumb_up</i>
-                    <a href={% url 'post:post_detail' post.pk %}>{{ post }}</a>
-                    <span class="hot_posts_comment_count">{{ post.num_comments }}</span><br>
-                {% endfor %}
-            </span>
+    <div class="col l3 m6 s6 skin_type">
+
+        <div class="carousel carousel-slider center" data-indicators="true">
+            <div class="carousel-fixed-item center">
+                <a class="btn waves-effect
+                white grey-text darken-text-2" href="{% url 'accounts:skin_type' %}">테스트하기</a>
+            </div>
+            <div class="carousel-item dry white-text">
+              <h2>건성 피부</h2>
+              <p class="white-text">Dry Skin</p>
+            </div>
+            <div class="carousel-item amber white-text" href="#two!">
+              <h2>중성 피부</h2>
+              <p class="white-text">Sensitive Skin</p>
+            </div>
+            <div class="carousel-item green white-text" href="#three!">
+              <h2>복합성 피부</h2>
+              <p class="white-text">Combination Skin</p>
+            </div>
+            <div class="carousel-item blue white-text" href="#four!">
+              <h2>지성 피부</h2>
+              <p class="white-text">Oily Skin</p>
+            </div>
         </div>
+        <script>
+            $('.carousel.carousel-slider').carousel({fullWidth: true});
+        </script>
+
     </div>
     <div class="col l5 m6 s6 skin_wiki">
         <span class="main_menu_logo">금주의 피부백서</span><br>
@@ -51,18 +67,21 @@ For You</pre></span></div>
           </div>
             <div class="card-content" style="height:180px;
             color:black; overflow:scroll; font-size:0.8rem;">
-              <p>{{ this_wiki.contents }}</p>
-                <!-- Modal Trigger -->
-                  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+              <div class="middle_content">
+                {{ this_wiki.contents }}<br><br>
+                  <!-- Modal Trigger -->
+                  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">솔루션</a>
+              </div>
 
                   <!-- Modal Structure -->
                   <div id="modal1" class="modal">
                     <div class="modal-content">
                       <h4 style="margin-bottom:0;">Solution</h4>
                       <p>
-                          <img src="{{ this_wiki.image_url }}" class="hide-on-large-only" width="100%;"><br>
+                          <img src="{{ this_wiki.image_url }}" class="hide-on-large-only hide-on-small-only" width="70%;"><br>
+                          <img src="{{ this_wiki.image_url }}" class="hide-on-med-and-up" width="100%;"><br>
                           <img src="{{ this_wiki.image_url }}" class="hide-on-med-and-down"><br>
-                          {{ this_wiki.solution|linebreaksbr }}</p>
+                          {{ this_wiki.solution|linebreaksbr|default:"<h4>등록된 솔루션이 없습니다.</h4>" }}</p>
                     </div>
                     <div class="modal-footer">
                       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" style="color:black;">돌아가기</a>
@@ -77,10 +96,27 @@ For You</pre></span></div>
             </div>
         </div>
     </div>
+    <div class="col l4 m6 s6 hottest">
+        <div class="main_menu_logo">
+        <img src="{% static 'hottest.gif' %} ">HOTTEST</div>
+        <div class="hot_area">
+            <span class="hot_posts">
+            {% if hot_posts %}
+                {% for post in hot_posts %}
+                    <i class="material-icons tiny" style="vertical-align:middle; color:saddlebrown;">thumb_up</i>
+                    <a class="hide-on-small-only" href={% url 'post:post_detail' post.pk %}>{{ post.title|truncatechars:20 }}</a>
+                    <a class="hide-on-med-and-up" href={% url 'post:post_detail' post.pk %}>{{ post.title|truncatechars:11 }}</a>
+                    <span class="hot_posts_comment_count">{{ post.num_comments }}</span><br>
+                {% endfor %}
+            {% endif %}
+            </span>
+        </div>
+    </div>
+
 
     <!--이것은 모바일에서만 보이는 태그 영역입니다.-->
     <div class="col m6 s6 hide-on-large-only mobile_tags">
-        <span class="main_menu_logo">#TAGS_FOR_MOBILE</span>
+        <div class="main_menu_logo">#TAGS_FOR_MOBILE</div>
     </div>
 
     <!--여기까지-->
@@ -115,115 +151,12 @@ BWG
     </span>
 </div>
 
-<!--여기서부터 추천상품 보기 -->
-
-<div class="col l12 recommend_cosmetics">
-  <span class="main_menu_logo-mid_title">추천 상품 보기</span>
-
-  <!-- 카드 넘기기  -->
-  <script type="text/javascript">
-   $(document).ready(function(){
-      $('.carousel').carousel({
-            dist: 0,
-            shift:0,
-            padding:300,
-
-      });
-      $(function () {
-        $('#myCarousel').carousel({
-            interval: 2000
-        });
-        $('#myCarousel').on('slid.bs.carousel', function (e) {
-            if ($('.carousel-inner .item:last').hasClass('active')) {
-                $('#myCarousel').carousel('pause');
-            }
-            if ($('.carousel-inner .item:first').hasClass('active')) {
-                $('#myCarousel').carousel('cycle');
-            }
-        });
-    });
-    });
-
-  </script>
 
 
-    <div class="carousel">
-        <div id="item-slide_main hide-on-med-and-down" class="carousel-item" >
-              <div class="recommend_card ">
-                <span class="recommend_item_title hide-on-med-and-down">비비크림</span>
-                <div class="recommend_item_title hide-on-large-only" style="text-align:center;">
-비비</br>크림</div>
-                <div class="recommend_circle_image" style="background-image:url(/static/bb_cream.png);">
-                </div>
-                <div class="recommend_ranking_sec">
-                    <a href="#!" class="recommend_ranking_content">1위 : </a>
-                    <a href="#!" class="recommend_ranking_content">2위 : </a>
-                    <a href="#!" class="recommend_ranking_content">3위 : </a>
-                    <br/>
-                    <a href="#!"class="waves-effect waves-light btn">더보기</a>
-                </div>
-              </div>
 
-        </div>
+  {% include 'main/item_recommendation.html' with bb_cream=bb_cream moisturizer=moistruizer eye_brow=eye_brow %}
 
-        <div id="item-slide_main hide-on-med-and-down" class="carousel-item" >
-              <div class="recommend_card"  >
-                <span class="recommend_item_title hide-on-med-and-down">눈썹관리</span>
-                <div class="recommend_item_title hide-on-large-only" style="text-align:center;">
-눈썹</br>관리</div>
-                <div class="recommend_circle_image" style="background-image:url(/static/brow_kit.png);">
-                </div>
-                <div class="recommend_ranking_sec">
-                    <a href="#!" class="recommend_ranking_content">1위 : </a>
-                    <a href="#!" class="recommend_ranking_content">2위 : </a>
-                    <a href="#!" class="recommend_ranking_content">3위 : </a>
-                    <br/>
-                    <a href="#!"class="waves-effect waves-light btn">더보기</a>
-                </div>
-              </div>
-
-        </div>
-
-        <div id="item-slide_main hide-on-med-and-down" class="carousel-item" >
-              <div class="recommend_card ">
-                <span class="recommend_item_title">수분크림</span>
-                <div class="recommend_circle_image" style="background-image:url(/static/cream.png);">
-                </div>
-
-                <div class="recommend_ranking_sec">
-                    <a href="#!" class="recommend_ranking_content">1위 : </a>
-                    <a href="#!" class="recommend_ranking_content">2위 : </a>
-                    <a href="#!" class="recommend_ranking_content">3위 : </a>
-                    <br/>
-                    <a href="#!"class="waves-effect waves-light btn">더보기</a>
-                </div>
-              </div>
-
-        </div>
-
-        <div id="item-slide_main hide-on-med-and-down" class="carousel-item" >
-              <div class="recommend_card ">
-                <span class="recommend_item_title">???</span>
-                <div class="recommend_circle_image" style="background-image:url(/static/cream.png);">
-                </div>
-
-                <div class="recommend_ranking_sec">
-                    <a href="#!" class="recommend_ranking_content">1위 : </a>
-                    <a href="#!" class="recommend_ranking_content">2위 : </a>
-                    <a href="#!" class="recommend_ranking_content">3위 : </a>
-                    <br/>
-                    <a href="#!"class="waves-effect waves-light btn">더보기</a>
-                </div>
-              </div>
-
-        </div>
-
-
-    </div>
-
-</div>
-
-
+<!-- 추천상품 보기 -->
 
 
 
@@ -236,77 +169,14 @@ BWG
     <div class="col l6 event_content_text"
 
     >내 주변의</br>그루밍 행사 </br>알아보기</div>
-    <div class="col l6 event_button"><a class="waves-effect waves-light btn" href="{% url 'event:event_main' %}">행사보기</a></div>
+    <div class="col l6 event_button"><a class="waves-effect waves-light btn" href="{% url 'event:event_main' %}">행사보기</a>
+    </div>
   </div>
 </div>
 
-
-
-<div class="col l12 subscribe_bwg">
-  <p id="subscribe-open">메일을 통해 더 많은 소식을 받아보세요</p>
-</div>
-<div class="col l12 subscribe_panel">
-    <form id="subscribe-form" action="{% url 'main:subscribeEmail' %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn unsubscribe-submit">구독 취소</button>
-        <button type="submit" class="btn subscribe-submit">메일 구독</button>
-    </form>
-</div>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $("#subscribe-open").click(function(){
-        $(".subscribe_panel").slideToggle("slow");
-    });
-});
-
-  $(document).ready(function(){
-    $(".subscribe-submit").click(function(){
-        $("#subscribe-form").submit(function(e) {
-            e.preventDefault();
-            var email = $('#id_email').val();
-            $.post('{% url "main:subscribeEmail" %}', {email: email})
-                .done(function(r) {
-                    if (r.success) {
-                        if (r.created){
-                            $("#id_email").attr('placeholder', "구독해 주셔서 감사합니다.");
-                        }
-                        else {
-                            $("#id_email").attr('placeholder', "이미 구독중인 메일입니다.");
-                        }
-                    } else{
-                        $("#id_email").attr('placeholder', "잘못된 메일주소 입니다.");
-                    }
-                    $('#id_email').val('');
-                });
-            });
-      });
-});
-
-  $(document).ready(function(){
-    $(".unsubscribe-submit").click(function(){
-        $("#subscribe-form").submit(function(e) {
-            e.preventDefault();
-            var email = $('#id_email').val();
-            $.post('{% url "main:unsubscribeEmail" %}', {email: email})
-                .done(function(r) {
-                    if (r.success) {
-                        if (r.deleted){
-                            $("#id_email").attr('placeholder', "구독 취소 되었습니다.");
-                        }
-                        else {
-                            $("#id_email").attr('placeholder', "구독중인 메일이 아닙니다.");
-                        }
-                    } else{
-                        $("#id_email").attr('placeholder', "잘못된 메일주소 입니다.");
-                    }
-                    $('#id_email').val('');
-                });
-            });
-      });
-});
-</script>
+<!-- 메일 구독 -->
+{% include 'main/mail_subscription.html' with form=form %}
+<!-- 메일 구독 -->
 
 </div>
 

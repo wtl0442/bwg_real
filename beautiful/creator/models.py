@@ -31,6 +31,13 @@ class Brand(models.Model):
         return '{0}'.format(self.name)
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=100, verbose_name='카테고리')
+
+    def __str__(self):
+        return '{0}'.format(self.name)
+
+
 class Item(models.Model):
     name = models.CharField(max_length=200, verbose_name='상품명')
     item_image = models.ImageField(blank=True, upload_to="item/%Y/%m/%d")
@@ -48,8 +55,14 @@ class Item(models.Model):
                 on_delete=models.CASCADE,
                 verbose_name='skin_type_item',
                 blank=True,
-                null=True
-                )
+                null=True)
+    category = models.ForeignKey(
+                Category,
+                on_delete=models.CASCADE,
+                verbose_name='카테고리',
+                related_name='category_item',
+                blank=True,
+                null=True)
 
     def item_image_url(self):
         if self.item_image:

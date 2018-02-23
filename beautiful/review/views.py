@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from creator.models import Item, Brand
+from creator.models import Item, Brand, Category
 from accounts.models import SkinType
 from django.db.models import Count
 from django.http import JsonResponse, HttpResponse
@@ -61,23 +61,30 @@ def get_or_none(model, *args, **kwargs):
 
 
 def search_item(request):
-    skin_type_input = request.POST.get('skin-type')
-    brand_input = request.POST.get('brand')
-    item_name_input = request.POST.get('item_name')
+    skin_type_input = request.GET.get('skin-type')
+    category_input = request.GET.get('category')
+    brand_input = request.GET.get('brand')
+    item_name_input = request.GET.get('item_name')
 
     skin_type = get_or_none(SkinType, name=skin_type_input)
     brand = get_or_none(Brand, name=brand_input)
+    category = get_or_none(Category, name=category_input)
     item_name = item_name_input
 
-    inputs = {'skin_type': skin_type, 'brand': brand, 'name': item_name}
+    inputs = {'skin_type': skin_type, 'category': category,
+              'brand': brand, 'name': item_name}
     parameter = {}
+    if request.method == "GET":
+        ctx = {
+            'search_result': Item.objects.filter(category__name__icontains=kwargs)
+        }
+    else:
+        for key, value in inputs.items():
+            if value:
+                parameter[key] = value
 
-    for key, value in inputs.items():
-        if value:
-            parameter[key] = value
-
-    ctx = {
-        'search_result': Item.objects.filter(**parameter),
-    }
+        ctx = {
+            'search_result': Item.objects.filter(**parameter),
+        }
 
     return render(request, 'review/search_result.html', ctx)

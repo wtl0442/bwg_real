@@ -288,7 +288,7 @@
         '<a class="waves-effect waves-light btn modal-trigger" href="#modal1">결과 확인</a>\n' +
         '</div>';
     window.parent.document.getElementById('mobile_modal').innerHTML =
-        '<div class="skin_type_test_box_mobile hide-on-large-only" style="margin-left:7px; margin-top:5px;">\n' +
+        '<div class="skin_type_test_result_box_mobile hide-on-large-only" style="margin-left:7px; margin-top:5px;">\n' +
         '<a class="waves-effect waves-light btn modal-trigger" href="#modal1">결과 확인</a>\n' +
         '</div>';
     return type_result;

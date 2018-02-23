@@ -5,6 +5,9 @@ from .forms import PostForm, CommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
+
+from django.views import generic
 
 
 def post_list(request):
@@ -133,4 +136,29 @@ def tag_post_list(request, kwargs):
     return render(request, 'post/search_list.html', ctx)
 
 
+def search_posts(request):
+    kwargs = request.GET.get('search_word')
+    results = Post.objects.filter(
+        Q(title__icontains=kwargs) | Q(content__icontains=kwargs)
+    )
+    if results:
+        return render(request, 'post/search.html', {
+            'searched_posts': results,
+        })
+    else:
+        return render(request, 'post/search.html', {
+            'no_search_comment': '검색된 결과가 없습니다',
+        })
 
+
+class MyListView(generic.ListView):
+    model = Post
+    template_name = 'post/test_view.html'
+    paginate_by = 5
+    context_object_name = 'post'
+
+
+class MyDetailView(generic.DetailView):
+    model = Post
+    template_name = 'post/test_detail_view.html'
+    context_object_name = 'post'

@@ -91,7 +91,7 @@ TEMPLATES = [
                 'social_django.context_processors.login_redirect',
                 'beautiful.context_processors.brand',
                 'beautiful.context_processors.skintype',
-
+                'beautiful.context_processors.category',
             ],
         },
     },

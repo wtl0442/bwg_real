@@ -49,7 +49,6 @@ ul.main_menu.hide-on-med-and-down li a {
 	color: #727272;
 }
 .main_menu_logo{
-	position:absolute;
 	padding:0.5rem 0;
 }
 .col a{
@@ -104,6 +103,7 @@ pre.slogan{
 	background-color:#94dad5;
 	height:240px !important;
 	font-size:1.25rem;
+	padding:0.5rem !important;
 	color:white;
 	font-weight:bold;
 	border:5px solid #f5f0ec;
@@ -132,7 +132,7 @@ span.hot_posts a{
 	font-weight: normal;
 }
 div.hot_area {
-	margin-top: 13px;
+	margin-top: 5px;
 }
 span.hot_posts_comment_count{
 	background-color:#6c6861;
@@ -342,8 +342,6 @@ a.recommend_ranking_content{
     position: relative;
     top: 30px;
     text-align:left;
-<<<<<<< HEAD
-
 }
 
 #item-slide-wrapper_main {
@@ -374,6 +372,31 @@ a.recommend_ranking_content{
 .event_button {
     margin-top: 150px;
     align-content: center;
-=======
->>>>>>> 750cdebab184503ab58be307a4fd7b5645f10f53
 }
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+div.entire_body main {
+	flex: 1 0 auto;
+}
+
+div.card.horizontal div.card-content {
+	padding:15px;
+}
+div.card-content div.middle_content {
+	width:99%;
+	height:100%;
+	margin:auto;
+	overflow: scroll;
+}
+
+.carousel {
+  max-height: 215px;
+}
+.carousel-item.dry {
+	background-color:#D4A78F;
+}
+
