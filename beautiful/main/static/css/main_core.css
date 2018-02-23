@@ -100,7 +100,7 @@ pre.slogan{
 	border:5px solid #f5f0ec;
 }
 .col.skin_type{
-	background-color:#94dad5;
+	background-color:#D4A78F;
 	height:240px !important;
 	font-size:1.25rem;
 	padding:0.5rem !important;
@@ -132,7 +132,7 @@ span.hot_posts a{
 	font-weight: normal;
 }
 div.hot_area {
-	margin-top: 5px;
+	/*margin-top: 5px;*/
 }
 span.hot_posts_comment_count{
 	background-color:#6c6861;
@@ -393,10 +393,13 @@ div.card-content div.middle_content {
 	overflow: scroll;
 }
 
-.carousel {
+.skin_type div.carousel {
   max-height: 215px;
 }
 .carousel-item.dry {
 	background-color:#D4A78F;
 }
 
+.mobile_tags .chip {
+	margin-top:5px;
+}

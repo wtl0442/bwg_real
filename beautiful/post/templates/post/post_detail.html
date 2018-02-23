@@ -7,7 +7,7 @@
 <div class="post">
 <h3 style="margin-top:0;">{{ post.title }}</h3>
 
-<p><span style="font-size:22px;">{{ post.content|linebreaksbr }}</span></p><br>
+<p><span style="font-size:22px;">{{ post.content|safe }}</span></p><br>
 
 {% if post.photo %}
     <img src="{{ post.photo.url }}" class="post_image hide-on-small-only" width="350px">

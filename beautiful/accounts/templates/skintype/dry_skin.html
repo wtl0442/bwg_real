@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <div class="skin_type_explanation">
     <h3>건성피부란</h3>
@@ -8,7 +9,10 @@
     피부에 자외선, 바람, 음주, 수분부족과 피부를 건성으로 만드는 마스크나 팩의 사용,
     또는 화장품의 사용이나 환경적 요소에 의해서 건성으로 될 수 있다.
     또한 피지를 분비해서 피부를 매끄럽게 해주는 피지선의 기능이 저하되면 피부가 건성이 되기도 한다.
-    <br><br><br>
+    <br><br>
+    <img src="{% static 'dry.png' %}" class="hide-on-med-and-up" style="width:100%;">
+    <img src="{% static 'dry.png' %}" class="hide-on-small-only">
+    <br>
     <h3>건성피부 관리법</h3>
     - 팩을 사용하는 것보다는 마사지를 꾸준히 해주어 피지 생성을 유도한다.<br>
     - 매일 기초 손질시 반드시 에센스를 사용하도록 한다.<br>

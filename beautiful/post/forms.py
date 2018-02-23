@@ -1,4 +1,6 @@
 from django import forms
+from django_summernote.widgets import SummernoteWidget
+
 from .models import Post, Comment
 
 
@@ -6,33 +8,14 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'content', 'hashtag', 'file', 'photo',]
+        widgets = {
+            'content': SummernoteWidget(),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['file'].required = False
         self.fields['photo'].required = False
-
-# def clean_tag(self):
-# 	tag_name = self.cleaned_data.get('tag')
-# 	if tag_name is not None:
-# 		try:
-# 			tag = Tag.objects.get(name=tag_name)
-# 		except Tag.DoesNotExist:
-# 			tag = Tag.objects.create(name=tag_name)
-# 	else:
-# 		tag = None
-
-# 	return tag
-
-# def save(self, commit=True):
-# 	instance = super().save(commit=False)
-# 	if commit:
-# 		instance.save()
-# 		tag = self.cleaned_data.get('tag')
-# 		if tag:
-# 			instance.tag.add(tag)
-
-# 	return instance
 
 
 class CommentForm(forms.ModelForm):

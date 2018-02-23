@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <div class="skin_type_explanation">
     <h3>중성피부란</h3>
@@ -7,6 +8,9 @@
     그러나 환경의 변화, 스트레스 등으로 인하여 피부트러블이 발생하기 쉬우므로 꾸준한 피부손질이 필요하다.
     중성피부는 피지와 수분이 적당하고, 피부상태가 좋은 상태이며, 정상적으로 기능을 하므로 간단한 트리트먼트를 해줌으로서 피부를 더 건강하고 매력있게 유지시킬 수 있다.
     <br><br>
+    <img src="{% static 'neutral.png' %}" class="hide-on-med-and-up" style="width:100%;">
+    <img src="{% static 'neutral.png' %}" class="hide-on-small-only">
+    <br>
     <h3>중성피부 특징</h3>
     ◆ 피부 보습 상태가 적절하며 거칠어 보이지 않고, 전반적으로 정상의 피부다.
     ◆ 피지분비 상태가 정상적이어서 피부표면이 번들 거리지 않고, 피부가 섬세해 보인다.
