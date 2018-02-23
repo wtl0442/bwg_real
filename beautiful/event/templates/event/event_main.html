@@ -27,7 +27,7 @@
         var url = self.attr('href');
       $.get(url)
           .done(function(r) {
-              console.log('dd')
+              console.log(r)
               self.html(r);
           })
           .fail(function(){
@@ -37,50 +37,82 @@
     });
   </script>
 
-
-
-
-
-</div>
 <div class="event_page_content">
   <div id="tag_list">
+      <a href="{% url 'event:event_main' %}">
+        <div class="chip">
+          모두보기
+        </div>
+      </a>
 
       {% for tag in tag_list %}
       <a href="{% url 'event:event_main_by_tag' tag.pk %}">
 
-        <div class="chip {% if tag == tag_selected %}selected{% endif %}">
+        <div class="chip">
           {{tag.tag_name}}
         </div>
-
       </a>
       {% endfor %}
 
+      <div id="active_event">
+
+          <span class="chip"  style="background-color:pink;">{{tag_selected}}</span>
+          <span>진행될 행사 {{a}} 개</span>
+
+      </div>
+
+
+
+
 
   </div>
 
+<div class="row">
+    <div id="event_list">
 
-  {% for event in event_list %}
-  <div id="event_list">
-    {% for tag in event.tag.all %}
-    <span class="chip">{{tag.tag_name}}</span>
-    {% endfor %}
+      {% for event in event_list %}
 
-    {{event.pk}}
-    {{event.title}}
-    {{event.date}}
-    {{event.content}}
+        <ul class="event_detail">
 
-    <button>자세히 보기</button>
+          <div class="col l2 m2 s2 tag_section" >
+            <span class="chip">
+              {% for tag in event.tag.all %}
+                {{tag.tag_name}}
+              {% endfor %}
+
+            </span>
+          </div>
+
+          <div class="col l8 m8 s8 content_section" >
+            <span class="event_detail_title">
+            {{event.pk}}&{{event.tag.all}}
+            </span>
+            <span class="event_detail_content">{{event.title}}</span>
+            <span class="event_detail_content">{{event.content}}</span>
+            <p>일시 : {{event.date}} <br>
+               장소 : {{event.place}}
+            </p>
+
+          </div>
+
+          <div class="col l2 m2 s2 detail_section" >
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+              <button>자세히 보기</button>
+          </div>
+
+
+
+        </ul>
+
+       {% endfor %}
+    </div>
   </div>
-
-  {% endfor %}
-
-
-
-  <a style="background-color : #f26969;"
-     class="waves-effect waves-light btn"
-     href="{% url 'event:event_create' %}" >글쓰기 </a>
-
 </div>
+
+
+    <a style="background-color : #f26969;"
+       class="waves-effect waves-light btn"
+       href="{% url 'event:event_create' %}" >글쓰기 </a>
+
 
 {% endblock %}
