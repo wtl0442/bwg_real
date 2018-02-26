@@ -102,6 +102,7 @@ pre.slogan{
 	border:5px solid #f5f0ec;
 }
 .col.skin_type{
+
 	height:60% !important;
 	font-size:1rem;
 	padding:0.5rem !important;
@@ -409,7 +410,7 @@ div.entire_body main {
 	flex: 1 0 auto;
 }
 
-div.card.horizontal div.card-content {
+div.card.horizontal div.car d-content {
 	padding:15px;
 }
 div.card-content div.middle_content {
@@ -429,6 +430,7 @@ div.card-content div.middle_content {
 .mobile_tags .chip {
 	margin-top:5px;
 }
+
 
 
 
@@ -686,3 +688,4 @@ nav ul.main_menu .login_text li {
 
     padding:1rem 1rem;
 }
+

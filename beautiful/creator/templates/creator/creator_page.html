@@ -73,10 +73,9 @@
                 <div class="card self">
                   <div class="card-image">
                     <img src="{{ item.item_image_url }}" class="responsive-img">
-                    <span class="card-title">{{ item.name }}</span>
                   </div>
                   <div class="card-content">
-                    <p>{{ item.description }}</p>
+                    <p>{{ item.name }}</p>
                   </div>
                   <div class="card-action">
                     <a class="select_reivew" href="{% url 'creator:review_board' item.pk %}">리뷰보기</a>
