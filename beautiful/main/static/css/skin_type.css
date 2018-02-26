@@ -33,9 +33,6 @@
     position: absolute;
     z-index: 1;
 }
-.btn:hover {
-    background-color:purple !important;
-}
 .btn:hover + .tooltiptext {
     visibility: visible;
 }

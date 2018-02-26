@@ -59,6 +59,7 @@ def comment_create(request, pk):
     return HttpResponse(status=405)
 
 
+@login_required
 def post_write(request):
     form = PostForm(request.POST or None, request.FILES or None)
     if request.method == "POST" and form.is_valid():
@@ -83,6 +84,7 @@ def post_write(request):
     return render(request, 'post/post_write.html', ctx)
 
 
+@login_required
 def post_edit(request, pk):
     post = Post.objects.get(pk=pk)
     form = PostForm(request.POST or None, request.FILES or None, instance=post)
@@ -149,16 +151,3 @@ def search_posts(request):
         return render(request, 'post/search.html', {
             'no_search_comment': '검색된 결과가 없습니다',
         })
-
-
-class MyListView(generic.ListView):
-    model = Post
-    template_name = 'post/test_view.html'
-    paginate_by = 5
-    context_object_name = 'post'
-
-
-class MyDetailView(generic.DetailView):
-    model = Post
-    template_name = 'post/test_detail_view.html'
-    context_object_name = 'post'

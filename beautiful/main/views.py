@@ -12,6 +12,7 @@ from creator.models import Item, Category
 def showMain(request):
     # 태그 부분
     hot_tags = Tag.objects.annotate(num_written=Count('post')).order_by('-num_written')[:5]
+    hot_tags_mobile = Tag.objects.annotate(num_written=Count('post')).order_by('-num_written')[:3]
     # 게시글 부분
     hot_posts = Post.objects.annotate(num_comments=Count('comment')).order_by('-num_comments')[:5]
     # 금주의 피부백서
@@ -19,6 +20,7 @@ def showMain(request):
     recommendation = {i.name: list(item_rank(i.name)) for i in Category.objects.all()}
     return render(request, 'main/main.html', {
         'hot_tags': hot_tags,
+        'hot_tags_mobile': hot_tags_mobile,
         'hot_posts': hot_posts,
         'this_wiki': this_wiki,
         'form': SubscribeForm(),
@@ -62,3 +64,5 @@ def unsubscribe_email(request):
         data['deleted'] = bool(deleted_count)
 
     return JsonResponse(data)
+
+

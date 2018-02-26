@@ -74,17 +74,12 @@ def search_item(request):
     inputs = {'skin_type': skin_type, 'category': category,
               'brand': brand, 'name': item_name}
     parameter = {}
-    if request.method == "GET":
-        ctx = {
-            'search_result': Item.objects.filter(category__name__icontains=kwargs)
-        }
-    else:
-        for key, value in inputs.items():
-            if value:
-                parameter[key] = value
 
-        ctx = {
-            'search_result': Item.objects.filter(**parameter),
-        }
+    for key, value in inputs.items():
+        if value:
+            parameter[key] = value
+    ctx = {
+        'search_result': Item.objects.filter(**parameter),
+    }
 
     return render(request, 'review/search_result.html', ctx)

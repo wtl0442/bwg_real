@@ -13,8 +13,9 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
 
     'django_google_maps',
     'beautywiki',
+    'django_summernote',
 ]
 
 
@@ -231,3 +233,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 GOOGLE_MAPS_API_KEY = 'AIzaSyCwJMUjrQFsJ4kO6d05KnQLRE3TAaxLv20'
+
+SUMMERNOTE_CONFIG = {
+
+    # Change editor size
+    'width': '100%',
+    'height': '480',
+}

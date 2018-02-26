@@ -4,7 +4,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/search_bar.css' %}">
 {% endblock %}
 
-<div id="search-bar" class="row">
+<div id="search-bar" class="row" style="margin-top:30px;">
   <form action="{% url 'review:search_item' %}" method="GET">
     <div class="input-field col s12 m6 l2">
       <select name="skin-type">
