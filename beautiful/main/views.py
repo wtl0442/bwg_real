@@ -6,7 +6,7 @@ from .models import SubscribedEmail
 from post.models import Tag, Post
 from beautywiki.models import TroubleWiki
 from django.db.models import Count
-from creator.models import Item, Category,Youtube_Content
+from creator.models import Item, Category
 
 
 def showMain(request):
@@ -64,15 +64,5 @@ def unsubscribe_email(request):
         data['deleted'] = bool(deleted_count)
 
     return JsonResponse(data)
-
-
-# def video_list(title):
-#     cateogrized_list = Youtube_Content.objects.filter(category__name=title)
-#     # item_in_order = cateogrized_list.annotate(
-#     #                 num_reviews=Count('item_review')).order_by(
-#     #                 '-num_reviews')
-#     top_three = cateogrized_list [:3]
-
-#     return top_three
 
 
