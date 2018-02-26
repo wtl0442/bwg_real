@@ -7,16 +7,21 @@ from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
 
 
-def creator_main(request, creatorname='jubin3424', content_pk=None):
+def creator_main(request, creatorname=None, content_pk=None):
     # list of creator is needed for rendering the nav-bar
+    # creator with no youtube_content will be not displayed
     creator_list = User.objects.filter(
                     profile__is_creator=True).exclude(
                     Youtube_Content__isnull=True).order_by('pk')
-    # user selects which creator page one will browse
-    creator = get_object_or_404(User, username=creatorname)
 
+    # user selects which creator page one will browse
+    if creatorname is None:
+        creator = creator_list.first()
+    else:
+        creator = get_object_or_404(User, username=creatorname)
+
+    # default video is first video
     if content_pk is None:
-        # default video is first video
         youtube_content = creator.Youtube_Content.first()
     else:
         youtube_content = get_object_or_404(

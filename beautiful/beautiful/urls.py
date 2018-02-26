@@ -32,7 +32,8 @@ urlpatterns = [
     path('oauth/', include('social_django.urls', namespace='social')),
 
     path('wiki/', include('beautywiki.urls')),
-    path('review/', include('review.urls'))
+    path('review/', include('review.urls')),
+    path('summernote/', include('django_summernote.urls')),
 ]
 
 if settings.DEBUG:

@@ -13,6 +13,4 @@ urlpatterns = [
     path('write/', views.post_write, name='post_write'),
     path('tag/', views.show_tag, name='show_tag'),
     path('tag/<str:kwargs>/', views.tag_post_list, name='tag_post_list'),
-    path('test/', views.MyListView.as_view(), name='test_view'),
-    path('test/<int:pk>/', views.MyDetailView.as_view(), name='test_detail_view'),
 ]

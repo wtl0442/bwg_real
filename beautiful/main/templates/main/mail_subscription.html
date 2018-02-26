@@ -3,12 +3,14 @@
 </div>
 
 <div class="col l12 subscribe_panel">
+  <div class="subscribe_panel_input">
     <form id="subscribe-form" action="{% url 'main:subscribeEmail' %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn unsubscribe-submit">구독 취소</button>
         <button type="submit" class="btn subscribe-submit">메일 구독</button>
     </form>
+  </div>
 </div>
 
 <script type="text/javascript">

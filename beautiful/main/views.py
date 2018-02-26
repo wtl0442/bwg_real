@@ -6,12 +6,13 @@ from .models import SubscribedEmail
 from post.models import Tag, Post
 from beautywiki.models import TroubleWiki
 from django.db.models import Count
-from creator.models import Item, Category
+from creator.models import Item, Category,Youtube_Content
 
 
 def showMain(request):
     # 태그 부분
     hot_tags = Tag.objects.annotate(num_written=Count('post')).order_by('-num_written')[:5]
+    hot_tags_mobile = Tag.objects.annotate(num_written=Count('post')).order_by('-num_written')[:3]
     # 게시글 부분
     hot_posts = Post.objects.annotate(num_comments=Count('comment')).order_by('-num_comments')[:5]
     # 금주의 피부백서
@@ -19,6 +20,7 @@ def showMain(request):
     recommendation = {i.name: list(item_rank(i.name)) for i in Category.objects.all()}
     return render(request, 'main/main.html', {
         'hot_tags': hot_tags,
+        'hot_tags_mobile': hot_tags_mobile,
         'hot_posts': hot_posts,
         'this_wiki': this_wiki,
         'form': SubscribeForm(),
@@ -62,3 +64,15 @@ def unsubscribe_email(request):
         data['deleted'] = bool(deleted_count)
 
     return JsonResponse(data)
+
+
+# def video_list(title):
+#     cateogrized_list = Youtube_Content.objects.filter(category__name=title)
+#     # item_in_order = cateogrized_list.annotate(
+#     #                 num_reviews=Count('item_review')).order_by(
+#     #                 '-num_reviews')
+#     top_three = cateogrized_list [:3]
+
+#     return top_three
+
+

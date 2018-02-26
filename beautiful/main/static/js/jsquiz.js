@@ -3,53 +3,52 @@
     question: "겨울엔 피부가 잘 트는 편이다.",
     choices: ["Yes", "No"],
     correctAnswer: 0 //0
-
   }
-  // , {
-  //   question: "각질 때문에 항상 얼굴에 크림이나 보습제를 챙겨 바른다.",
-  //   choices: ["Yes", "No"],
-  //   correctAnswer: 0 //1
-  // }, {
-  //   question: "피부가 얇고 건조하다",
-  //   choices: ["Yes", "No"],
-  //   correctAnswer: 0 //2
-  // }, {
-  //   question: "세안 후 땅기고 각질이 일어난다.",
-  //   choices: ["Yes", "No"],
-  //   correctAnswer: 0 //3
-  // }, {
-  //   question: "건조한 느낌이 들면 얼굴이 빨개진다.",
-  //   choices: ["Yes", "No"],
-  //   correctAnswer: 0 //4
-  // }, {
-  //   question: "화장품 트러블이 잘 생긴다.",
-  //   choices: ["Yes", "No"],
-  //   correctAnswer: 0 //5
-  // }, {
-  //   question: "얼굴과 몸에 뾰루지가 잘 생긴다.",
-  //   choices: ["Yes", "No"],
-  //   correctAnswer: 0 //6
-  // }, {
-  //   question: "T존 부위가 항상 번들거린다.",
-  //   choices: ["Yes", "No"],
-  //   correctAnswer: 0 //7
-  // }, {
-  //   question: "끈적임이 싫어 가능하면 화장품을 많이 바르지 않는다.",
-  //   choices: ["Yes", "No"],
-  //   correctAnswer: 0 //8
-  // }, {
-  //   question: "얼굴과 몸에 털이 많은 편이다.",
-  //   choices: ["Yes", "No"],
-  //   correctAnswer: 0 //9
-  // }, {
-  //   question: "코에 검은 피지가 많이 있다.",
-  //   choices: ["Yes", "No"],
-  //   correctAnswer: 0 //10
-  // }, {
-  //   question: "모공이 넓은 편이다.",
-  //   choices: ["Yes", "No"],
-  //   correctAnswer: 0 //11
-  // }
+  , {
+    question: "각질 때문에 항상 얼굴에 크림이나 보습제를 챙겨 바른다.",
+    choices: ["Yes", "No"],
+    correctAnswer: 0 //1
+  }, {
+    question: "피부가 얇고 건조하다",
+    choices: ["Yes", "No"],
+    correctAnswer: 0 //2
+  }, {
+    question: "세안 후 땅기고 각질이 일어난다.",
+    choices: ["Yes", "No"],
+    correctAnswer: 0 //3
+  }, {
+    question: "건조한 느낌이 들면 얼굴이 빨개진다.",
+    choices: ["Yes", "No"],
+    correctAnswer: 0 //4
+  }, {
+    question: "화장품 트러블이 잘 생긴다.",
+    choices: ["Yes", "No"],
+    correctAnswer: 0 //5
+  }, {
+    question: "얼굴과 몸에 뾰루지가 잘 생긴다.",
+    choices: ["Yes", "No"],
+    correctAnswer: 0 //6
+  }, {
+    question: "T존 부위가 항상 번들거린다.",
+    choices: ["Yes", "No"],
+    correctAnswer: 0 //7
+  }, {
+    question: "끈적임이 싫어 가능하면 화장품을 많이 바르지 않는다.",
+    choices: ["Yes", "No"],
+    correctAnswer: 0 //8
+  }, {
+    question: "얼굴과 몸에 털이 많은 편이다.",
+    choices: ["Yes", "No"],
+    correctAnswer: 0 //9
+  }, {
+    question: "코에 검은 피지가 많이 있다.",
+    choices: ["Yes", "No"],
+    correctAnswer: 0 //10
+  }, {
+    question: "모공이 넓은 편이다.",
+    choices: ["Yes", "No"],
+    correctAnswer: 0 //11
+  }
   ];
 
   var questionCounter = 0; //Tracks question number
@@ -198,64 +197,62 @@
     else {
       dryness += 1;
     }
-    // if (selections[1] === questions[1].correctAnswer) {
-    //   dryness += 4;
-    // }
-    // else {
-    //   dryness += 1;
-    // }if (selections[2] === questions[2].correctAnswer) {
-    //   dryness += 4;
-    // }
-    // else {
-    //   dryness += 2;
-    // }if (selections[3] === questions[3].correctAnswer) {
-    //   dryness += 4;
-    // }
-    // else {
-    //   dryness += 2;
-    // }if (selections[4] === questions[4].correctAnswer) {
-    //   dryness += 3;
-    // }
-    // else {
-    //   dryness += 0;
-    // }if (selections[5] === questions[5].correctAnswer) {
-    //   dryness += 0;
-    // }
-    // else {
-    //   dryness += 3;
-    // }if (selections[6] === questions[6].correctAnswer) {
-    //   dryness += 0;
-    // }
-    // else {
-    //   dryness += 3;
-    // }if (selections[7] === questions[7].correctAnswer) {
-    //   dryness += 0;
-    // }
-    // else {
-    //   dryness += 3;
-    // }if (selections[8] === questions[8].correctAnswer) {
-    //   dryness += 0;
-    // }
-    // else {
-    //   dryness += 2;
-    // }if (selections[9] === questions[9].correctAnswer) {
-    //   dryness += 0;
-    // }
-    // else {
-    //   dryness += 2;
-    // }if (selections[10] === questions[10].correctAnswer) {
-    //   dryness -= 1;
-    // }
-    // else {
-    //   dryness += 3;
-    // }if (selections[11] === questions[11].correctAnswer) {
-    //   dryness -= 5;
-    // }
-    // else {
-    //   dryness += 4;
-    // }
-
-    // 점수 계산 끝
+    if (selections[1] === questions[1].correctAnswer) {
+      dryness += 4;
+    }
+    else {
+      dryness += 1;
+    }if (selections[2] === questions[2].correctAnswer) {
+      dryness += 4;
+    }
+    else {
+      dryness += 2;
+    }if (selections[3] === questions[3].correctAnswer) {
+      dryness += 4;
+    }
+    else {
+      dryness += 2;
+    }if (selections[4] === questions[4].correctAnswer) {
+      dryness += 3;
+    }
+    else {
+      dryness += 0;
+    }if (selections[5] === questions[5].correctAnswer) {
+      dryness += 0;
+    }
+    else {
+      dryness += 3;
+    }if (selections[6] === questions[6].correctAnswer) {
+      dryness += 0;
+    }
+    else {
+      dryness += 3;
+    }if (selections[7] === questions[7].correctAnswer) {
+      dryness += 0;
+    }
+    else {
+      dryness += 3;
+    }if (selections[8] === questions[8].correctAnswer) {
+      dryness += 0;
+    }
+    else {
+      dryness += 2;
+    }if (selections[9] === questions[9].correctAnswer) {
+      dryness += 0;
+    }
+    else {
+      dryness += 2;
+    }if (selections[10] === questions[10].correctAnswer) {
+      dryness -= 1;
+    }
+    else {
+      dryness += 3;
+    }if (selections[11] === questions[11].correctAnswer) {
+      dryness -= 5;
+    }
+    else {
+      dryness += 4;
+    }
 
     if (dryness >= 37){
       type = "건성피부(민감성피부)"

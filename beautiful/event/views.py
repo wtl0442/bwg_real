@@ -23,6 +23,7 @@ def event_main(request, tag_pk=None):
         'event_list' : event_list,
         'tag_list' : Tag.objects.all(),
         'tag_selected' : tag,
+        'tag_count':a,
 
             }
     return render(request, 'event/event_main.html', ctx)
@@ -55,6 +56,10 @@ def event_place(request):
 
     return render(request, 'event/event_place.html', ctx)
 
+
+def event_tab(request):
+    if request.method== "GET":
+        return render(request, 'event/tagbar_tab.html')
 
 
 
