@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/event_main.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="choice_button_bar" style="margin-top:30px;">
+  <div id="choice_button">
+    <a id="choice_button_list" href="{% url 'event:event_main'%}">
+    {% include 'event/active_button.html' %}</a>
+      <script>
+      $('#choice_button_list').click(function(e){
+          var self = $(this);
+        $.get(url)
+            .done(function(r) {
+                $('.event_page_content')(r);
+            })
+            .fail(function(){
+              alert('오류 발생');
+            });
+          return false;
+      });
+      </script>
+
+    <a id="choice_button_map" href="{% url 'event:event_place' %}" >
+      {% include 'event/active_button.html' %}</a>
+    </div>
+
+
+    <script>
+      $('#choice_button_map').click(function(e){
+          var self = $(this);
+          var url = self.attr('href');
+        $.get(url)
+            .done(function(r) {
+                self.html(r);
+                console.log()
+                          })
+            .fail(function(){
+              alert('오류 발생');
+            });
+          return false;
+      });
+    </script>
+
+</div>
+
+
+{% endblock %}

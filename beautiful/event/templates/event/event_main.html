@@ -3,42 +3,10 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/event_main.css' %}" type="text/css">
 
-<div id="choice_button">
-  <a id="choice_button_list" href="{% url 'event:event_main'%}">
-  {% include 'event/active_button.html' %}</a>
-  <a id="choice_button_map" href="{% url 'event:event_place' %}" >
-    {% include 'event/active_button.html' %}</a></div>
 
-  <script>
-    $('#choice_button_list').click(function(e){
-        var self = $(this);
-      $.get(url)
-          .done(function(r) {
-              $('.event_page_content')(r);
-          })
-          .fail(function(){
-            alert('오류 발생');
-          });
-        return false;
-    });
 
-    $('#choice_button_map').click(function(e){
-        var self = $(this);
-        var url = self.attr('href');
-      $.get(url)
-          .done(function(r) {
-              console.log(r)
-              self.html(r);
-          })
-          .fail(function(){
-            alert('오류 발생');
-          });
-        return false;
-    });
-  </script>
-
-<div class="event_page_content">
-  <div id="tag_list">
+<div class="event_page_content" style="margin-top:30px;">
+<div id="tag_list">
       <a href="{% url 'event:event_main' %}">
         <div class="chip">
           모두보기
@@ -57,18 +25,15 @@
       <div id="active_event">
 
           <span class="chip"  style="background-color:pink;">{{tag_selected}}</span>
-          <span>진행될 행사 {{a}} 개</span>
+          <span>진행될 행사 {{tag_count}} 개</span>
 
       </div>
-
-
-
-
 
   </div>
 
 <div class="row">
     <div id="event_list">
+
 
       {% for event in event_list %}
 
@@ -85,7 +50,7 @@
 
           <div class="col l8 m8 s8 content_section" >
             <span class="event_detail_title">
-            {{event.pk}}&{{event.tag.all}}
+            {{event.pk}}
             </span>
             <span class="event_detail_content">{{event.title}}</span>
             <span class="event_detail_content">{{event.content}}</span>

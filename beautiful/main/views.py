@@ -64,3 +64,5 @@ def unsubscribe_email(request):
         data['deleted'] = bool(deleted_count)
 
     return JsonResponse(data)
+
+

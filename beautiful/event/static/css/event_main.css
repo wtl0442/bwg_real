@@ -44,3 +44,19 @@
   position: relative;
 }
 
+.choice_button_bar{
+    background-color: white;
+    height: 50px;
+    width:100%;
+    text-align: center;
+    line-height: 50px;
+
+}
+
+
+.tab_change_btn{
+    background-color: grey;
+    border-radius: 10px;
+
+
+}

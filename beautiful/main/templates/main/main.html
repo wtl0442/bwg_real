@@ -2,41 +2,22 @@
 {% load static %}
 {% block content %}
 <div class="row">
-<div class="col l8 m12 s12 slogan"><span>
-<pre class="slogan">Con<span class="fi">fi</span><span class="de">de</span>nt
-Grooming
-For You</pre></span></div>
-    <div class="col l4 m4 s4 login hide-on-med-and-down valign-wrapper">
+<!--main_fix-->
+<div class="col 1l2 m12 s12 title_picture">
+  <img src="{% static 'title_picture.png' %}">
+</div>
 
-    <div>
-     {% if request.user.is_authenticated %}
-         <div class="welcome_member">{{ request.user.username }}님 반가워요!!</div>
-    <a href="{%  url 'accounts:logout' %}" class="btn">Logout</a>
-    {% else %}
-    <a href="{% url 'accounts:login' %}">로그인</a><br>
-    <a href="{% url 'accounts:signup' %}" class="join">회원가입</a>
-         <a href="" class="join">ID/PW 찾기</a>
-    {% endif %}
-    </div>
-    </div>
 
-    <div class="col l4 tags hide-on-med-and-down">
-        <a href="{% url 'post:show_tag' %}">#TAGS</a><br>
-        {% for tag in hot_tags %}
-            <div class="chip" style="margin-bottom:3px;">
-                <img src='{% static 'hot_image.gif' %}' alt="Contact Person" width="32px">
-                 <a href="{% url 'post:tag_post_list' tag %}">{{ tag }}</a></div><br>
-        {% endfor %}
 
-    </div>
+<div class="col l6 skintype_test" style="border-left: 5px solid #efefef">
+  <div class="main_menu_logo-mid_title skintype_text hide-on-small-only">피부타입 테스트 </div>
+  <div class="main_menu_logo-mid_title skintype_text_m hide-on-med-and-up">피부타입 테스트 </div>
 
-    <div class="col l3 m6 s6 skin_type">
-
-        <div class="carousel carousel-slider center" data-indicators="true">
-            <div class="carousel-fixed-item center">
-                <a class="btn waves-effect
-                white grey-text darken-text-2" href="{% url 'accounts:skin_type' %}">테스트하기</a>
-            </div>
+  <div class="content_sec">
+    <div class="skin_type col l6 m6 s12">
+        <p>남자는 무조건 올인원?<br/> 사람은 모두 다른 피부타입을<br/> 가졌다는거,알고있나요?<br/>
+        지금 당신의 피부 타입을 확인해보세요!</p>
+        <div class="carousel carousel-slider center hide-on-small-only" data-indicators="true">
             <div class="carousel-item dry white-text">
               <h2>건성 피부</h2>
               <p class="white-text">Dry Skin</p>
@@ -57,113 +38,53 @@ For You</pre></span></div>
         <script>
             $('.carousel.carousel-slider').carousel({fullWidth: true});
         </script>
-
-    </div>
-    <div class="col l5 m6 s6 skin_wiki" style="padding: 0.3rem 0.75rem;">
-        <span class="main_menu_logo">금주의 피부백서</span><br>
-        <div class="card horizontal">
-          <div class="card-image hide-on-small-only">
-            <img src="{{ this_wiki.image_url }}" style="width:100%; height:180px;">
-          </div>
-            <div class="card-content" style="height:180px;
-            color:black; overflow:scroll; font-size:0.8rem;">
-              <div class="middle_content">
-                {{ this_wiki.contents }}<br><br>
-                  <!-- Modal Trigger -->
-                  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">솔루션</a>
-              </div>
-
-                  <!-- Modal Structure -->
-                  <div id="modal1" class="modal">
-                    <div class="modal-content">
-                      <h4 style="margin-bottom:0;">Solution</h4>
-                      <p>
-                          <img src="{{ this_wiki.image_url }}" class="hide-on-large-only hide-on-small-only" width="70%;"><br>
-                          <img src="{{ this_wiki.image_url }}" class="hide-on-med-and-up" width="100%;"><br>
-                          <img src="{{ this_wiki.image_url }}" class="hide-on-med-and-down"><br>
-                          {{ this_wiki.solution|linebreaksbr|default:"<h4>등록된 솔루션이 없습니다.</h4>" }}</p>
-                    </div>
-                    <div class="modal-footer">
-                      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" style="color:black;">돌아가기</a>
-                    </div>
-                  </div>
-                <script>
-                    $(document).ready(function(){
-                        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-                        $('.modal').modal();
-                      });
-                </script>
-            </div>
-        </div>
-    </div>
-    <div class="col l4 m6 s6 hottest">
-        <div class="main_menu_logo">
-        <img src="{% static 'hottest.gif' %} ">HOTTEST</div>
-        <div class="hot_area">
-            <span class="hot_posts">
-            {% if hot_posts %}
-                {% for post in hot_posts %}
-                    <i class="material-icons tiny" style="vertical-align:middle; color:saddlebrown;">thumb_up</i>
-                    <a class="hide-on-small-only" href={% url 'post:post_detail' post.pk %}>{{ post.title|truncatechars:20 }}</a>
-                    <a class="hide-on-med-and-up" href={% url 'post:post_detail' post.pk %}>{{ post.title|truncatechars:11 }}</a>
-                    <span class="hot_posts_comment_count">{{ post.num_comments }}</span><br>
-                {% endfor %}
-            {% endif %}
-            </span>
-        </div>
     </div>
 
 
-    <!--이것은 모바일에서만 보이는 태그 영역입니다.-->
-    <div class="col m6 s6 hide-on-med-and-up mobile_tags" style="white-space:nowrap;">
-        <div class="main_menu_logo">#TAGS_FOR_MOBILE</div>
-        {% for tag in hot_tags_mobile %}
-            <div class="chip">
-                 <a href="{% url 'post:tag_post_list' tag %}">{{ tag }}</a></div>
-        {% endfor %}
-    </div>
+    <div class="col l6 m6 s12 skin_type_pic hide-on-small-only">
+      <img src="{% static 'skintype.png' %}">
 
-    <div class="col m6 s6 hide-on-large-only hide-on-small-only mobile_tags" style="white-space:nowrap;">
-        <div class="main_menu_logo">#TAGS_FOR_MOBILE</div>
-        {% for tag in hot_tags %}
-            <div class="chip">
-                 <a href="{% url 'post:tag_post_list' tag %}">{{ tag }}</a></div>
-        {% endfor %}
     </div>
+    <div class="col l6 m6 s12 skin_type_pic_m hide-on-med-and-up">
+      <img src="{% static 'skintype.png' %}">
+    </div>
+  </div>
 
-    <!--여기까지-->
-<div class="col l3 m3 s3 valign-wrapper menu">
-  <h5 class="menu_align hide-on-med-and-down">추천상품 보기</h5>
-    <span class="hide-on-large-only" style="overflow:auto;">
-<pre>
-추천상품
-보기</pre>
-    </span>
-</div>
-<div class="col l3 m3 s3 valign-wrapper menu">
-  <p class="menu_align hide-on-med-and-down" style="font-size:19px;">크리에이터 리뷰보기</p>
-    <span class="hide-on-large-only">
-        <pre>
-크리에이터
-리뷰보기</pre></span>
-</div>
-<div class="col l3 m3 s3 valign-wrapper menu ">
-  <h5 class="menu_align hide-on-med-and-down">행사 확인하기</h5>
-    <span class="hide-on-large-only">
-        <pre>
-행사
-확인하기</pre></span>
-</div>
-<div class="col l3 m3 s3 valign-wrapper menu">
-  <h5 class="menu_align hide-on-med-and-down">BWG 후기보기</h5>
-    <span class="hide-on-large-only">
-        <pre>
-BWG
-후기보기</pre>
-    </span>
+  <div class="button_sec_1 hide-on-small-only">
+       <a class="btn waves-effect" href="{% url 'accounts:skin_type' %}">테스트하기</a>
+  </div>
+  <div class="button_sec_1_m hide-on-med-and-up">
+       <a class="btn waves-effect" href="{% url 'accounts:skin_type' %}">테스트하기</a>
+  </div>
 </div>
 
 
+<div class="col l6 skintype_test" style="border-right: 5px solid #efefef">
+  <div class="main_menu_logo-mid_title skintype_text hide-on-small-only">피부타입 백서</div>
+  <div class="main_menu_logo-mid_title skintype_text_m hide-on-med-and-up">피부타입 백서 </div>
+
+  <div class="content_sec">
+    <div class="skin_type col l6 m6 s12">
+      <p>처음 겪는 피부고민.<br/> 어디에 물어볼지,<br/> 어떻게 해야하는지 모르겠다면?<br/> BWG가 준비한 피부백서에서<br/>해결해보세요!</p>
+
+
+
+    </div>
+    <div class="col l6 m6 s12 skin_type_pic hide-on-small-only">
+      <img src="{% static 'skindic.png' %}">
+    </div>
+    <div class="col l6 m6 s12 skin_type_pic_m hide-on-med-and-up">
+      <img src="{% static 'skindic.png' %}">
+    </div>
+    </div>
+    <div class="button_sec_1 hide-on-small-only">
+     <a class="btn waves-effect" href="{% url 'accounts:skin_type' %}">확인하기</a>
+   </div>
+   <div class="button_sec_1_m hide-on-med-and-up">
+     <a class="btn waves-effect" href="{% url 'accounts:skin_type' %}">확인하기</a>
+   </div>
+
+</div>
 
 
   {% include 'main/item_recommendation.html' with bb_cream=bb_cream moisturizer=moistruizer eye_brow=eye_brow %}
@@ -172,19 +93,52 @@ BWG
 
 
 
-<div class="col l6 creator">
-  <div class="main_menu_logo-mid_title">크리에이터 후기 보기 </div>
-</div>
-<div class="col l6 offline_event">
-  <div class="main_menu_logo-mid_title">오프라인 행사 정보 </div>
-  <div class="event_content">
-    <div class="col l6 event_content_text"
+<!--main_fix end-->
 
-    >내 주변의</br>그루밍 행사 </br>알아보기</div>
-    <div class="col l6 event_button"><a class="waves-effect waves-light btn" href="{% url 'event:event_main' %}">행사보기</a>
+
+
+
+<!--origin_main 분리함
+  {% include 'main/origin_main.html'%}
+
+  {% include 'main/item_recommendation.html' with bb_cream=bb_cream moisturizer=moistruizer eye_brow=eye_brow %}-->
+
+<!-- 추천상품 보기 -->
+
+
+<div class="col l6 m6 s12 creator_event">
+  <div class="main_menu_logo-mid_title creator_event_text ">크리에이터 후기 보기</div>
+
+    <div class="content_sec_2 " style="height:auto">
+      <p>새로나온 신상부터,<br/>남자 피부에 맞는 여자화장품까지,<br/>크리에이터가 미리 써봤다!<br/>후기 보고 나한테 맞는 아이템 찾아보세요!</p>
     </div>
-  </div>
+    <div class="col l6 s12">
+      <iframe id="iframe" width="80" height="80"
+      src="{{ youtube_content.youtube_url }}">
+      </iframe>
+
+
+    </div>
+
+    <div class="button_sec_2 ">
+
+       <a class="btn waves-effect" href="{% url 'accounts:skin_type' %}">후기보러가기</a>
+    </div>
 </div>
+
+<div class="col l6 m6 s12 creator_event">
+  <div class="main_menu_logo-mid_title creator_event_text ">오프라인 행사 정보</div>
+
+    <div class="content_sec_2 ">
+      <p>가꾸고 싶은 당신을 위해<br/>세일정보부터, 가기만해도 이득인 행사까지 <br/>여기서만 확인하면 끝! </p>
+    </div>
+
+    <div class="button_sec_2">
+
+       <a class="btn waves-effect" href="{% url 'event:event_main' %}">행사확인하기</a>
+    </div>
+</div>
+
 
 <!-- 메일 구독 -->
 {% include 'main/mail_subscription.html' with form=form %}
