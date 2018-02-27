@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+    <div class="hide-on-med-and-down" style="max-width:100%; height:30px;"></div>
+    <div class="profile_mobile">
     <h2>{{ profile.user.last_name }}{{ profile.user.first_name|default:"관리자" }}</h2>
     <img src="{{ profile.image_url }}" width="300">
     <p>생년월일 : {{ profile.birth_date|default:"미입력"|date:"Y.m.d." }}</p>
@@ -8,4 +10,5 @@
     {% if request.user.profile == profile %}
     <a href="{% url 'accounts:update_profile' %}" class="btn">프로필 수정하기</a>
     {% endif %}
+    </div>
 {% endblock %}

@@ -57,7 +57,7 @@ img.navImg{
 }
 body footer.page-footer {
     margin-top:100px;
-	background-image: url('{% static 'footer_image.png' %}');
+    background-color:slategray;
 }
 </style>
 
@@ -74,14 +74,13 @@ body footer.page-footer {
     <div class="nav-wrapper center_align">
         <div class="container">
 
-          <div class="row">
+          <div class="row hide-on-med-and-down">
             <!-- Navbar menu -->
           <div class="navbar_back hide-on-med-and-down ">
-
             <ul class="main_menu hide-on-med-and-down">
 
               <div class="col l2 m2 nav_logo">
-                <li><a href="{% url 'main:showMain' %}"><img src="{% static 'new_logo.png' %}" class="show-on-large "></a></li>
+                <li><a href="{% url 'main:showMain' %}"><img src="{% static 'new_logo.png' %}" class="show-on-large"></a></li>
               </div>
 
               <div class="col l7 m7 menu_list">
@@ -98,7 +97,7 @@ body footer.page-footer {
                 <div class="col l6 m6 login_text_div">
                 <li>Hello! {{ request.user.username }}</li></div>
                 <div class="col l6 m6 login_text_div ">
-                <a href="{%  url 'accounts:logout' %}">Logout</a></li></div>
+                <li><a href="{%  url 'accounts:logout' %}">Logout</a></li></div>
 
                 {% else %}
                 <div class="col l6 m6 login_text_div">
@@ -117,11 +116,12 @@ body footer.page-footer {
             <ul id="slide-out" class="side-nav">
                 <li><div class="user-view">
                     <div class="background">
-                        <img src="{% static "milestone.jpg" %}">
+                        <img src="{% static "footer_image.png" %}">
                     </div>
-                    <a href="#!user" style="text-align: center;"><img class="circle" src="{% static "hottest.gif" %}" style="display:inline;"></a>
-                    <a href="#!name"><span class="white-text name">John Doe</span></a>
-                    <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                    <a href="#!user" style="text-align: center; height:60px;">
+                        <img class="circle" src="{% static "img/default_image.png" %}" style="display:inline;"></a>
+                    <a href="#!name"><span class="white-text name">박지선 회원님</span></a>
+                    <a href="#!email"><span class="white-text email">parkjisun@gmail.com</span></a>
                 </div></li>
                 <li><a href="#!"><i class="material-icons">cloud</i>뷰티윗가이즈?</a></li>
                 <li><a href="{% url 'wiki:wikimain' %}">피부 백서</a></li>
@@ -130,14 +130,28 @@ body footer.page-footer {
                 <li><a href="{% url 'review:review_list' %}">제품후기</a></li>
                 <li><a href="{% url 'post:post_list' %}">커뮤니티</a></li>
                 <li><div class="divider"></div></li>
-                <li><a class="subheader">Subheader</a></li>
-                <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+                <li><a class="subheader">협력사이트</a></li>
+                <li><a class="waves-effect" href="#!">주빈세상피부과</a></li>
+                <li><a class="waves-effect" href="#!">젊어지는준우피부과</a></li>
             </ul>
-            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-            <script>$(".button-collapse").sideNav();</script>
-            <a href="{% url 'main:showMain' %}">
-                <img src="{% static 'new_logo.png' %}"
-                     class="hide-on-large-only" width="250px" style="margin-top:5px; margin-right:15px;"></a>
+
+            <!--모바일 기기에서 보이는 메뉴바 버튼과 처리 스크립트-->
+            <div class="row hide-on-large-only" style="margin-top:10px;">
+                <div class="col m3 s2">
+                <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+                <script>$(".button-collapse").sideNav();</script>
+                </div>
+
+                <div class="col m6 s9" style="height:52px; text-align:center;">
+                <a href="{% url 'main:showMain' %}">
+                    <img src="{% static 'new_logo.png' %}"
+                         class="hide-on-large-only" width="250px" style=""></a>
+                </div>
+
+                <div class="col m3 s1">
+                    &nbsp;
+                </div>
+            </div>
         </div>
     </div>
   </nav>

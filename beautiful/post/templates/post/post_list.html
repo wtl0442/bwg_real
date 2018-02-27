@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-        <div style="max-width:100%; height:30px;"></div>
+        <div class="hide-on-med-and-down" style="max-width:100%; height:30px;"></div>
         <h2>뷰가 커뮤니티</h2>
         <table class="striped">
             <tr><th>작성자</th><th>제목</th><th>등록일</th></tr>
@@ -23,5 +23,6 @@
 
 {% include 'post/post_list_to_include.html' %}
 {% endblock %}
+
 
 
