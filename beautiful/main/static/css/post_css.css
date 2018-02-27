@@ -89,3 +89,9 @@ form#searchform button {
 	background-color:#F2ECE8;
 	padding:0;
 }
+
+@media screen and (max-width: 600px) {
+	div.profile_mobile{
+		padding-left:20px;
+	}
+}
