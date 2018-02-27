@@ -431,9 +431,6 @@ div.card-content div.middle_content {
    margin-top:5px;
 }
 
-
-
-
 .navbar_back {
     background-color:#f1f1f1;
     margin-top:10px;
@@ -610,8 +607,6 @@ nav ul.main_menu .login_text li {
     margin: 0 auto;
 }
 
-
-
 .button_sec_1{
     padding:1rem 1rem;
     text-align: right;
@@ -674,17 +669,15 @@ nav ul.main_menu .login_text li {
     padding-right: 10%;
 }
 
-
 .row div .button_sec_2 .btn {
     background-color: rgba( 255, 255, 255, 0.9 );
     border-radius: 20px;
     color:#006fc0;
     position: relative;
     top:15%;
-
 }
 
 .main_menu_logo-mid_title{
-
     padding:1rem 1rem;
 }
+
