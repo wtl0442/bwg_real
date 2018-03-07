@@ -16,7 +16,6 @@ import os
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ SECRET_KEY = '50rds_cbh+uld9#^7(m851bft5^iq90a(q=!p_(gnqkpyr)^t('
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
 
@@ -58,7 +56,6 @@ INSTALLED_APPS = [
     'beautywiki',
     'django_summernote',
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -98,10 +95,7 @@ TEMPLATES = [
     },
 ]
 
-
-
 WSGI_APPLICATION = 'beautiful.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -110,12 +104,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'bwg_db',
-        # 'USER': 'jubin3424',
-        # 'PASSWORD': 'wnqls6013',
-        # 'HOST': '',
-        # 'PORT': '3306',
     }
 }
 
@@ -138,7 +126,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -152,17 +139,16 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'         #static관련 세팅들
+STATIC_URL = '/static/'  # static관련 세팅들
 STATIC_ROOT = 'static'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'main', 'static'),
     os.path.join(BASE_DIR, 'review', 'static'),
     os.path.join(BASE_DIR, 'event', 'static'),
-    ]
+]
 
 MEDIA_URL = '/media/'
 # MEDIA_ROOT = 'media'
@@ -174,7 +160,6 @@ LOGIN_REDIRECT_URL = '/'
 
 MAIN_REDIRECT_URL = '/'
 
-
 AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
@@ -182,7 +167,6 @@ AUTHENTICATION_BACKENDS = (
     # 'social_core.backends.facebook.FacebookOAuth2',  # 페이스북
     # 'social_core.backends.kakao.KakaoOAuth2',  # 카카오톡
     # 'social_core.backends.naver.NaverOAuth2',  # 네이버
-
 
 )
 
@@ -217,10 +201,8 @@ SOCIALACCOUNT_AUTO_SIGNUP = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQURIED = True
 
-
 SOCIAL_AUTH_FACEBOOK_KEY = '142505123102413'  # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET ='4ef1c71e6241ceb229763626d6dd820c'
-
+SOCIAL_AUTH_FACEBOOK_SECRET = '4ef1c71e6241ceb229763626d6dd820c'
 
 # SOCIAL_AUTH_LOGIN_ERROR_URL = 'accounts/settings/'
 # SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
